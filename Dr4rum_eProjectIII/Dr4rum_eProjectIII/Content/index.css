@@ -1,8 +1,15 @@
-﻿body {
+﻿@font-face {
+    font-family: Balqis;
+    src: url("../Content/font/Balqis.otf");
+    src: local("Balqis"), url(../Content/font/Balqis.otf) format("truetype");
+}
+body {
     background-color: rgb(240,240,240);
     padding-top: 0px !important;
 }
-
+footer {
+    background-color: #343A40;
+}
 .btn-login {
     margin-right: 5px;
 }
@@ -198,8 +205,9 @@
 }
 
     .category-icon-containt > img {
-        width: 30px;
+        width: 40px;
         margin-left: 10px;
+        margin-top: 10px;
     }
 
 .category-containt > div {
@@ -222,7 +230,8 @@
     background-color: #cce5ff;
     border-color: #b8daff;
     font-size: 14px;
-    padding-top: 1%
+    padding-top: 1%;
+    padding-right: 15px;
 }
 
     .Topic-info > p {
@@ -239,4 +248,26 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.footer-containt{
+    position: relative;
+}
+.slogan-containt {
+    position: absolute;
+    top: 0;
+    padding: 3%;
+    font-size: 25px;
+    font-family: Balqis;
+}
+.slogan-1 {
+    color: #D5D5E2;
+}
+.slogan-2 {
+    padding-left: 6%;
+    color: #EE9BAE;
+}
+.footer-img {
+    width: 20%;
+    margin-left: 5%;
+    opacity: 0.5;
 }

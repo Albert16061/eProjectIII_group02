@@ -45,24 +45,25 @@
                     <div class="Topic-info ">
                         <!-- new Topic Title -->
                         <p class="new-topic">
-                            New Topic :
+                            Bài mới :
                             @foreach (var topicItem in cateItem.Topics.Take(1))
                             {
-                                @topicItem.Topic_Title
+                                @Html.ActionLink(@topicItem.Topic_Title, "Details", "Topic", new { Topic_Title = @topicItem.Topic_Title }, new { @class = "" })
                             }
                         </p>
-                        <!-- Date post Topic -->
+                        @foreach (var topicItem in cateItem.Topics.Take(1))
+                        {
                         <p class="new-topic">
-                            Date Post :
-                            @foreach (var topicItem in cateItem.Topics.Take(1))
-                            {
-                                @topicItem.date
-                            }
+                            <!-- Date post Topic -->
+                            Ngày Đăng :
+                            @topicItem.date
                         </p>
-                        <!-- Date post Topic -->
                         <p class="new-topic">
-                            Postman :  @ViewBag.key 
+                            <!-- Owner Topic -->
+                            Đăng Bởi :   @topicItem.Account.UserName
                         </p>
+
+                        }
                     </div>
                 </div>
 
