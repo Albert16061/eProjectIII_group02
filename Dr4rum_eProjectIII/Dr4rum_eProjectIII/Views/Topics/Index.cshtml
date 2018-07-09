@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Topic>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.setV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Topic_Info)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Report)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Account.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.Group_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.setV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Topic_Info)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Report)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.Group_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Topic_Title }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Topic_Title }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Topic_Title })
+        </td>
+    </tr>
+}
+
+</table>
