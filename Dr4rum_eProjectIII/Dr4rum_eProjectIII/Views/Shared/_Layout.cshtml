@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container body-content">
+        <nav class="navbar navbar-expand-lg navbar-dark  bg-dark ">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <div class="navbar-header pull-left">
+                    <a class="navbar-brand navbar-title" href="@Url.Action("Index", "Index")">
+                        <img src="~/Image/Logo_Icon/red_cross.png" class="navbar-logo" alt="Site Logo" /> Dr4rum
+                    </a>
+                </div>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
+                </ul>
+                <!-- Searching-->
+                <form class="form-inline my-2 my-lg-0 searching">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <!-- Button Login -->
+                <div class="form-inline my-2 my-lg-0">
+                    <button class=" my-2 my-sm-0 btn btn-outline-warning btn-login" type="submit">Login</button>
+                    <button class=" btn  btn-outline-light" type="submit">Register</button>
+                </div>
+            </div>
+        </nav>
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
