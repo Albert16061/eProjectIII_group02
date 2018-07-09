@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Group>
+<!-- Banner-->
+<img src="~/Image/Banner_Pic/index_banner.jpg" class="img-fluid" alt="Responsive image">
+<!-- breadcrumb-->
+<div class="breadcrumb-containt">
+    <div class="btn-group btn-breadcrumb breadcrumb-primary">
+        <a href="@Url.Action("Index", "Index")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+        <!--
+            <a href="#" class="btn btn-primary visible-lg-block visible-md-block">Snippets</a>
+            <a href="#" class="btn btn-primary visible-lg-block visible-md-block">Breadcrumbs text</a>
+            <a href="#" class="btn btn-primary visible-lg-block visible-md-block">Section</a>
+            <a href="#" class="btn btn-primary visible-lg-block visible-md-block">Category</a>
+        -->
+        <div class="btn btn-info c-info">
+            @Html.ActionLink("Home", "Index", "Index", new { @class = "breadcrumb-link" })
+        </div>
+    </div>
+</div>
+<!-- main info-->
+<div class="index-list-containt">
+    <div class="index-list">
+        @foreach (var groupItem in Model)
+        {
+            // The variable GroupItem now represents a Group in the table
+            // Each loop will display a group in Group table
+            // Display Group name
+            <div class="alert alert-danger" role="alert">
+                <h3>@groupItem.Group_Name</h3>
+            </div>
+
+            // Display Group's category list
+            foreach (var cateItem in groupItem.Categories)
+            {
+                // The variable cateItem now represents a Category in GroupItem
+                // Each loop will display a Category item  in current Group
+                // Display Category name
+                <div class="category-containt">
+                    <div class="category-icon-containt">
+                        <img src="~/Image/Logo_Icon/comment-50.png" class="category-icon" alt="Site Logo" />
+                    </div>
+                    <div class="category-title">
+                        <p>@cateItem.Category_Name</p>
+                    </div>
+                    <div class="Topic-info ">
+                        <p>Số Bài Viết : @cateItem.Topics.Count</p>
+                        <p>Bài Viết Mới: @ViewBag.key</p>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
