@@ -221,6 +221,8 @@
     color: #004085;
     background-color: #cce5ff;
     border-color: #b8daff;
+    font-size: 14px;
+    padding-top: 1%
 }
 
     .Topic-info > p {
@@ -228,3 +230,13 @@
         margin-bottom: 0px !important;
         margin-left: 10px;
     }
+.num-topic {
+    font-weight: normal;
+    color: black;
+}
+.new-topic {
+    /* Substring when character too long*/
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

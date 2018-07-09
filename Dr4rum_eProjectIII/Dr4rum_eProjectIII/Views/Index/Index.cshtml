@@ -40,12 +40,32 @@
                     </div>
                     <div class="category-title">
                         <p>@cateItem.Category_Name</p>
+                        <p class="num-topic">Số Bài Viết : @cateItem.Topics.Count </p>
                     </div>
                     <div class="Topic-info ">
-                        <p>Số Bài Viết : @cateItem.Topics.Count</p>
-                        <p>Bài Viết Mới: @ViewBag.key</p>
+                        <!-- new Topic Title -->
+                        <p class="new-topic">
+                            New Topic :
+                            @foreach (var topicItem in cateItem.Topics.Take(1))
+                            {
+                                @topicItem.Topic_Title
+                            }
+                        </p>
+                        <!-- Date post Topic -->
+                        <p class="new-topic">
+                            Date Post :
+                            @foreach (var topicItem in cateItem.Topics.Take(1))
+                            {
+                                @topicItem.date
+                            }
+                        </p>
+                        <!-- Date post Topic -->
+                        <p class="new-topic">
+                            Postman :  @ViewBag.key 
+                        </p>
                     </div>
                 </div>
+
             }
         }
     </div>
