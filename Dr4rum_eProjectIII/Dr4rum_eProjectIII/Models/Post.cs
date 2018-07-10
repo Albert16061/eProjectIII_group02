@@ -20,6 +20,7 @@ namespace Dr4rum_eProjectIII.Models
         public string Post_Info { get; set; }
         public int Like_Num { get; set; }
         public int Dislike_Num { get; set; }
+        public System.DateTime date { get; set; }
     
         public virtual Account Account { get; set; }
         public virtual Topic Topic { get; set; }
