@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Dr4rum_eProjectIII.Models;
+using System.IO;
 
 namespace Dr4rum_eProjectIII.Controllers
 {
@@ -63,7 +64,27 @@ namespace Dr4rum_eProjectIII.Controllers
             ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Group_Name", topic.Category_Name);
             return View(topic);
         }
+        //BEGIN-Add images with ckeditor
+        public ActionResult uploadPartial()
+        {
+            var appData = Server.MapPath("~/Images/uploads");
+            var images = Directory.GetFiles(appData).Select(x => new imagesviewmodel
+            {
+                Url = Url.Content("/Images/uploads/" + Path.GetFileName(x))
+            });
+            return View(images);
+        }
+        public void uploadnow(HttpPostedFileWrapper upload)
+        {
+            if (upload != null)
+            {
+                string ImageName = upload.FileName;
+                string path = System.IO.Path.Combine(Server.MapPath("~/Images/uploads"), ImageName);
+                upload.SaveAs(path);
+            }
 
+        }
+        //END-Add images with ckeditor
         // GET: Topics/Edit/5
         public ActionResult Edit(string id)
         {
