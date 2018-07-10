@@ -52,6 +52,7 @@
           <Property Name="Post_Info" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Like_Num" Type="int" Nullable="false" />
           <Property Name="Dislike_Num" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -221,6 +222,7 @@
           <Property Name="Dislike_Num" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Account" Relationship="Self.FK_Post_Accounts1" FromRole="Post" ToRole="Accounts" />
           <NavigationProperty Name="Topic" Relationship="Self.FK_Post_Topic" FromRole="Post" ToRole="Topic" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -384,6 +386,7 @@
           <EntitySetMapping Name="Posts">
             <EntityTypeMapping TypeName="Dr4rumModel.Post">
               <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="Post_ID" ColumnName="Post_ID" />
                 <ScalarProperty Name="Topic_Tile" ColumnName="Topic_Tile" />
                 <ScalarProperty Name="Acc_ID" ColumnName="Acc_ID" />
