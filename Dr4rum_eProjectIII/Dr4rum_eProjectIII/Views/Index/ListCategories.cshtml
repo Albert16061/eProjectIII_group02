@@ -19,25 +19,49 @@
     <div class="info-containt">
         <h2>@Caterory.Category_Name</h2>
         <div class="category-topic-containt">
+            <div class="alert alert-warning  category-topic-titleContaint">
+                <div class="title-topicTitle">
+                    Tiêu Đề
+                </div>
+                <div class="title-topicDay">
+                    Ngày Đăng
+                </div>
+                <div class="title-topicPostnum">
+                    Số Bài Viết
+                </div>
+                <div class="title-topicPoster">
+                    Bài Viết Cuối
+                </div>
+            </div>
             @foreach (var Topic in Caterory.Topics.ToList())
             {
-                <div class="alert-info category-topic-info ">
-                    <div>
-                        @Topic.Category_Name
+                <div class="category-topic-info ">
+
+                    <div class="info-topicTitle">
+                        <div class="info-Title">
+                            @Topic.Topic_Title
+                        </div>
+                        <div class="info-Name">
+                            @Topic.Account.FirstName
+                            @Topic.Account.LastName
+                        </div>
                     </div>
-                    <div>
-                        @Topic.date
+                    <div class="info-topicDay">
+                        @{ DateTime date = Topic.date;
+                            var dateFormat = date.ToString("dd/MM/yyyy");}
+                        @dateFormat
                     </div>
-                    <div>
+                    <div class="info-topicPostnum">
                         @Topic.Posts.Count()
                     </div>
-                    @foreach(var post in Topic.Posts.Take(1))
+                    @foreach (var post in Topic.Posts.OrderByDescending(a => a.Post_ID).Take(1))
                     {
-                        <div>
+                        <div class="info-topicPoster">
+                            @post.Account.FirstName
                             @post.Account.LastName
                         </div>
                     }
-                </div>            
+                </div>
             }
         </div>
     </div>

@@ -3,13 +3,16 @@
     src: url("../Content/font/Balqis.otf");
     src: local("Balqis"), url(../Content/font/Balqis.otf) format("truetype");
 }
+
 body {
     background-color: rgb(240,240,240);
     padding-top: 0px !important;
 }
+
 footer {
     background-color: #343A40;
 }
+
 .btn-login {
     margin-right: 5px;
 }
@@ -28,6 +31,7 @@ footer {
 .navbar-light .navbar-nav .nav-link {
     font-size: 20px;
 }
+
 .img-fluid {
     width: 100%;
     height: 330px;
@@ -237,15 +241,18 @@ footer {
     padding-top: 1%;
     padding-right: 15px;
 }
+
     .Topic-info > p {
         text-align: left;
         margin-bottom: 0px !important;
         margin-left: 10px;
     }
+
 .num-topic {
     font-weight: normal;
     color: black;
 }
+
 .new-topic {
     /* Substring when character too long*/
     white-space: nowrap;
@@ -253,23 +260,96 @@ footer {
     text-overflow: ellipsis;
 }
 /* This code for ListCategories*/
-.info-containt{
+.info-containt {
     background-color: white;
     padding: 2%;
 }
+
 .category-topic-containt {
     margin-top: 5%;
     border: solid 1px darkgray;
     padding: 1%;
     border-radius: 5px;
 }
-.category-topic-info{
+
+.alert.alert-warning.category-topic-titleContaint {
+    display: flex !important;
+    justify-content: center;
+    padding: 1%;
+    align-items: center;
+}
+
+.title-topicTitle {
+    flex-basis: 58%;
+    max-width: 58%;
+}
+
+.title-topicDay {
+    flex-basis: 15%;
+    max-width: 15%;
+    text-align: center
+}
+
+.title-topicPostnum {
+    flex-basis: 8%;
+    max-width: 8%;
+}
+
+.title-topicPoster {
+    flex-basis: 15%;
+    max-width: 15%;
+    text-align: end;
+}
+
+.info-topicTitle {
+    flex-basis: 60%;
+    max-width: 60%;
+}
+
+.info-Title {
+    text-transform: lowercase;
+    color: darkblue;
+}
+.info-Name {
+    font-size: 12px;
+    color: darkgray;
+}
+
+.info-Title::first-letter {
+    text-transform: uppercase;
+}
+
+.info-topicDay {
+    flex-basis: 15%;
+    max-width: 15%;
+    text-align: center;
+    border-right: solid 1px lightblue;
+}
+
+.info-topicPostnum {
+    flex-basis: 5%;
+    max-width: 5%;
+    text-align: center;
+    border-right: solid 1px lightblue;
+}
+
+.info-topicPoster {
+    flex-basis: 18%;
+    max-width: 18%;
+    text-align: end;
+    color: darkblue;
+}
+
+.category-topic-info {
     display: flex;
     padding: 1%;
+    border-bottom: solid 1px lightblue;
 }
+
 .footer-containt {
     position: relative;
 }
+
 .slogan-containt {
     position: absolute;
     top: 0;
@@ -277,13 +357,16 @@ footer {
     font-size: 25px;
     font-family: Balqis;
 }
+
 .slogan-1 {
     color: #D5D5E2;
 }
+
 .slogan-2 {
     padding-left: 6%;
     color: #EE9BAE;
 }
+
 .footer-img {
     width: 20%;
     margin-left: 5%;
