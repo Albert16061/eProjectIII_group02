@@ -39,7 +39,7 @@
                         <img src="~/Image/Logo_Icon/comment-50.png" class="category-icon" alt="Site Logo" />
                     </div>
                     <div class="category-title">
-                        <p>@cateItem.Category_Name</p>
+                        <p>@Html.ActionLink(@cateItem.Category_Name, "ListCategories", new { Category_Name = @cateItem.Category_Name }, new { @class = "" })</p>
                         <p class="num-topic">Số Bài Viết : @cateItem.Topics.Count </p>
                     </div>
                     <div class="Topic-info ">
@@ -62,7 +62,6 @@
                             <!-- Owner Topic -->
                             Đăng Bởi :   @topicItem.Account.UserName
                         </p>
-
                         }
                     </div>
                 </div>
