@@ -89,9 +89,24 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Content/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         var editor = CKEDITOR.instances['Topic_Info'];
         if (editor) { editor.destroy(true); }
-        CKEDITOR.replace('Topic_Info', { enterMode: CKEDITOR.ENTER_BR, });
-    </script>
+        CKEDITOR.replace('Topic_Info', {
+            enterMode: CKEDITOR.ENTER_BR,
+            filebrowserBrowseUrl: '/browser/browse.php',
+            filebrowserImageBrowseUrl: '/browser/browse.php?type=Images',
+            filebrowserUploadUrl: '/uploader/upload.php',
+            filebrowserImageUploadUrl: '/uploader/upload.php?type=Images'
+        });
+    </script>-->
+<script language="JavaScript" type="text/javascript">
+        CKEDITOR.replace('Topic_Info',
+            {
+                filebrowserBrowseUrl: '/Content/ckeditor/uploader/upload.php',
+                filebrowserUploadUrl: '~/Content/ckeditor/uploader/upload.php'
+            });
+
+        CKEDITOR.replace('Topic_Info', { toolbar: 'Topic_Info' });
+</script>
 }

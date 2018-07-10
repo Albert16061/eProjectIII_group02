@@ -351,6 +351,7 @@
     <Content Include="Content\ckeditor\plugins\copyformatting\styles\copyformatting.css" />
     <Content Include="Content\ckeditor\plugins\dialog\dialogDefinition.js" />
     <Content Include="Content\ckeditor\plugins\div\dialogs\div.js" />
+    <Content Include="Content\ckeditor\plugins\filebrowser\plugins.js" />
     <Content Include="Content\ckeditor\plugins\find\dialogs\find.js" />
     <Content Include="Content\ckeditor\plugins\flash\dialogs\flash.js" />
     <Content Include="Content\ckeditor\plugins\flash\images\placeholder.png" />
@@ -598,6 +599,7 @@
     <Content Include="Content\ckeditor\skins\moono-lisa\images\refresh.png" />
     <Content Include="Content\ckeditor\skins\moono-lisa\images\spinner.gif" />
     <Content Include="Content\ckeditor\styles.js" />
+    <Content Include="Content\ckeditor\uploader\upload.php" />
     <Content Include="Content\index.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
