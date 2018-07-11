@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Topic>
+<img src="~/Image/Banner_Pic/User/topic_info.jpg" class="img-fluid" alt="Responsive image">
+@foreach (var Topic in Model)
+{
+    <!-- breadcrumb-->
+    <div class="breadcrumb-containt">
+        <div class="btn-group btn-breadcrumb breadcrumb-primary">
+            <a href="@Url.Action("Index", "Index")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+            <a href="@Url.Action("Index", "Index")" class="btn btn-primary breadcrumb-link ">Home</a>
+            @Html.ActionLink(@Topic.Category.Category_Name, "ListCategories", new { Category_Name = @Topic.Category.Category_Name }, new { @class = "btn btn-primary breadcrumb-link " })
+            <div class="btn btn-info c-info breadcrumb-link"> @Topic.Topic_Title </div>
+        </div>
+    </div>
+    <!--- End Breadcrumb -->
+    <div class="TopicDetail-Containt info-containt">
+        <div class="header-containt">
+            <div class="avt-header-containt">
+                <img src="~/Image/Logo_Icon/avatar-50.png" class="header-avt" alt="Responsive image">
+                <div class="TopicDetail-name-topicPoster info-Title">
+                    @Topic.Account.UserName
+                </div>
+                <div class="TopicDetail-name-topicDay info-Name">
+                    @{ DateTime dateTopic = Topic.date;
+                        var dateTopicF = dateTopic.ToString("dd/MM/yyyy");}
+                    @dateTopicF
+                </div>
+            </div>
+            <div class="Topic-header-containt">
+                <h2> @Topic.Topic_Title </h2>
+            </div>
+        </div>
+        <div class="main-containt "> 
+        @Topic.Topic_Info
+        </div>
+        <div class="separate-containt">  </div>
+        @foreach (var listPost in Topic.Posts)
+        {
+            <div class="alert alert-primary" id="topic-containt">
+                <div class="header-containt" id="topic-header-containt">
+                    <div class="avt-header-containt" id="topic-avt-header-containt">
+                        <img src="~/Image/Logo_Icon/avatar-50.png" class="header-avt" alt="Responsive image">
+                        <div class="TopicDetail-name-topicPoster info-Title">
+                            @listPost.Account.UserName
+                        </div>
+                        <div class="TopicDetail-name-topicDay info-Name" id="post-info">
+                            @{ DateTime datePost = listPost.date;
+                                var datePostF = datePost.ToString("dd/MM/yyyy");}
+                            @datePostF
+                        </div>
+                    </div>
+                    <div class="post-info" id="post-info"> @listPost.Post_Info</div>
+                </div>
+            </div>
+        }
+    </div>
+}

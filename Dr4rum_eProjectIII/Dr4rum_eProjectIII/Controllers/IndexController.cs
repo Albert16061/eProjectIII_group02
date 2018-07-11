@@ -19,18 +19,19 @@ namespace Dr4rum_eProjectIII.Controllers
             return View(listGroup);
         }
 
+        //Get: List of Category
         [HttpGet]
         public async Task<ActionResult> ListCategories(string Category_Name)
         {
-            //var ListCat = (from c in db.Categories
-            //              from t in db.Topics
-            //              where c.Category_Name == t.Category_Name && t.Category_Name == catName &&t.setV == true
-            //              orderby t.date descending
-            //              select t).ToList();
+            var listCat = db.Categories.Where(a => a.Category_Name == Category_Name).ToList();
+            return View(listCat);
+        }
 
-           // List<Topic> topic = db.Topics.Where(a => a.Category_Name == Category_Name && a.setV == true).ToList();
-
-            var listTopic = db.Categories.Where(a => a.Category_Name == Category_Name).ToList();
+        //Get: Topic Infomation + Post inside
+        [HttpGet]
+        public async Task<ActionResult> TopicDetail(string TopicTitle)
+        {
+            var listTopic = db.Topics.Where(a => a.Topic_Title == TopicTitle).ToList();
             return View(listTopic);
         }
     }

@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Category>
 <!-- Banner-->
-<img src="~/Image/Banner_Pic/topic.jpg" class="img-fluid" alt="Responsive image">
+<img src="~/Image/Banner_Pic/User/topic.jpg" class="img-fluid" alt="Responsive image">
 @foreach (var Caterory in Model)
 {
     <!-- breadcrumb-->
@@ -8,17 +8,14 @@
         <div class="btn-group btn-breadcrumb breadcrumb-primary">
             <a href="@Url.Action("Index", "Index")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
             <a href="@Url.Action("Index", "Index")" class="btn btn-primary breadcrumb-link ">Home</a>
-            <!--
-                   <a href="#" class="btn btn-primary visible-lg-block visible-md-block">Breadcrumbs text</a>
-                   <a href="#" class="btn btn-primary visible-lg-block visible-md-block">Section</a>
-                   <a href="#" class="btn btn-primary visible-lg-block visible-md-block">Category</a>
-               -->
             <div class="btn btn-info c-info breadcrumb-link"> @Caterory.Category_Name </div>
         </div>
     </div>
+    <!--- End Breadcrumb -->
     <div class="info-containt">
         <h2>@Caterory.Category_Name</h2>
-        <div class="category-topic-containt">
+        <div class="add-topic-btn btn-success" id="add-btn-ListofCat"> Thêm Bài Viết </div>
+        <div class="main-containt ">
             <div class="alert alert-warning  category-topic-titleContaint">
                 <div class="title-topicTitle">
                     Tiêu Đề
@@ -36,29 +33,33 @@
             @foreach (var Topic in Caterory.Topics.ToList())
             {
                 <div class="category-topic-info ">
-
                     <div class="info-topicTitle">
                         <div class="info-Title">
-                            @Topic.Topic_Title
+                            <p>@Html.ActionLink(@Topic.Topic_Title, "TopicDetail", new { TopicTitle = @Topic.Topic_Title }, new { @class = "" })</p>
                         </div>
                         <div class="info-Name">
-                            @Topic.Account.FirstName
-                            @Topic.Account.LastName
+                            @Topic.Account.UserName
                         </div>
                     </div>
                     <div class="info-topicDay">
-                        @{ DateTime date = Topic.date;
-                            var dateFormat = date.ToString("dd/MM/yyyy");}
-                        @dateFormat
+                        @{ DateTime dateTopic = Topic.date;
+                            var dateTopicF = dateTopic.ToString("dd/MM/yyyy");}
+                        @dateTopicF
                     </div>
                     <div class="info-topicPostnum">
                         @Topic.Posts.Count()
                     </div>
                     @foreach (var post in Topic.Posts.OrderByDescending(a => a.Post_ID).Take(1))
                     {
-                        <div class="info-topicPoster">
-                            @post.Account.FirstName
-                            @post.Account.LastName
+                        <div class="post-info-containt">
+                            <div class="info-topicPoster">
+                                @post.Account.UserName
+                            </div>
+                            <div class="info-Name">
+                                @{ DateTime datePost = post.date;
+                                    var datePostF = datePost.ToString("dd/MM/yyyy");}
+                                @datePostF
+                            </div>
                         </div>
                     }
                 </div>

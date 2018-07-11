@@ -1,19 +1,16 @@
 ﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Group>
 <!-- Banner-->
-<img src="~/Image/Banner_Pic/index_banner.jpg" class="img-fluid" alt="Responsive image">
+<img src="~/Image/Banner_Pic/User/index_banner.jpg" class="img-fluid" alt="Responsive image">
 <!-- breadcrumb-->
 <div class="breadcrumb-containt">
     <div class="btn-group btn-breadcrumb breadcrumb-primary">
         <a href="@Url.Action("Index", "Index")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
-        <!--
-            <a href="#" class="btn btn-primary visible-lg-block visible-md-block">Snippets</a>
-            <a href="#" class="btn btn-primary visible-lg-block visible-md-block">Breadcrumbs text</a>
-            <a href="#" class="btn btn-primary visible-lg-block visible-md-block">Section</a>
-            <a href="#" class="btn btn-primary visible-lg-block visible-md-block">Category</a>
-        -->
         <div class="btn btn-info c-info">
             @Html.ActionLink("Home", "Index", "Index", new { @class = "breadcrumb-link" })
         </div>
+
+        <div class="add-topic-btn btn-success"> Thêm Bài Viết </div>
+
     </div>
 </div>
 <!-- main info-->
@@ -48,7 +45,7 @@
                             Bài mới :
                             @foreach (var topicItem in cateItem.Topics.Take(1))
                             {
-                                @Html.ActionLink(@topicItem.Topic_Title, "Details", "Topic", new { Topic_Title = @topicItem.Topic_Title }, new { @class = "" })
+                                @Html.ActionLink(@topicItem.Topic_Title, "TopicDetail", new { TopicTitle = @topicItem.Topic_Title }, new { @class = "" })
                             }
                         </p>
                         @foreach (var topicItem in cateItem.Topics.Take(1))

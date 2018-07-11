@@ -207,8 +207,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Image\Banner_Pic\heart2.png" />
-    <Content Include="Image\Banner_Pic\index_banner.jpg" />
-    <Content Include="Image\Banner_Pic\topic.jpg" />
+    <Content Include="Image\Banner_Pic\User\index_banner.jpg" />
+    <Content Include="Image\Banner_Pic\User\separate.jpg" />
+    <Content Include="Image\Banner_Pic\User\topic.jpg" />
+    <Content Include="Image\Banner_Pic\User\topic_info.jpg" />
     <Content Include="Image\Logo_Icon\avatar-50.png" />
     <Content Include="Image\Logo_Icon\comment-50.png" />
     <Content Include="Image\Logo_Icon\home-50.png" />
@@ -302,6 +304,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Index\Index.cshtml" />
     <Content Include="Views\Index\ListCategories.cshtml" />
+    <Content Include="Views\Index\TopicDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
