@@ -207,6 +207,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Image\Banner_Pic\heart2.png" />
+    <Content Include="Image\Banner_Pic\User\group.jpg" />
     <Content Include="Image\Banner_Pic\User\index_banner.jpg" />
     <Content Include="Image\Banner_Pic\User\separate.jpg" />
     <Content Include="Image\Banner_Pic\User\topic.jpg" />
@@ -306,6 +307,7 @@
     <Content Include="Views\Index\ListCategories.cshtml" />
     <Content Include="Views\Index\TopicDetail.cshtml" />
     <Content Include="Views\Index\CategoryDropDown.cshtml" />
+    <Content Include="Views\Index\ListGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

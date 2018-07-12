@@ -8,13 +8,14 @@
         <div class="btn-group btn-breadcrumb breadcrumb-primary">
             <a href="@Url.Action("Index", "Index")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
             <a href="@Url.Action("Index", "Index")" class="btn btn-primary breadcrumb-link ">Home</a>
+            @Html.ActionLink(Caterory.Group_Name, "ListGroup", new { Group_name = Caterory.Group_Name }, new { @class = "btn btn-primary breadcrumb-link" })
             <div class="btn btn-info c-info breadcrumb-link"> @Caterory.Category_Name </div>
         </div>
     </div>
     <!--- End Breadcrumb -->
     <div class="info-containt">
         <h2>@Caterory.Category_Name</h2>
-        <div class="add-topic-btn btn-success" id="add-btn-ListofCat"> Thêm Bài Viết </div>
+        <div class="add-topic-btn btn-success" id="add-btn-addTopic"> Thêm Bài Viết </div>
         <div class="main-containt ">
             <div class="alert alert-warning  category-topic-titleContaint">
                 <div class="title-topicTitle">
@@ -34,12 +35,8 @@
             {
                 <div class="category-topic-info ">
                     <div class="info-topicTitle">
-                        <div class="info-Title">
-                            <p>@Html.ActionLink(@Topic.Topic_Title, "TopicDetail", new { TopicTitle = @Topic.Topic_Title }, new { @class = "" })</p>
-                        </div>
-                        <div class="info-Name">
-                            @Topic.Account.UserName
-                        </div>
+                        <div class="info-Title">@Html.ActionLink(@Topic.Topic_Title, "TopicDetail", new { TopicTitle = @Topic.Topic_Title }, new { @class = "" }) </div>
+                        <div class="info-Name">@Topic.Account.UserName</div>
                     </div>
                     <div class="info-topicDay">
                         @{ DateTime dateTopic = Topic.date;

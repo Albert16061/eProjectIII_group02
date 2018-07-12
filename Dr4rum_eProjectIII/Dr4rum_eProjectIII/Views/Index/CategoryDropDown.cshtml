@@ -1,9 +1,21 @@
 ﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Group>
+    <!-- This view display a Category DropDownList that is containt by _Layout-->
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Groups
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="Group">
+        @foreach (var groupItem in Model)
+        {
+            @Html.ActionLink(groupItem.Group_Name, "ListGroup", new { Group_name = @groupItem.Group_Name }, new { @class = "dropdown-item" })
+        }
+    </div>
+</li>
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Categories
     </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="Cat">
         @foreach (var groupItem in Model)
         {
             foreach (var catItem in groupItem.Categories)

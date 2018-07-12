@@ -7,6 +7,7 @@
         <div class="btn-group btn-breadcrumb breadcrumb-primary">
             <a href="@Url.Action("Index", "Index")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
             <a href="@Url.Action("Index", "Index")" class="btn btn-primary breadcrumb-link ">Home</a>
+            @Html.ActionLink(Topic.Category.Group_Name, "ListGroup", new { Group_name = Topic.Category.Group_Name }, new { @class = "btn btn-primary breadcrumb-link " })
             @Html.ActionLink(@Topic.Category.Category_Name, "ListCategories", new { Category_Name = @Topic.Category.Category_Name }, new { @class = "btn btn-primary breadcrumb-link " })
             <div class="btn btn-info c-info breadcrumb-link"> @Topic.Topic_Title </div>
         </div>

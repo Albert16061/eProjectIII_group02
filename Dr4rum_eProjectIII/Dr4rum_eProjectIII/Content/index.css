@@ -32,6 +32,16 @@ footer {
     font-size: 20px;
 }
 
+#Cat {
+    height: 200px;
+    overflow-y: scroll;
+}
+
+#Group {
+    height: 150px;
+    overflow-y: scroll;
+}
+
 .img-fluid {
     width: 100%;
     height: 330px;
@@ -39,10 +49,6 @@ footer {
 /*Breadcumb begn*/
 .breadcrumb-containt {
     position: relative;
-}
-
-.searching {
-    margin: auto;
 }
 
 .breadcrumb-link {
@@ -210,10 +216,10 @@ footer {
     border-radius: 5px;
 }
 
-#add-btn-ListofCat {
+#add-btn-addTopic {
     padding: 5px 15px;
     border-radius: 5px;
-    max-width: 12%;
+    max-width: 130px;
     /*unset*/
     position: inherit;
 }
@@ -386,43 +392,135 @@ footer {
     justify-content: space-between;
     padding-top: 2%
 }
+
 .avt-header-containt {
     flex-basis: 15%;
     max-width: 15%;
     border-right: solid 1px lavender;
 }
+
 .Topic-header-containt {
     flex-basis: 80%;
     max-width: 80%
 }
+
 .separate-containt {
     background-image: url(../Image/Banner_Pic/User/separate.jpg);
     max-width: 100%;
     height: 50px;
     background-position: center;
 }
+
 #topic-containt {
     margin-top: 5px;
     margin-bottom: 0px !important;
 }
+
 #topic-header-containt {
     padding-top: 1%;
 }
+
 #topic-avt-header-containt {
     border-right: solid 1px cornflowerblue;
 }
+
 #post-info {
     color: black;
 }
+
 .post-info {
     flex-basis: 83%;
     max-width: 83%;
 }
 /*   end TopicDetails */
+
+/** This code for groupList**/
+.header-line {
+    height: 5px;
+    width: 100%;
+    content: '';
+    display: block;
+}
+
+.gradient-color-1 {
+    background: -webkit-linear-gradient(left,#fc636b 0,#ff6d92 60%,#fd9a00 100%);
+    background: linear-gradient(to right,#fc636b 0,#ff6d92 60%,#fd9a00 100%);
+}
+
+.no-margin-top {
+    margin-top: 0;
+}
+.btn-moreCat {
+    float: right !important;
+    padding: 1%;
+    border-radius: 0px;
+    font-weight: bold;
+}
+#LisGroup-mainContaint {
+    padding: 0px;
+    border: solid 1px azure;
+}
+#catItem-title {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 45px;
+    margin-bottom: 0px;
+    padding-left: 3%;
+}
+#header-ListGroup-containt {
+    background-color: #F7F7F7;
+}
+.ListGroup-titleContaint {
+    display: flex;
+    max-width: 95%;
+    margin: 10px auto;
+}
+.ListGroup-titleContaint.tittle{
+    font-weight: bold;
+}
+.ListGroup-topicTitle {
+    flex-basis: 65%;
+    max-width: 65%;
+}
+.ListGroup-topicDay {
+    flex-basis: 20%;
+    max-width: 20%;
+}
+.ListGroup-topicPostby {
+    flex-basis: 15%;
+    max-width: 15%;
+}
+.ListGroup-mainInfo-containt {
+    max-width: 95%;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: -8px;
+}
+#ListGroup-mainInfo {
+    margin: 0px;
+    max-width: 100%;
+    border-bottom: 1px solid darkgray;
+    padding-bottom: 5px;
+}
+#footer-ListGroup-containt {
+    display: flex;
+    max-width: 100%;
+}
+.footer-Topic-count{
+    flex-basis: 50%;
+    max-width: 50%;
+    padding-left: 1%;
+}
+.footer-Post-count {
+    flex-basis: 50%;
+    max-width: 50%;
+    padding-left: 14%;
+}
+/** end groupList**/
+/**  Footer */
 .footer-containt {
     position: relative;
 }
-
 .slogan-containt {
     position: absolute;
     top: 0;
@@ -445,3 +543,4 @@ footer {
     margin-left: 5%;
     opacity: 0.5;
 }
+/** End  Footer */

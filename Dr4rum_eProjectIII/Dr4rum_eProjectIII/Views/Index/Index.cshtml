@@ -1,13 +1,4 @@
 ﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Group>
-<!-- DropDownList-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav">
-            
-        </ul>
-    </div>
-</nav>
-<!-- EndDropDownList-->
 <!-- Banner-->
 <img src="~/Image/Banner_Pic/User/index_banner.jpg" class="img-fluid" alt="Responsive image">
 <!-- breadcrumb-->
@@ -17,9 +8,7 @@
         <div class="btn btn-info c-info">
             @Html.ActionLink("Home", "Index", "Index", new { @class = "breadcrumb-link" })
         </div>
-
         <div class="add-topic-btn btn-success"> Thêm Bài Viết </div>
-
     </div>
 </div>
 <!-- main info-->
@@ -33,7 +22,6 @@
             <div class="alert alert-danger" role="alert">
                 <h3>@groupItem.Group_Name</h3>
             </div>
-
             // Display Group's category list
             foreach (var cateItem in groupItem.Categories)
             {
