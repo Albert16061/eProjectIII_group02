@@ -305,6 +305,7 @@
     <Content Include="Views\Index\Index.cshtml" />
     <Content Include="Views\Index\ListCategories.cshtml" />
     <Content Include="Views\Index\TopicDetail.cshtml" />
+    <Content Include="Views\Index\CategoryDropDown.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

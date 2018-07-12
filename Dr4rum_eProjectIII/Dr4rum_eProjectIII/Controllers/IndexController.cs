@@ -18,6 +18,12 @@ namespace Dr4rum_eProjectIII.Controllers
             var listGroup = db.Groups.Where(a => a.SetV == true).ToList();
             return View(listGroup);
         }
+        // GET: CatDropdown
+        public async Task<ActionResult> CategoryDropDown()
+        {
+            var listGroup = db.Groups.Where(a => a.SetV == true).ToList();
+            return PartialView(listGroup);
+        }
 
         //Get: List of Category
         [HttpGet]

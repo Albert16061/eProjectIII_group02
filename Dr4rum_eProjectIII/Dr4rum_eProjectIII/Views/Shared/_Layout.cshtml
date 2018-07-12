@@ -6,7 +6,6 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @model IEnumerable<Dr4rum_eProjectIII.Models.Group>
 </head>
 <body>
     <div class="container body-content">
@@ -22,8 +21,7 @@
                 </div>
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li>@Html.ActionLink("Groups", "Index", "Home", null, new { @class = "nav-link" })</li>
-
-                    <li>@Html.ActionLink("Categories", "About", "Home", null, new { @class = "nav-link" })</li>
+                    @Html.Action("CategoryDropDown", "Index")
                     <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
                 </ul>
                 <!-- Searching-->

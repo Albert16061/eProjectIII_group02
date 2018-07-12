@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Group>
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Categories
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        @foreach (var groupItem in Model)
+        {
+            foreach (var catItem in groupItem.Categories)
+            {
+                @Html.ActionLink(catItem.Category_Name, "ListCategories", new { Category_Name = @catItem.Category_Name }, new { @class = "dropdown-item" })
+            }
+        }
+    </div>
+</li>
+

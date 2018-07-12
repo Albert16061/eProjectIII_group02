@@ -1,4 +1,13 @@
 ﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Group>
+<!-- DropDownList-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            
+        </ul>
+    </div>
+</nav>
+<!-- EndDropDownList-->
 <!-- Banner-->
 <img src="~/Image/Banner_Pic/User/index_banner.jpg" class="img-fluid" alt="Responsive image">
 <!-- breadcrumb-->
@@ -50,19 +59,18 @@
                         </p>
                         @foreach (var topicItem in cateItem.Topics.Take(1))
                         {
-                        <p class="new-topic">
-                            <!-- Date post Topic -->
-                            Ngày Đăng :
-                            @topicItem.date
-                        </p>
-                        <p class="new-topic">
-                            <!-- Owner Topic -->
-                            Đăng Bởi :   @topicItem.Account.UserName
-                        </p>
+                            <p class="new-topic">
+                                <!-- Date post Topic -->
+                                Ngày Đăng :
+                                @topicItem.date
+                            </p>
+                            <p class="new-topic">
+                                <!-- Owner Topic -->
+                                Đăng Bởi :   @topicItem.Account.UserName
+                            </p>
                         }
                     </div>
                 </div>
-
             }
         }
     </div>
