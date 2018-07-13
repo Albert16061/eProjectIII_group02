@@ -11,7 +11,8 @@ namespace Dr4rum_eProjectIII.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Topic
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,18 +20,30 @@ namespace Dr4rum_eProjectIII.Models
         {
             this.Posts = new HashSet<Post>();
         }
-    
+
+        [StringLength(60, ErrorMessage = "Character limit is 20!")]
         public string Topic_Title { get; set; }
         public int Acc_ID { get; set; }
         public string Category_Name { get; set; }
         public bool setV { get; set; }
         public string Topic_Info { get; set; }
         public int Report { get; set; }
+        [DisplayFormat(DataFormatString ="{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime date { get; set; }
     
         public virtual Account Account { get; set; }
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Post> Posts { get; set; }
+
+        internal static object Detail()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static object Detail(long id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

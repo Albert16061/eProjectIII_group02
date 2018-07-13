@@ -1,0 +1,66 @@
+﻿@model Dr4rum_eProjectIII.Models.Topic
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Topic</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.setV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.setV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Topic_Info)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Topic_Info)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Report)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Report)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Account.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.Group_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Group_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Topic_Title }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
