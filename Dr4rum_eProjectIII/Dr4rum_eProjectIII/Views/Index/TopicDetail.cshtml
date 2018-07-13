@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Topic>
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
+<!-- Banner-->
 <img src="~/Image/Banner_Pic/User/topic_info.jpg" class="img-fluid" alt="Responsive image">
 @foreach (var Topic in Model)
 {
@@ -30,10 +33,14 @@
                 <h2> @Topic.Topic_Title </h2>
             </div>
         </div>
-        <div class="main-containt "> 
-        @Topic.Topic_Info
+        <div class="main-containt" id="TopicDetails-main-containt">
+            @Topic.Topic_Info
         </div>
-        <div class="separate-containt">  </div>
+        <div class="separate-containt position-relative">
+            <div class="btn btn-warning add-post-btn">
+                Add Post
+            </div>
+        </div>
         @foreach (var listPost in Topic.Posts)
         {
             <div class="alert alert-primary" id="topic-containt">
@@ -55,3 +62,4 @@
         }
     </div>
 }
+    <script src="~/Scripts/MyScript/indexFunction.js"></script>

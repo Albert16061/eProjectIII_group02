@@ -1,7 +1,7 @@
 ﻿@font-face {
     font-family: Balqis;
-    src: url("../Content/font/Balqis.otf");
-    src: local("Balqis"), url(../Content/font/Balqis.otf) format("truetype");
+    src: url("../font/Balqis.otf");
+    src: local("Balqis"), url("../font/Balqis.otf")format("truetype");
 }
 
 body {
@@ -26,6 +26,10 @@ footer {
 .navbar-title {
     font-size: 25px;
     font-weight: bold;
+}
+
+.searching {
+    margin: auto;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -110,7 +114,7 @@ footer {
 }
 
 .breadcrumb-info {
-    background-color: 138496;
+    background-color: #138496;
 }
 
 .breadcrumb-warning {
@@ -214,6 +218,7 @@ footer {
     top: 15%;
     padding: 5px 15px;
     border-radius: 5px;
+    cursor: pointer !important;
 }
 
 #add-btn-addTopic {
@@ -289,6 +294,18 @@ footer {
     color: black;
 }
 
+.main-containt {
+    margin-top: 1%;
+    border: solid 1px darkgray;
+    padding: 1%;
+    border-radius: 5px;
+    text-align: justify;
+}
+
+#TopicDetails-main-containt {
+    border-radius: 0px;
+}
+
 .new-topic {
     /* Substring when character too long*/
     white-space: nowrap;
@@ -299,14 +316,6 @@ footer {
 .info-containt {
     background-color: white;
     padding: 2%;
-}
-
-.main-containt {
-    margin-top: 1%;
-    border: solid 1px darkgray;
-    padding: 1%;
-    border-radius: 5px;
-    text-align: justify;
 }
 
 .alert.alert-warning.category-topic-titleContaint {
@@ -405,7 +414,7 @@ footer {
 }
 
 .separate-containt {
-    background-image: url(../Image/Banner_Pic/User/separate.jpg);
+    background-image: url(../../Image/Banner_Pic/User/separate.jpg);
     max-width: 100%;
     height: 50px;
     background-position: center;
@@ -432,8 +441,13 @@ footer {
     flex-basis: 83%;
     max-width: 83%;
 }
-/*   end TopicDetails */
 
+.add-post-btn {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+}
+/*   end TopicDetails */
 /** This code for groupList**/
 .header-line {
     height: 5px;
@@ -450,16 +464,19 @@ footer {
 .no-margin-top {
     margin-top: 0;
 }
+
 .btn-moreCat {
     float: right !important;
     padding: 1%;
     border-radius: 0px;
     font-weight: bold;
 }
+
 #LisGroup-mainContaint {
     padding: 0px;
     border: solid 1px azure;
 }
+
 #catItem-title {
     font-size: 20px;
     font-weight: bold;
@@ -467,50 +484,61 @@ footer {
     margin-bottom: 0px;
     padding-left: 3%;
 }
+
 #header-ListGroup-containt {
     background-color: #F7F7F7;
 }
+
 .ListGroup-titleContaint {
     display: flex;
     max-width: 95%;
     margin: 10px auto;
 }
-.ListGroup-titleContaint.tittle{
-    font-weight: bold;
-}
+
+    .ListGroup-titleContaint.tittle {
+        font-weight: bold;
+    }
+
 .ListGroup-topicTitle {
     flex-basis: 65%;
     max-width: 65%;
 }
+
 .ListGroup-topicDay {
     flex-basis: 20%;
     max-width: 20%;
 }
+
 .ListGroup-topicPostby {
     flex-basis: 15%;
     max-width: 15%;
 }
+
 .ListGroup-mainInfo-containt {
     max-width: 95%;
     margin: auto;
     margin-bottom: 10px;
     margin-top: -8px;
 }
+
 #ListGroup-mainInfo {
     margin: 0px;
     max-width: 100%;
     border-bottom: 1px solid darkgray;
     padding-bottom: 5px;
 }
+
 #footer-ListGroup-containt {
     display: flex;
     max-width: 100%;
 }
-.footer-Topic-count{
+
+.footer-Topic-count {
     flex-basis: 50%;
     max-width: 50%;
     padding-left: 1%;
 }
+
 .footer-Post-count {
     flex-basis: 50%;
     max-width: 50%;
@@ -521,6 +549,7 @@ footer {
 .footer-containt {
     position: relative;
 }
+
 .slogan-containt {
     position: absolute;
     top: 0;
