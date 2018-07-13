@@ -588,3 +588,50 @@ footer {
     opacity: 0.5;
 }
 /** End  Footer */
+
+
+/* -------------------------- This code for Responsive  --------------------------*/
+/* Index page*/
+@media only screen and (max-width: 450px) {
+    .img-fluid {
+        width: 100%;
+        height: 150px;
+    }
+    .btn-breadcrumb{
+        margin-left: 0px;
+        width: 100%
+    }
+    .btn.btn-info.c-info{
+        display: none
+    }
+    .category-icon{
+        display: none;
+    }
+    .category-containt {
+        display: block;
+    }
+    .category-title{
+        max-width: 100%
+    }
+    .Topic-info {
+        max-width: 100%;
+    }
+    .category-title>p{
+        font-size: 20px;
+    }
+    .num-topic {
+        font-size: 12px !important;
+    }
+    .alert.alert-danger{
+        margin-top: 30px !important;
+    }
+    footer{
+        height: 100px
+    }
+}
+@media only screen and (max-width: 320px) {
+    .dropdown-menu {
+        width: 259px;
+        text-align: center;
+    }
+}
