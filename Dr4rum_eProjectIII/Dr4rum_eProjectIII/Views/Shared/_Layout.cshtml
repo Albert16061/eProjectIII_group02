@@ -8,6 +8,21 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <button type="button" class="close text-right pr-4 pt-4" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-body">
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/MyJQuery.js"></script>
     <div class="container body-content">
         <nav class="navbar navbar-expand-lg navbar-dark  bg-dark ">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,6 +39,7 @@
                     <li>@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
                 </ul>
+
                 <!-- Searching-->
                 <form class="form-inline my-2 my-lg-0 searching">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -31,20 +47,44 @@
                 </form>
                 <!-- Button Login -->
                 <div class="form-inline my-2 my-lg-0">
-                    <button class=" my-2 my-sm-0 btn btn-outline-warning btn-login" type="submit">Login</button>
-                    <button class=" btn  btn-outline-light" type="submit">Register</button>
+                    @if (Session["Username"] == null)
+                    {
+                        @*<button class=" my-2 my-sm-0 btn btn-outline-warning btn-login" type="submit">@Html.ActionLink("Login", "Login", "UserAccount", null, new { @class = "nav-link" })</button>*@
+                        <button id="btnlogin" class="my-2 my-sm-0 btn btn-outline-warning btn-login" @*data-toggle="modal" data-target="#exampleModal"*@>Login</button>
+                        <button class=" btn  btn-outline-light" type="submit">  @Html.ActionLink("Register", "Register", "UserAccount", null, new { @class = "nav-link" })</button>
+                    }
+                    else
+                    {
+                        <div class="nav-link disabled">Hello : @Session["Username"].ToString()</div>
+                        <div class="nav-link"> @Html.ActionLink("Logout", "Logout", "UserAccount")</div>
+                    }
                 </div>
             </div>
         </nav>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <button type="button" class="close text-right pr-4 pt-4" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="modal-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
         @RenderBody()
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        <script src="~/Scripts/MyJQuery.js"></script>
+        @RenderSection("scripts", required: false)
 </body>
 </html>
