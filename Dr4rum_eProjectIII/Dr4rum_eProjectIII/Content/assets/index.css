@@ -423,25 +423,40 @@ footer {
 #topic-containt {
     margin-top: 5px;
     margin-bottom: 0px !important;
+    position : relative;
+    max-width: 100%;
 }
-
+.edit-btn{
+    position: absolute;
+    top: 2%;
+    right: 0px; 
+    cursor: pointer;
+}
 #topic-header-containt {
     padding-top: 1%;
+    justify-content: unset;
 }
 
 #topic-avt-header-containt {
     border-right: solid 1px cornflowerblue;
+    flex-basis: 12%;
+    max-width: 12%;
+
 }
 
 #post-info {
     color: black;
+    padding-left: 5%;
+    text-align: justify;
 }
 
 .post-info {
     flex-basis: 83%;
     max-width: 83%;
 }
-
+#post-day{
+    color: black;
+}
 .add-post-btn {
     position: absolute;
     font-size: 24px;

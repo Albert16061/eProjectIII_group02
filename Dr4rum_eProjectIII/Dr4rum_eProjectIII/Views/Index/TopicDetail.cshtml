@@ -44,13 +44,19 @@
         @foreach (var listPost in Topic.Posts)
         {
             <div class="alert alert-primary" id="topic-containt">
+                @if (listPost.Acc_ID == 4)
+                {
+                    <div class="edit-btn">
+                        <img src="~/Image/Logo_Icon/edit-48.png" class="" alt="Responsive image">
+                    </div>
+                }
                 <div class="header-containt" id="topic-header-containt">
                     <div class="avt-header-containt" id="topic-avt-header-containt">
                         <img src="~/Image/Logo_Icon/avatar-50.png" class="header-avt" alt="Responsive image">
                         <div class="TopicDetail-name-topicPoster info-Title">
                             @listPost.Account.UserName
                         </div>
-                        <div class="TopicDetail-name-topicDay info-Name" id="post-info">
+                        <div class="TopicDetail-name-topicDay info-Name" id="post-day">
                             @{ DateTime datePost = listPost.date;
                                 var datePostF = datePost.ToString("dd/MM/yyyy");}
                             @datePostF
@@ -62,4 +68,4 @@
         }
     </div>
 }
-    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+<script src="~/Scripts/MyScript/indexFunction.js"></script>
