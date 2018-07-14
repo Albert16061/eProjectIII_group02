@@ -1,0 +1,69 @@
+﻿@model Dr4rum_eProjectIII.Models.Post
+
+<h3>Are you sure you want to delete this?</h3>
+@using (@Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Topic_Tile, "Topic_Tile", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                   @Html.TextBoxFor(model => model.Topic_Tile, new { @class= "form-control required", @disabled = "disabled"})
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Acc_ID, "Acc_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Acc_ID, new { @class = "form-control required", @disabled = "disabled" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Post_Info, "Post_Info", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Post_Info, new { @class = "form-control required", @disabled = "disabled" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Like_Num, "Like_Num", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Like_Num, new { @class = "form-control required", @disabled = "disabled" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Dislike_Num, "Dislike_Num", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Dislike_Num, new { @class = "form-control required", @disabled = "disabled" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.date, "date", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.date, new { @class = "form-control required", @disabled = "disabled" })
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="modal-footer">
+            <span id="progress" class="text-center" style="display: none;">
+                <img src="~/Content/images/ajax-loader.gif" alt="wait" />
+                Wait..
+            </span>
+            <input type="submit" id="btnDelete" ct_ma="@Model.Post_ID" value="Delete" class="btn btn-default btn-primary" />
+            <button class="btn btn-warning" data-dismiss="modal">Close</button>
+        </div>
+}
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+
+<script>
+$("form").removeData("validator");
+$("form").removeData("unobtrusiveValidation");
+$.validator.unobtrusive.parse("form");
+</script>

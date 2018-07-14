@@ -1,16 +1,15 @@
 ﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Post>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<a class="btn btn-success" data-modal="" href="/Posts/_PartialCreate"
+   id="btnCreate">
+    Create New
+</a>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Topic.Topic_Title)
+        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Post_Info)
         </th>
@@ -26,14 +25,14 @@
         <th>
             @Html.DisplayNameFor(model => model.Account.UserName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Topic.Category_Name)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Topic.Topic_Title)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Post_Info)
         </td>
@@ -50,9 +49,6 @@
             @Html.DisplayFor(modelItem => item.Account.UserName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Topic.Category_Name)
-        </td>
-        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Post_ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.Post_ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Post_ID })
@@ -61,3 +57,14 @@
 }
 
 </table>
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/Scripts/myScript.js")
+}

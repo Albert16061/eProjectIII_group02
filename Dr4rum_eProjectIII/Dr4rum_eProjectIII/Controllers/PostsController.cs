@@ -37,11 +37,10 @@ namespace Dr4rum_eProjectIII.Controllers
         }
 
         // GET: Posts/Create
-        public ActionResult Create()
+        public ActionResult _PartialCreate()
         {
-            ViewBag.Acc_ID = new SelectList(db.Accounts, "Acc_ID", "UserName");
-            ViewBag.Topic_Tile = new SelectList(db.Topics, "Topic_Title", "Category_Name");
-            return View();
+            ViewBag.Topic_Tile = new SelectList(db.Topics, "Topic_Title", "Topic_Title").Distinct();
+            return PartialView();
         }
 
         // POST: Posts/Create
@@ -49,22 +48,25 @@ namespace Dr4rum_eProjectIII.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Post_ID,Topic_Tile,Acc_ID,Post_Info,Like_Num,Dislike_Num,date")] Post post)
+        public ActionResult _PartialCreate([Bind(Include = "Post_ID,Topic_Tile,Acc_ID,Post_Info,Like_Num,Dislike_Num,date")] Post post)
         {
             if (ModelState.IsValid)
             {
                 db.Posts.Add(post);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(new { Success = true, Message = "OK con de!" });
             }
-
-            ViewBag.Acc_ID = new SelectList(db.Accounts, "Acc_ID", "UserName", post.Acc_ID);
-            ViewBag.Topic_Tile = new SelectList(db.Topics, "Topic_Title", "Category_Name", post.Topic_Tile);
-            return View(post);
+            return Json(new
+            {
+                Success = false,
+                Message = "Loi CMNR !"
+            });
+            ViewBag.Topic_Tile = new SelectList(db.Topics, "Topic_Title", "Topic_Title", post.Topic_Tile).Distinct();
+            return PartialView(post);
         }
 
         // GET: Posts/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult _PartialEdit(int? id)
         {
             if (id == null)
             {
@@ -77,7 +79,7 @@ namespace Dr4rum_eProjectIII.Controllers
             }
             ViewBag.Acc_ID = new SelectList(db.Accounts, "Acc_ID", "UserName", post.Acc_ID);
             ViewBag.Topic_Tile = new SelectList(db.Topics, "Topic_Title", "Category_Name", post.Topic_Tile);
-            return View(post);
+            return PartialView(post);
         }
 
         // POST: Posts/Edit/5
@@ -85,7 +87,7 @@ namespace Dr4rum_eProjectIII.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Post_ID,Topic_Tile,Acc_ID,Post_Info,Like_Num,Dislike_Num,date")] Post post)
+        public ActionResult _PartialEdit([Bind(Include = "Post_ID,Topic_Tile,Acc_ID,Post_Info,Like_Num,Dislike_Num,date")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -95,11 +97,11 @@ namespace Dr4rum_eProjectIII.Controllers
             }
             ViewBag.Acc_ID = new SelectList(db.Accounts, "Acc_ID", "UserName", post.Acc_ID);
             ViewBag.Topic_Tile = new SelectList(db.Topics, "Topic_Title", "Category_Name", post.Topic_Tile);
-            return View(post);
+            return PartialView(post);
         }
 
         // GET: Posts/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult _PartialDelete(int? id)
         {
             if (id == null)
             {
@@ -110,7 +112,7 @@ namespace Dr4rum_eProjectIII.Controllers
             {
                 return HttpNotFound();
             }
-            return View(post);
+            return PartialView(post);
         }
 
         // POST: Posts/Delete/5

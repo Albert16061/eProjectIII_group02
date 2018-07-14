@@ -11,12 +11,15 @@ namespace Dr4rum_eProjectIII.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Post
     {
+
         public int Post_ID { get; set; }
         public string Topic_Tile { get; set; }
         public int Acc_ID { get; set; }
+        [Required(ErrorMessage ="loi")]
         public string Post_Info { get; set; }
         public int Like_Num { get; set; }
         public int Dislike_Num { get; set; }
