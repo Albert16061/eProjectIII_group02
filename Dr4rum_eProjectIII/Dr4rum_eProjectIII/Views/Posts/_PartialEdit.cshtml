@@ -1,71 +1,70 @@
 ﻿@model Dr4rum_eProjectIII.Models.Post
 
+<!--Header-->
+<div class="modal-header">
+    <h5 class="modal-title">
+        Update Post
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="modal-body">
-        <div class="form-horizontal">
+    <div class="form">
+        <!-- Modal -->
+        <div class="modal-body">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Post_ID)
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Topic_Tile, "Topic_Tile", htmlAttributes: new { @class = "control-label col-md-2" })
+            <!-- Body -->
+            <div class="form-group row ">
+                @Html.LabelFor(model => model.Topic_Tile, "Topic_Tile", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
                 <div class="col-md-10">
                     @Html.DropDownList("Topic_Tile", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Topic_Tile, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Acc_ID, "Acc_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("Acc_ID", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Acc_ID, "", new { @class = "text-danger" })
+            <div class="form-group row invisible">
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.Acc_ID, new { @Value = 1, htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
-
             <div class="form-group">
-                @Html.LabelFor(model => model.Post_Info, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Post_Info, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Post_Info, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Post_Info, "", new { @class = "text-danger" })
+                    </div>
+            </div>
+            <div class="form-group invisible">
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Post_Info, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Post_Info, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.Like_Num, new { @Value = 0, htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Like_Num, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group invisible">
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Like_Num, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Like_Num, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.Dislike_Num, new { @Value = 0, htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Dislike_Num, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group invisible">
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Dislike_Num, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Dislike_Num, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
+                    @{
+                        DateTime currentDay = DateTime.Now;
+                    }
+                    @Html.TextBoxFor(model => model.date, new { @Value = currentDay, htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
         </div>
+        <!-- Footer -->
+        <div class="modal-footer">
+            <input type="submit" value="Update" class="btn btn-default btn-primary" />
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
     </div>
-    <div class="modal-footer">
-        <span id="progress" class="text-center" style="display: none;">
-            <img src="~/Content/images/ajax-loader.gif" alt="wait" />
-            Wait..
-        </span>
-        <input type="submit" value="Update" class="btn btn-default btn-primary" />
-        <button class="btn btn-warning" data-dismiss="modal">Close</button>
-    </div>
-
-
 }
+<script>
+    $("form").removeData("validator");
+    $("form").removeData("unobtrusiveValidation");
+    $.validator.unobtrusive.parse("form");
+</script>

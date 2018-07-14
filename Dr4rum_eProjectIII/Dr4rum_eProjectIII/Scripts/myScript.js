@@ -21,6 +21,10 @@ function bindForm(dialog) {
                 if (result.Success) {
                     $('#myModal').modal('hide');
                     $('#progress').hide();
+                    if (result.Message != null) {
+                        alert(result.Message);
+                    }
+
                     location.reload();
 
                 } else {

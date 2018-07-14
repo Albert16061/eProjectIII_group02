@@ -49,9 +49,12 @@
             @Html.DisplayFor(modelItem => item.Account.UserName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Post_ID }) |
+            @Html.Raw("<a data-modal='' href='/Posts/_PartialEdit/" +item.Post_ID + "' id='" + item.Post_ID + "' title='Edit'> <span class='btn btn-info'>Edit</span> </a>") |
+            @Html.Raw("<a data-modal='' href='/Posts/_PartialDelete/" + item.Post_ID + "' id='" + item.Post_ID + "' title='Delete'> <span class='btn btn-info'>Delete</span> </a>")
+            <!-- |
             @Html.ActionLink("Details", "Details", new { id=item.Post_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Post_ID })
+            @Html.ActionLink("Delete", "Delete", new { id=item.Post_ID })-->
+            
         </td>
     </tr>
 }
