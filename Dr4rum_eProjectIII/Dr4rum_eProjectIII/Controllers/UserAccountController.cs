@@ -27,7 +27,7 @@ namespace Dr4rum_eProjectIII.Controllers
             }
             return sb.ToString();
         }
-        Dr4rumEntities db = new Dr4rumEntities();
+        Dr4rumEntities1 db = new Dr4rumEntities1();
         private string inputPasswordMD5;
 
         // GET: UserAccount
@@ -35,20 +35,26 @@ namespace Dr4rum_eProjectIII.Controllers
         {
             return RedirectToAction("Login");
         }
+        public ActionResult LoginPartial()
+        {
+            return PartialView("Login");
+        }
+
         public ActionResult Login()
         {
-            return PartialView();
+            return View();
         }
         [HttpPost]
         public ActionResult Login([Bind(Include = "UserName, Password")]Account account)
         {
+            inputPasswordMD5 = CreateMD5(account.Password).ToString();
             if (account.UserName == null || account.Password == null)
             {
                 return View();
             }
             else
             {
-                var res = db.Accounts.Where(s => s.Acc_ID == account.Acc_ID && s.Password == inputPasswordMD5).SingleOrDefault();
+                var res = db.Accounts.Where(s => s.UserName == account.UserName && s.Password == inputPasswordMD5).SingleOrDefault();
                 if (res != null)
                 {
                     Account userProfile = new Account()
@@ -83,7 +89,7 @@ namespace Dr4rum_eProjectIII.Controllers
 
         public ActionResult Logout()
         {
-            Session["Username"] = null;
+            Session["UserAccount"] = null;
             return RedirectToAction("Index", "Home");
         }
 
@@ -92,21 +98,16 @@ namespace Dr4rum_eProjectIII.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register([Bind(Include = "UserName,FirstName,LastName,Password,Email,Address,Phone,Gender")]Account account, FormCollection frm)
+        public ActionResult Register(Account account)
         {
-            string cfpass = Convert.ToString(frm["txtComfirmPassword"]);
+            
 
             if (ModelState.IsValid == true)
             {
-                var rs = db.Accounts.Where(s => s.Acc_ID == account.Acc_ID).SingleOrDefault();
+                var rs = db.Accounts.Where(s => s.UserName == account.UserName).SingleOrDefault();
                 if (rs != null)
                 {
                     ViewBag.MessageForUsername = "Username is used";
-                    return View();
-                }
-                else if (account.Password.ToString() != cfpass)
-                {
-                    ViewBag.ErrorConfirmPassword = "Password is not match";
                     return View();
                 }
                 else
@@ -114,7 +115,10 @@ namespace Dr4rum_eProjectIII.Controllers
                     account.Password = CreateMD5(account.Password);
                     db.Accounts.Add(account);
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Home");
+
+                    ViewBag.MessageForUsername = "Success";
+                    return View();
+                    // return RedirectToAction("Login", "UserAccount");
                 }
             }
             return View(account);

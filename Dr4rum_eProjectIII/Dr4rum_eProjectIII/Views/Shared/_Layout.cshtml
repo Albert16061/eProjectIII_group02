@@ -6,6 +6,13 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @using Dr4rum_eProjectIII.Models
+    @{
+        Account account = (Account)HttpContext.Current.Session["UserAccount"];
+    }
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body>
     <!-- Modal -->
@@ -45,17 +52,19 @@
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
                 </form>
+
                 <!-- Button Login -->
                 <div class="form-inline my-2 my-lg-0">
-                    @if (Session["Username"] == null)
+                    @if (Session["UserAccount"] == null)
                     {
                         @*<button class=" my-2 my-sm-0 btn btn-outline-warning btn-login" type="submit">@Html.ActionLink("Login", "Login", "UserAccount", null, new { @class = "nav-link" })</button>*@
-                        <button id="btnlogin" class="my-2 my-sm-0 btn btn-outline-warning btn-login" @*data-toggle="modal" data-target="#exampleModal"*@>Login</button>
-                        <button class=" btn  btn-outline-light" type="submit">  @Html.ActionLink("Register", "Register", "UserAccount", null, new { @class = "nav-link" })</button>
+                        <button id="btnlogin" class="my-2 my-sm-0 btn btn-outline-warning btn-login nav-link " @*data-toggle="modal" data-target="#exampleModal"*@>Login</button>
+                        <button  id="btnregister" class="my-2 my-sm-0 btn  btn-outline-light nav-link " type="submit">  @Html.ActionLink("Register", "Register", "UserAccount", null, new { @class = "" })</button>
                     }
                     else
                     {
-                        <div class="nav-link disabled">Hello : @Session["Username"].ToString()</div>
+
+                        <div class="nav-link disabled">Hello : @Html.ActionLink(@account.UserName.ToString(), "Information", "UserAccount")</div>
                         <div class="nav-link"> @Html.ActionLink("Logout", "Logout", "UserAccount")</div>
                     }
                 </div>
@@ -82,9 +91,8 @@
         </footer>
 
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
         <script src="~/Scripts/MyJQuery.js"></script>
         @RenderSection("scripts", required: false)
+
 </body>
 </html>
