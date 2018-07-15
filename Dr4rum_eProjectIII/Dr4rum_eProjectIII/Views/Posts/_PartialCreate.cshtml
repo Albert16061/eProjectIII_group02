@@ -35,7 +35,7 @@
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Post Info</label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Post_Info, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.Post_Info)
                     @Html.ValidationMessageFor(model => model.Post_Info, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -74,3 +74,11 @@
     $("form").removeData("unobtrusiveValidation");
     $.validator.unobtrusive.parse("form");
 </script>
+@section scripts{
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        var editor = CKEDITOR.instances['Post_Info'];
+        if (editor) { editor.destroy(true); }
+        CKEDITOR.replace('Post_Info', { enterMode: CKEDITOR.ENTER_BR, });
+    </script>
+    }

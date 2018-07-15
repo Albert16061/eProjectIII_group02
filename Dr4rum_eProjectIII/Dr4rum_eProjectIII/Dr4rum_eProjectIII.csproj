@@ -469,9 +469,9 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Posts\_PartialCreate.cshtml" />
-    <Content Include="Views\Posts\_PartialEdit.cshtml" />
     <Content Include="Views\Posts\_PartialDelete.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Posts\_PartialEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

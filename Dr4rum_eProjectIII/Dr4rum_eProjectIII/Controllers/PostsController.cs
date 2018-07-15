@@ -78,7 +78,7 @@ namespace Dr4rum_eProjectIII.Controllers
                 return HttpNotFound();
             }
             ViewBag.Acc_ID = new SelectList(db.Accounts, "Acc_ID", "UserName", post.Acc_ID);
-            ViewBag.Topic_Tile = new SelectList(db.Topics, "Topic_Title", "Category_Name", post.Topic_Tile);
+            ViewBag.Topic_Tile = new SelectList(db.Topics, "Topic_Title", "Topic_Title", post.Topic_Tile);
             return PartialView(post);
         }
 
