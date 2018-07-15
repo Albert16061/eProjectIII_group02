@@ -6,8 +6,27 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @using Dr4rum_eProjectIII.Models
+    @{
+        Account account = (Account)HttpContext.Current.Session["UserAccount"];
+    }
 </head>
 <body>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <button type="button" class="close text-right pr-4 pt-4" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-body">
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/MyScript/login.js" `></script>
     <div class="container body-content">
         <nav class="navbar navbar-expand-lg navbar-dark  bg-dark ">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,8 +48,16 @@
                 </form>
                 <!-- Button Login -->
                 <div class="form-inline my-2 my-lg-0">
-                    <button class=" my-2 my-sm-0 btn btn-outline-warning btn-login" type="submit">Login</button>
-                    <button class=" btn  btn-outline-light" type="submit">Register</button>
+                    @if (Session["UserAccount"] == null)
+                    {
+                        <button class=" my-2 my-sm-0 btn btn-outline-warning btn-login" type="submit">Login</button>
+                        <button class=" btn  btn-outline-light" type="submit">Register</button>
+                    }
+                    else
+                    {
+                        <div class="nav-link disabled" >Hello: @Html.ActionLink(account.UserName.ToString(), "Information", "UserAccount") </div>
+                        <div class="nav-link"> @Html.ActionLink("Logout","Logout", "UserAccount")</div>
+                    }
                 </div>
             </div>
         </nav>

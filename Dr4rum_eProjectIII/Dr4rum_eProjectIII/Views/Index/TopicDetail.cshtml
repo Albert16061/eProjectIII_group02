@@ -37,9 +37,7 @@
             @Topic.Topic_Info
         </div>
         <div class="separate-containt position-relative">
-            <div class="btn btn-warning add-post-btn">
-                Add Post
-            </div>
+            @Html.ActionLink("Add Post", "_PartialCreate","Posts", new { Topic_Title = Topic.Topic_Title }, new { @class = "btn btn-warning add-post-btn " })
         </div>
         @foreach (var listPost in Topic.Posts)
         {

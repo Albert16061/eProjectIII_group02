@@ -28,6 +28,8 @@ namespace Dr4rum_eProjectIII
                       "~/Content/bootstrap.css",
                       "~/Content/assets/index.css",
                       "~/Content/assets/style.css",
+                      "~/Content/assets/AdminIndex.css",
+                          "~/Content/assets/AdminManager.css",
                       "~/Content/site.css"));
         }
     }

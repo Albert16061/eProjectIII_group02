@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Group>
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
+<!-- Banner-->
+<div class="Banner-containt">
+    <img src="~/Image/Banner_Pic/Admin/adminIndex_banner.jpg" class="img-fluid" alt="Responsive image">
+    <div class="Banner-title-containt">
+        <p class="Banner-title-info"> Admin Page</p>
+        <p class="Banner-title-info" id="Banner-child"> Welcome to Admin Page, Let's manager your Page !</p>
+    </div>
+</div>
+
+<!-- breadcrumb-->
+<div class="breadcrumb-containt">
+    <div class="btn-group btn-breadcrumb breadcrumb-primary">
+        <a href="@Url.Action("Index", "AdminIndex")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+        <div class="btn btn-info c-info">
+            @Html.ActionLink("Home", "Index", "AdminIndex", new { @class = "breadcrumb-link" })
+        </div>
+    </div>
+</div>
+<!-- Information -->
+<div class="index-list-containt">
+    <div class="index-list">
+        <div class="Big-title">Dashboard</div>
+        <div class="card-containt">
+            @Html.Action("ListAccount", "AdminIndex")
+            @Html.Action("ListGroup", "AdminIndex")
+            @Html.Action("ListCat", "AdminIndex")
+            @Html.Action("ListTopic", "AdminIndex")
+            @Html.Action("ListPost", "AdminIndex")
+        </div>
+        
+    </div>
+</div>

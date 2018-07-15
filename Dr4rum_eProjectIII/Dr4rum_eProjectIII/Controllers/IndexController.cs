@@ -46,5 +46,6 @@ namespace Dr4rum_eProjectIII.Controllers
             var listTopic = db.Topics.Where(a => a.Topic_Title == TopicTitle).ToList();
             return View(listTopic);
         }
+        
     }
 }

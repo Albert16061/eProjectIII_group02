@@ -1,0 +1,7 @@
+﻿.alert-info {
+    background-color: #d1ecf1 !important;
+}
+.myTable-info-tr > td {
+    border-bottom: 1px solid lightseagreen;
+    color: black;
+}
