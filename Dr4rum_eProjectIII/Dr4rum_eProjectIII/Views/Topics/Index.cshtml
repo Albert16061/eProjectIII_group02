@@ -12,10 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.setV)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Topic_Info)
+            @Html.DisplayNameFor(model => model.Topic_Title)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Report)
@@ -27,7 +24,7 @@
             @Html.DisplayNameFor(model => model.Account.UserName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category.Group_Name)
+            @Html.DisplayNameFor(model => model.Category.Category_Name)
         </th>
         <th></th>
     </tr>
@@ -35,10 +32,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.setV)
-        </td>
-        <td>
-            @Html.Raw(item.Topic_Info)
+            @Html.Raw(item.Topic_Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Report)
@@ -50,7 +44,7 @@
             @Html.DisplayFor(modelItem => item.Account.UserName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Category.Group_Name)
+            @Html.DisplayFor(modelItem => item.Category.Category_Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Topic_Title }) |

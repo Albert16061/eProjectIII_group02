@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Dr4rum_eProjectIII.Models;
 using System.IO;
+using Microsoft.Ajax.Utilities;
 
 namespace Dr4rum_eProjectIII.Controllers
 {
@@ -18,8 +19,10 @@ namespace Dr4rum_eProjectIII.Controllers
         // GET: Topics
         public ActionResult Index()
         {
-            var topics = db.Topics.Include(t => t.Account).Include(t => t.Category);
-            return View(topics.ToList());
+            //    var topics = db.Topics.Include(t => t.Acc_ID==1).Include(t => t.Category);
+            //    return View(topics.ToList());
+            var topics = db.Topics.Where(t => t.Acc_ID == 1 && t.setV == true).ToList();
+            return View(topics);
         }
 
         // GET: Topics/Details/5
@@ -40,8 +43,7 @@ namespace Dr4rum_eProjectIII.Controllers
         // GET: Topics/Create
         public ActionResult Create()
         {
-            ViewBag.Acc_ID = new SelectList(db.Accounts, "Acc_ID", "UserName");
-            ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Group_Name");
+            ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Category_Name").Distinct();
             return View();
         }
 
@@ -64,10 +66,7 @@ namespace Dr4rum_eProjectIII.Controllers
                 ModelState.AddModelError("", "Nghia Nguyen Error");
                 return View(topic);
             }
-            
-
-            ViewBag.Acc_ID = new SelectList(db.Accounts, "Acc_ID", "UserName", topic.Acc_ID);
-            ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Group_Name", topic.Category_Name);
+            ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Category_Name", topic.Category_Name);
             return View(topic);
         }
 
@@ -84,7 +83,7 @@ namespace Dr4rum_eProjectIII.Controllers
                 return HttpNotFound();
             }
             ViewBag.Acc_ID = new SelectList(db.Accounts, "Acc_ID", "UserName", topic.Acc_ID);
-            ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Group_Name", topic.Category_Name);
+            ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Category_Name", topic.Category_Name);
             return View(topic);
         }
 
@@ -103,7 +102,7 @@ namespace Dr4rum_eProjectIII.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Acc_ID = new SelectList(db.Accounts, "Acc_ID", "UserName", topic.Acc_ID);
-            ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Group_Name", topic.Category_Name);
+            ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Category_Name", topic.Category_Name);
             return View(topic);
         }
 
@@ -119,27 +118,29 @@ namespace Dr4rum_eProjectIII.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Acc_ID = new SelectList(db.Accounts, "Acc_ID", "UserName", topic.Acc_ID);
+            ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Category_Name", topic.Category_Name);
             return View(topic);
         }
 
         // POST: Topics/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        [ValidateInput(false)]
+        public ActionResult Delete([Bind(Include = "Topic_Title,Acc_ID,Category_Name,setV,Topic_Info,Report,date")] Topic topic)
         {
-            Topic topic = db.Topics.Find(id);
-            db.Topics.Remove(topic);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
+            if (ModelState.IsValid)
             {
-                db.Dispose();
+                db.Entry(topic).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            base.Dispose(disposing);
+            ViewBag.Acc_ID = new SelectList(db.Accounts, "Acc_ID", "UserName", topic.Acc_ID);
+            ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Category_Name", topic.Category_Name);
+            return View(topic);
         }
+        
     }
 }
