@@ -72,9 +72,18 @@ namespace Dr4rum_eProjectIII.Controllers
                         Achievement = res.Achievement,
                         Experience = res.Experience,
                         Avatar = res.Avatar,
+                        Role = res.Role
                     };
                     Session["UserAccount"] = userProfile;
-                    return RedirectToAction("Index", "Home");
+                    if (userProfile.Role == "A")
+                    {
+                        return RedirectToAction("Index", "adminIndex");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+
                 }
                 else
                 {
@@ -100,7 +109,7 @@ namespace Dr4rum_eProjectIII.Controllers
         [HttpPost]
         public ActionResult Register(Account account)
         {
-            
+
 
             if (ModelState.IsValid == true)
             {

@@ -29,7 +29,6 @@
             </div>
         </div>
     </div>
-    <script src="~/Scripts/MyJQuery.js"></script>
     <div class="container body-content">
         <nav class="navbar navbar-expand-lg navbar-dark  bg-dark ">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,9 +55,8 @@
                 <!-- Button Login -->
                 <div class="form-inline my-2 my-lg-0">
                     @if (Session["UserAccount"] == null)
-                    {
-                        @*<button class=" my-2 my-sm-0 btn btn-outline-warning btn-login" type="submit">@Html.ActionLink("Login", "Login", "UserAccount", null, new { @class = "nav-link" })</button>*@
-                        <button id="btnlogin" class="my-2 my-sm-0 btn btn-outline-warning btn-login nav-link " @*data-toggle="modal" data-target="#exampleModal"*@>Login</button>
+                    {                       
+                        <button id="btnlogin" class="my-2 my-sm-0 btn btn-outline-warning btn-login nav-link ">Login</button>
                         <button  id="btnregister" class="my-2 my-sm-0 btn  btn-outline-light nav-link " type="submit">  @Html.ActionLink("Register", "Register", "UserAccount", null, new { @class = "" })</button>
                     }
                     else
@@ -70,20 +68,6 @@
                 </div>
             </div>
         </nav>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-
-                    <button type="button" class="close text-right pr-4 pt-4" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="modal-body">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
         @RenderBody()
         <hr />
         <footer>

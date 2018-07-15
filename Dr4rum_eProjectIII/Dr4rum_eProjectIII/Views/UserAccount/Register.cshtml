@@ -17,7 +17,6 @@
 @using (Html.BeginForm("Register", "UserAccount", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = " form-horizontal", role = "from" }))
 {
     @Html.AntiForgeryToken()
-    <h3>Create a new account.</h3>
     <hr />
     <div class="row">
         <div class="col-md-6">
@@ -112,7 +111,7 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label">Are you an user or doctor?</label>
+                <label class="control-label col-md-10">Are you an user or doctor?</label>
                 <div class="col-md-10">
                     @Html.HiddenFor(m => m.Role, new { Value = "U" })
                     @Html.DropDownList("select-role", new List<SelectListItem>() { new SelectListItem() { Text = "User", Value = "U" }, new SelectListItem() { Text = "Doctor", Value = "D" } }, new { @class = "form-control" })

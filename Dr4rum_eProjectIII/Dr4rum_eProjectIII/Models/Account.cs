@@ -24,34 +24,36 @@ namespace Dr4rum_eProjectIII.Models
 
         public int Acc_ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="User is not null!")]
         [Display(Name = "UserName")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Password is not null!")]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "FirstName is not null!")]
         [Display(Name = "FirstName")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "LastName is not null!")]
         [Display(Name = "LastName")]
         public string LastName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Email is not null!")]
         [EmailAddress(ErrorMessage = "Invalid Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Address is not null!")]
         [Display(Name = "Address")]
         public string Address { get; set; }
 
+        [Required(ErrorMessage = "Birthday is not null!")]
+        [Display(Name = "Birthday")]
         [DataType(DataType.Date)]
         public System.DateTime Birthday { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Phone is not null!")]
         [RegularExpression("^(01[2689]|09)[0-9]{8}$",ErrorMessage = "Invalid Phone")]
         public string Phone { get; set; }
 
