@@ -37,9 +37,10 @@ namespace Dr4rum_eProjectIII.Controllers
         }
 
         // GET: Posts/Create
-        public ActionResult _PartialCreate()
+        public ActionResult _PartialCreate(string Topic_Title)
         {
-            ViewBag.Topic_Tile = new SelectList(db.Topics, "Topic_Title", "Topic_Title").Distinct();
+            Topic_Title = "Vô sinh là bệnh gì?";
+            TempData["data"] = Topic_Title;
             return PartialView();
         }
 
@@ -56,7 +57,7 @@ namespace Dr4rum_eProjectIII.Controllers
                 db.SaveChanges();
                 return Json(new { Success = true, Message = "OK con de!" });
             }
-            return Json(new    
+            return Json(new
             {
                 Success = false,
                 Message = "Loi CMNR !"
@@ -77,8 +78,6 @@ namespace Dr4rum_eProjectIII.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Acc_ID = new SelectList(db.Accounts, "Acc_ID", "UserName", post.Acc_ID);
-            ViewBag.Topic_Tile = new SelectList(db.Topics, "Topic_Title", "Topic_Title", post.Topic_Tile);
             return PartialView(post);
         }
 
@@ -100,8 +99,6 @@ namespace Dr4rum_eProjectIII.Controllers
                 Success = false,
                 Message = "Loi CMNR !"
             });
-            ViewBag.Acc_ID = new SelectList(db.Accounts, "Acc_ID", "UserName", post.Acc_ID);
-            ViewBag.Topic_Tile = new SelectList(db.Topics, "Topic_Title", "Category_Name", post.Topic_Tile);
             return PartialView(post);
         }
 
@@ -117,19 +114,29 @@ namespace Dr4rum_eProjectIII.Controllers
             {
                 return HttpNotFound();
             }
-            return PartialView(post);
+            return PartialView("_PartialDelete", post);
         }
 
         // POST: Posts/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("_PartialDelete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Post post = db.Posts.Find(id);
-            db.Posts.Remove(post);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+            var result = db.Posts.Where(y => y.Post_ID == id).Select(x => x.Post_ID).ToList();
+            if (result.Count > 0)
+            {
+                db.Posts.Remove(post);
+                db.SaveChanges();
+                return Json(new { Success = true,
+                    Message = "Delete Successfull !"
+                });
+            }
+            return Json(new
+            {
+                Success = false,
+                Message = "Delete Fail !" });
+            }
 
         protected override void Dispose(bool disposing)
         {
