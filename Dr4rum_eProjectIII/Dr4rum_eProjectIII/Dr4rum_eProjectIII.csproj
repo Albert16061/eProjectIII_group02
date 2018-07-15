@@ -1370,7 +1370,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Image\Topic\" />
-    <Folder Include="Views\SetVTopic\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
