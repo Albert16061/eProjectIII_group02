@@ -30,26 +30,46 @@
                     <th>Topic Title</th>
                     <th> Report</th>
                     <th style="width: 75px !important">Post Day</th>
-                    <th>Deleted</th>
+                    <th>Status</th>
                     <th>Button</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (Topic topic in Model)
                 {
-                    <tr class="myTable-info-tr alert alert-info">
-                        <td>@topic.Account.UserName</td>
-                        <td>@topic.Category_Name</td>
-                        <td>@topic.Topic_Title</td>
-                        <td style="text-align: center;">@topic.Report</td>
-                        <td>@topic.date.ToString("dd/MM/yyyy")</td>
-                        <td style="text-align: center;">@(topic.setV ? "True" : "False")</td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { title = topic.Topic_Title }, new { @class = "btn btn-success btn-control" })
-                            @Html.ActionLink("Details", "Details", new { title = topic.Topic_Title }, new { @class = "btn btn-info btn-control" })
-                            @Html.ActionLink("Delete", "Delete", new { title = topic.Topic_Title }, new { @class = "btn btn-danger btn-control" })
-                        </td>
-                    </tr>
+                    if (topic.setV == true)
+                    {
+                        <tr class="myTable-info-tr alert alert-info">
+                            <td>@topic.Account.UserName</td>
+                            <td>@topic.Category_Name</td>
+                            <td>@topic.Topic_Title</td>
+                            <td style="text-align: center;">@topic.Report</td>
+                            <td>@topic.date.ToString("dd/MM/yyyy")</td>
+                            <td style="text-align: center;">@(topic.setV ? "Enable" : "Disable")</td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { title = topic.Topic_Title }, new { @class = "btn btn-success btn-control" })
+                                @Html.ActionLink("Details", "Details", new { title = topic.Topic_Title }, new { @class = "btn btn-info btn-control" })
+                                @Html.ActionLink("Delete", "Delete", new { title = topic.Topic_Title }, new { @class = "btn btn-danger btn-control" })
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr class="myTable-info-tr alert alert-danger">
+                            <td>@topic.Account.UserName</td>
+                            <td>@topic.Category_Name</td>
+                            <td>@topic.Topic_Title</td>
+                            <td style="text-align: center;">@topic.Report</td>
+                            <td>@topic.date.ToString("dd/MM/yyyy")</td>
+                            <td style="text-align: center;">@(topic.setV ? "Enable" : "Disable")</td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { title = topic.Topic_Title }, new { @class = "btn btn-success btn-control" })
+                                @Html.ActionLink("Details", "Details", new { title = topic.Topic_Title }, new { @class = "btn btn-info btn-control" })
+                                @Html.ActionLink("Delete", "Delete", new { title = topic.Topic_Title }, new { @class = "btn btn-danger btn-control" })
+                            </td>
+                        </tr>
+                    }
+
                 }
             </tbody>
         </table>

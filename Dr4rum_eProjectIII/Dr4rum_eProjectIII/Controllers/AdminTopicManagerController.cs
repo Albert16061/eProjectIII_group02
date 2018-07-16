@@ -14,14 +14,14 @@ namespace Dr4rum_eProjectIII.Controllers
     {
         Dr4rumEntities db = new Dr4rumEntities();
         // GET: AdminTopicManager
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             List<Topic> lstTopic = db.Topics.ToList();
             return View(lstTopic);
         }
 
         // GET: AdminTopicManager/Details/title
-        public ActionResult Details(string title)
+        public async Task<ActionResult> Details(string title)
         {
             if (title == null)
             {
@@ -36,8 +36,8 @@ namespace Dr4rum_eProjectIII.Controllers
         }
 
 
-        // GET: Lecturers/Edit/5
-        public ActionResult Edit(string title)
+        // GET: Lecturers/Edit/title
+        public async Task<ActionResult> Edit(string title)
         {
             if (title == null)
             {
@@ -52,12 +52,12 @@ namespace Dr4rum_eProjectIII.Controllers
             return View(topic);
         }
 
-        // POST: Lecturers/Edit/5
+        // POST: Lecturers/Edit/title
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Topic_Title,Acc_ID,Category_Name,setV,Topic_Info,Report,date")] Topic topic)
+        public async Task<ActionResult> Edit([Bind(Include = "Topic_Title,Acc_ID,Category_Name,setV,Topic_Info,Report,date")] Topic topic)
         {
             if (ModelState.IsValid)
             {
@@ -68,8 +68,16 @@ namespace Dr4rum_eProjectIII.Controllers
             ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Category_Name", topic.Category_Name);
             return View(topic);
         }
-
-
-
+        // GET: Lecturers/Delete/title
+        public async Task<ActionResult> Delete(string title)
+        {
+            var result = db.Topics.Where(t => t.Topic_Title == title).SingleOrDefault();
+            if(result != null)
+            {
+                result.setV = false;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
