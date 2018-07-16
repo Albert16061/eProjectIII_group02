@@ -21,7 +21,7 @@ namespace Dr4rum_eProjectIII.Controllers
         {
             //    var topics = db.Topics.Include(t => t.Acc_ID==1).Include(t => t.Category);
             //    return View(topics.ToList());
-            var topics = db.Topics.Where(t => t.Acc_ID == 1 && t.setV == true).ToList();
+            var topics = db.Topics.Where(t => t.Acc_ID == 2 && t.setV == true).ToList();
             return View(topics);
         }
 
@@ -109,37 +109,13 @@ namespace Dr4rum_eProjectIII.Controllers
         // GET: Topics/Delete/5
         public ActionResult Delete(string id)
         {
-            if (id == null)
+            var result = db.Topics.Where(t => t.Topic_Title == id).SingleOrDefault();
+            if(result != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Topic topic = db.Topics.Find(id);
-            if (topic == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Acc_ID = new SelectList(db.Accounts, "Acc_ID", "UserName", topic.Acc_ID);
-            ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Category_Name", topic.Category_Name);
-            return View(topic);
-        }
-
-        // POST: Topics/Delete/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [ValidateInput(false)]
-        public ActionResult Delete([Bind(Include = "Topic_Title,Acc_ID,Category_Name,setV,Topic_Info,Report,date")] Topic topic)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(topic).State = EntityState.Modified;
+                result.setV = false;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            ViewBag.Acc_ID = new SelectList(db.Accounts, "Acc_ID", "UserName", topic.Acc_ID);
-            ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Category_Name", topic.Category_Name);
-            return View(topic);
+            return RedirectToAction("Index");
         }
         
     }
