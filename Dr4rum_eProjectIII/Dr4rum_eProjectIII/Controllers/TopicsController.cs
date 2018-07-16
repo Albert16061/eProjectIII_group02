@@ -21,7 +21,7 @@ namespace Dr4rum_eProjectIII.Controllers
         {
             //    var topics = db.Topics.Include(t => t.Acc_ID==1).Include(t => t.Category);
             //    return View(topics.ToList());
-            var topics = db.Topics.Where(t => t.Acc_ID == 2 && t.setV == true).ToList();
+            var topics = db.Topics.Where(t => t.Acc_ID == 1 && t.setV == true).ToList();
             return View(topics);
         }
 
@@ -63,7 +63,7 @@ namespace Dr4rum_eProjectIII.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Nghia Nguyen Error");
+                ModelState.AddModelError("", "Error");
                 return View(topic);
             }
             ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Category_Name", topic.Category_Name);

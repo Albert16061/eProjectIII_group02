@@ -5,7 +5,7 @@
 }
 
 <p>
-    <button type="button" class="btn btn-light">@Html.ActionLink("Create New", "Create")</button>
+    <button type="button" style="color: blue" class="btn btn-dark">@Html.ActionLink("Create New", "Create")</button>
 </p>
 <table class="table">
     <tr>
@@ -46,7 +46,6 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Topic_Title }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Topic_Title }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Topic_Title })
         </td>
     </tr>

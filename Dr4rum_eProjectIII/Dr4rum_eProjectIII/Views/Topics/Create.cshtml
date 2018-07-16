@@ -28,7 +28,7 @@
         <div class="form-group hide">
             @Html.LabelFor(model => model.Acc_ID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Acc_ID, new { @Value = 2, htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.Acc_ID, new { @Value = 1, htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Acc_ID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -77,49 +77,43 @@
                 @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="col-md-10">
+            <!-- Button to Open the Modal -->
+            <button type="button" style="background-color: skyblue; font:bold" class="btn btn-primary" id="btnmodal" data-toggle="modal" data-target="#myModal">Create </button>
+            <button type="button" class="btn btn-danger"><b>@Html.ActionLink("Back to List", "Index")</b></button> 
+        </div>
+            <!-- The Modal -->
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
 
-        <!-- Button to Open the Modal -->
-        <button type="button" class="btn btn-primary" id="btnmodal" data-toggle="modal" data-target="#myModal">
-            Create
-        </button>
-
-        <!-- The Modal -->
-        <div class="modal" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="M-title">Modal Heading</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body" >
-                        The title of topic is unique. After you posted, you will can not edit. Are you sure you want to post?
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Sure" class="btn btn-default" />
-                            </div>
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="M-title">Modal Heading</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancle</button>
-                    </div>
 
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            The title of topic is unique. After you posted, you will can not edit. Are you sure you want to post?
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <input type="submit" style="background-color:deepskyblue" value="Sure" class="btn btn-default" />
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancle</button>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 }
 
 
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="col-md-10">
+    
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
