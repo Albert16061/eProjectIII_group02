@@ -156,6 +156,7 @@
     <Compile Include="Controllers\AdminTopicManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\TestsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -224,6 +225,7 @@
     <Content Include="Image\Logo_Icon\Admin\Cross-icon-50.png" />
     <Content Include="Image\Logo_Icon\Admin\new-topic-50.png" />
     <Content Include="Image\Logo_Icon\Admin\Post-icon-50.png" />
+    <Content Include="Image\Logo_Icon\ajax-loader.gif" />
     <Content Include="Image\Logo_Icon\avatar-50.png" />
     <Content Include="Image\Logo_Icon\comment-50.png" />
     <Content Include="Image\Logo_Icon\edit-48.png" />
@@ -330,6 +332,14 @@
     <Content Include="Views\AdminIndex\ListTopic.cshtml" />
     <Content Include="Views\AdminIndex\ListPost.cshtml" />
     <Content Include="Views\AdminTopicManager\Index.cshtml" />
+    <Content Include="Views\AdminTopicManager\Details.cshtml" />
+    <Content Include="Views\AdminTopicManager\Edit.cshtml" />
+    <Content Include="Views\AdminTopicManager\_Edit.cshtml" />
+    <Content Include="Views\Tests\Create.cshtml" />
+    <Content Include="Views\Tests\Delete.cshtml" />
+    <Content Include="Views\Tests\Details.cshtml" />
+    <Content Include="Views\Tests\Edit.cshtml" />
+    <Content Include="Views\Tests\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

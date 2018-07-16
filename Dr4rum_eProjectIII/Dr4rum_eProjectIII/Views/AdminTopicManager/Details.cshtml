@@ -1,0 +1,52 @@
+﻿@model Dr4rum_eProjectIII.Models.Topic
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
+<!-- Banner-->
+<div class="Banner-containt">
+    <img src="~/Image/Banner_Pic/Admin/adminIndex_banner.jpg" class="img-fluid" alt="Responsive image">
+    <div class="Banner-title-containt">
+        <p class="Banner-title-info"> Admin Page</p>
+        <p class="Banner-title-info" id="Banner-child"> Welcome to Admin Page, Let's manager your Page !</p>
+    </div>
+</div>
+
+<!-- breadcrumb-->
+<div class="breadcrumb-containt">
+    <div class="btn-group btn-breadcrumb breadcrumb-primary">
+        <a href="@Url.Action("Index", "AdminIndex")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+        @Html.ActionLink("Home", "Index", "AdminIndex", null, new { @class = "btn btn-primary breadcrumb-link" })
+        @Html.ActionLink("Topic", "Index", "AdminTopicManager", null, new { @class = "btn btn-primary breadcrumb-link" })
+        <div class="btn btn-info c-info breadcrumb-link"> @Model.Topic_Title </div>
+    </div>
+</div>
+<!-- Information -->
+<div class="index-list-containt">
+    <div class="index-list">
+        <div>
+            <div class="btn-containt">
+                @Html.ActionLink("Back ", "Index", null, new { @class = "btn btn-info" })
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Topic_Title }, new { @class = "btn btn-success" })
+            </div>
+            <div class="dl-horizontal">
+                <div class="Banner-title-info" style="text-align:center">
+                    @Model.Topic_Title
+                </div>
+
+                <div class="main-containt " id="TopicDetails-main-containt">
+                    @Html.DisplayFor(model => model.Topic_Info)
+                    <div class="right-conner">Post by : @Html.DisplayFor(model => model.Account.UserName)</div>
+                    @{
+                        var date = Model.date.ToString("dd/MM/yyyy");
+                    }
+                    <div class="right-conner"> @date</div>
+                </div>
+                <div>
+                    Report : @Html.DisplayFor(model => model.Report)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+    }

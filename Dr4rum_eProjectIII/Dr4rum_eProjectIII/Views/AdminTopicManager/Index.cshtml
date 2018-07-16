@@ -1,6 +1,7 @@
 ﻿@using Dr4rum_eProjectIII.Models
 @model List<Topic>
-
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
 <!-- Banner-->
 <div class="Banner-containt">
     <img src="~/Image/Banner_Pic/Admin/adminIndex_banner.jpg" class="img-fluid" alt="Responsive image">
@@ -14,9 +15,8 @@
 <div class="breadcrumb-containt">
     <div class="btn-group btn-breadcrumb breadcrumb-primary">
         <a href="@Url.Action("Index", "AdminIndex")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
-        <div class="btn btn-info c-info">
-            @Html.ActionLink("Home", "Index", "AdminIndex", new { @class = "breadcrumb-link" })
-        </div>
+        @Html.ActionLink("Home", "Index", "AdminIndex", null, new { @class = "btn btn-primary breadcrumb-link" })
+        <div class="btn btn-info c-info breadcrumb-link"> Topic </div>
     </div>
 </div>
 <!-- Information -->
@@ -29,37 +29,40 @@
                     <th>Category </th>
                     <th>Topic Title</th>
                     <th> Report</th>
-                    <th style="width: 75px !important" >Post Day</th>
+                    <th style="width: 75px !important">Post Day</th>
                     <th>Deleted</th>
                     <th>Button</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (Topic topic  in Model)
+                @foreach (Topic topic in Model)
                 {
-                <tr class="myTable-info-tr alert alert-info">
-                    <td>@topic.Account.UserName</td>
-                    <td>@topic.Category_Name</td>
-                    <td>@topic.Topic_Title</td>
-                    <td style="text-align: center;">@topic.Report</td>
-                    <td>@topic.date.ToString("dd/MM/yyyy")</td>
-                    <td style="text-align: center;">@(topic.setV ? "True" : "False")</td>
-                    <td>
-                        <span class="btn btn-info" style="padding: 0.375rem 22px;">Edit</span>
-                        <span class="btn btn-danger" style="margin-top:  5px;">Delete</span>
-                    </td>
-                </tr>
+                    <tr class="myTable-info-tr alert alert-info">
+                        <td>@topic.Account.UserName</td>
+                        <td>@topic.Category_Name</td>
+                        <td>@topic.Topic_Title</td>
+                        <td style="text-align: center;">@topic.Report</td>
+                        <td>@topic.date.ToString("dd/MM/yyyy")</td>
+                        <td style="text-align: center;">@(topic.setV ? "True" : "False")</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { title = topic.Topic_Title }, new { @class = "btn btn-success btn-control" })
+                            @Html.ActionLink("Details", "Details", new { title = topic.Topic_Title }, new { @class = "btn btn-info btn-control" })
+                            @Html.ActionLink("Delete", "Delete", new { title = topic.Topic_Title }, new { @class = "btn btn-danger btn-control" })
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
     </div>
 </div>
+
 @*load datatable css*@
 <link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />
 @*Load database to datatable*@
 @section Scripts{
     <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
-    <script>     
+    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+    <script>
         $(document).ready(function () {
             $('#myTable').DataTable();
         });

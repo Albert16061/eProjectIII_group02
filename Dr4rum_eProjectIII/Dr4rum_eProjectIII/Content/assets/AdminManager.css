@@ -1,7 +1,18 @@
-﻿.alert-info {
+﻿.hide{
+    display: none
+}
+.alert-info {
     background-color: #d1ecf1 !important;
 }
 .myTable-info-tr > td {
     border-bottom: 1px solid lightseagreen;
     color: black;
+}
+.btn-control {
+    width: 73px !important;
+    margin-bottom: 5px;
+}
+.right-conner {
+    font-weight: bold;
+    text-align: right;
 }
