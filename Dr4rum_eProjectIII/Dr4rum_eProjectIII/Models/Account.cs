@@ -30,6 +30,7 @@ namespace Dr4rum_eProjectIII.Models
 
         [Required(ErrorMessage = "Password is not null!")]
         [Display(Name = "Password")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "FirstName is not null!")]
@@ -51,6 +52,7 @@ namespace Dr4rum_eProjectIII.Models
         [Required(ErrorMessage = "Birthday is not null!")]
         [Display(Name = "Birthday")]
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public System.DateTime Birthday { get; set; }
 
         [Required(ErrorMessage = "Phone is not null!")]

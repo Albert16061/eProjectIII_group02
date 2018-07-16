@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -47,49 +48,56 @@ namespace Dr4rum_eProjectIII.Controllers
         [HttpPost]
         public ActionResult Login([Bind(Include = "UserName, Password")]Account account)
         {
-            inputPasswordMD5 = CreateMD5(account.Password).ToString();
-            if (account.UserName == null || account.Password == null)
+            if (account.UserName != null ||  account.Password != null)
             {
-                return View();
-            }
-            else
-            {
-                var res = db.Accounts.Where(s => s.UserName == account.UserName && s.Password == inputPasswordMD5).SingleOrDefault();
-                if (res != null)
+                inputPasswordMD5 = CreateMD5(account.Password).ToString();
+                if (account.UserName == null || account.Password == null)
                 {
-                    Account userProfile = new Account()
-                    {
-                        Acc_ID = res.Acc_ID,
-                        UserName = res.UserName,
-                        FirstName = res.FirstName,
-                        LastName = res.LastName,
-                        Email = res.Email,
-                        Phone = res.Phone,
-                        Address = res.Address,
-                        Birthday = res.Birthday,
-                        Gender = Convert.ToBoolean(res.Gender),
-                        Speciality = res.Speciality,
-                        Achievement = res.Achievement,
-                        Experience = res.Experience,
-                        Avatar = res.Avatar,
-                        Role = res.Role
-                    };
-                    Session["UserAccount"] = userProfile;
-                    if (userProfile.Role == "A")
-                    {
-                        return RedirectToAction("Index", "adminIndex");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
-
+                    return View();
                 }
                 else
                 {
-                    ViewBag.ErrorMessage = "Invalid Username or Password!";
-                    return View(account);
+                    var res = db.Accounts.Where(s => s.UserName == account.UserName && s.Password == inputPasswordMD5).SingleOrDefault();
+                    if (res != null)
+                    {
+                        Account userProfile = new Account()
+                        {
+                            Acc_ID = res.Acc_ID,
+                            UserName = res.UserName,
+                            FirstName = res.FirstName,
+                            LastName = res.LastName,
+                            Email = res.Email,
+                            Phone = res.Phone,
+                            Address = res.Address,
+                            Birthday = res.Birthday,
+                            Gender = Convert.ToBoolean(res.Gender),
+                            Speciality = res.Speciality,
+                            Achievement = res.Achievement,
+                            Experience = res.Experience,
+                            Avatar = res.Avatar,
+                            Role = res.Role
+                        };
+                        Session["UserAccount"] = userProfile;
+                        if (userProfile.Role == "A")
+                        {
+                            return RedirectToAction("Index", "adminIndex");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+
+                    }
+                    else
+                    {
+                        ViewBag.ErrorMessage = "Invalid Username or Password!";
+                        return View(account);
+                    }
                 }
+            }
+            else
+            {
+                return View();
             }
 
         }
@@ -107,9 +115,9 @@ namespace Dr4rum_eProjectIII.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register(Account account)
+        public ActionResult Register(Account account , FormCollection form)
         {
-
+            string cfpassword = Convert.ToString(form["txtConfirmPassword"]);
 
             if (ModelState.IsValid == true)
             {
@@ -136,13 +144,108 @@ namespace Dr4rum_eProjectIII.Controllers
         }
 
 
-        public ActionResult Information()
+        public ActionResult Information(int ID)
         {
-            if (Session["UserInformation"] == null)
+            var accID = ID;
+            var listInfo = db.Accounts.Where(a => a.Acc_ID == accID).ToList();
+            return View(listInfo);
+            //Account account = (Account)Session["UserInformation"];
+            //return View(account);
+        }
+
+        public async Task<ActionResult> EditInformation()
+        {
+            if (Session["UserAccount"] == null)
                 return RedirectToAction("Login");
 
-            Account account = (Account)Session["UserInformation"];
+            Account account = (Account)Session["UserAccount"];
             return View(account);
+        }
+        [HttpPost]
+        public ActionResult EditInformation(Account account)
+        {
+               
+            if (Session["UserAccount"] == null)
+                return RedirectToAction("Login");
+
+
+            string cfpasswordMD5 = CreateMD5(account.Password);
+
+            Account rs = db.Accounts.SingleOrDefault(s => s.UserName == account.UserName);
+            
+
+            if (rs != null )
+            {
+                if (rs.Password == cfpasswordMD5.ToLower())
+                {
+                    rs.UserName = account.UserName;
+                    rs.LastName = account.LastName;
+                    rs.FirstName = account.FirstName;
+                    rs.Address = account.Address;
+                    rs.Phone = account.Phone;
+                    rs.Email = account.Email;
+                    rs.Birthday = account.Birthday;
+                    rs.Gender = account.Gender;
+                    rs.Speciality = account.Speciality;
+                    rs.Experience = account.Experience;
+                    rs.Achievement = account.Achievement;
+                    db.SaveChanges();
+
+                    Session["UserAccount"] = rs;
+
+                    return RedirectToAction("Information", new { ID = rs.Acc_ID });
+                }
+                else
+                {
+                    ViewBag.ErrorConfirmPassword = "Invalid Password";
+                    return View(account);
+                }
+            }
+            ViewBag.ErrorConfirmPassword = "Account not existed";
+            return View(account);
+        }
+
+        public ActionResult ChangePassword()
+        {
+            if (Session["UserAccount"] == null) return RedirectToAction("Login");
+            Account userProfile = (Account)Session["UserAccount"];
+            return View(userProfile);
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword([Bind(Include ="UserName,Password")] Account account , FormCollection form)
+        {
+            var oldpass = Convert.ToString(form["old_password"]);
+            var cfpass = Convert.ToString(form["confirm_password"]);
+            var rs = db.Accounts.SingleOrDefault(s => s.UserName == account.UserName);
+            if (rs != null)
+            {
+                if (rs.Password.ToLower() != CreateMD5(oldpass).ToLower())
+                {
+                    ViewBag.ErrorOld_password = "Old password is invalid";
+                }
+                else if (cfpass != account.Password)
+                {
+                    ViewBag.ErrorConfirm_password = "Password not match";
+                }
+                else if (oldpass == account.Password)
+                {
+                    ViewBag.ErrorNew_password = "The new password must be different from the old password";
+                }
+                else
+                {
+                    rs.Password = CreateMD5(account.Password).ToLower();
+                    db.SaveChanges();
+                    return RedirectToAction("Information", new { @ID = rs.Acc_ID});
+                }
+            }
+            return View(account);
+        }
+
+
+        public ActionResult ForgetPassword()
+        {
+            return View();
         }
     }
 }

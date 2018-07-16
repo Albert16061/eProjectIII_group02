@@ -1,81 +1,90 @@
-﻿@model Dr4rum_eProjectIII.Models.Account
-@{
-    ViewBag.Title = "Information";
-}
+﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Account>
+<div class="index-list-containt">
+    <div class="index-list">
 
-<h2>Information</h2>
-    <h3>Information</h3>
-    <div class="container mt-5"></div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad frm-userinformation">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3 class="panel-title">User Information</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-12 col-lg-12">
-                            <table class="table table-user-information">
-                                <tbody>
-                                    <tr>
-                                        <td>@Html.LabelFor(m => m.FirstName)</td>
-                                        <td>@Html.DisplayFor(m => m.FirstName)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>@Html.LabelFor(m => m.LastName)</td>
-                                        <td>@Html.DisplayFor(m => m.LastName)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>@Html.LabelFor(m => m.Address)</td>
-                                        <td>@Html.DisplayFor(m => m.Address)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>@Html.LabelFor(m => m.Phone)</td>
-                                        <td>@Html.DisplayFor(m => m.Phone)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>@Html.LabelFor(m => m.Email)</td>
-                                        <td>@Html.DisplayFor(m => m.Email)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>@Html.LabelFor(m => m.Gender)</td>
-                                        @if (Model.Gender)
-                                        {
-                                            <td>Male</td>
-                                        }
-                                        else
-                                        {
-                                            <td>Female</td>
-                                        }
-                                    </tr>
-                                    <tr>
-                                        <td>@Html.LabelFor(m => m.Achievement)</td>
-                                        <td>@Html.DisplayFor(m => m.Achievement)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>@Html.LabelFor(m => m.Experience)</td>
-                                        <td>@Html.DisplayFor(m => m.Experience)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>@Html.LabelFor(m => m.Speciality)</td>
-                                        <td>@Html.DisplayFor(m => m.Speciality)</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="row">
-                                <div class="d-flex justify-content-center col-md-6 mt-2">
-                                    @Html.ActionLink("Edit your information", "EditInformation", "UserAccount", null, new { @class = "btn btn-primary" })
-                                </div>
-                                <div class="d-flex justify-content-center col-md-6 mt-2">
-                                    @Html.ActionLink("Change your password", "ChangePassword", "UserAccount", null, new { @class = "btn btn-primary" })
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+        @foreach (var accountItem in Model)
+        {
+            <div class="UserName">
+                <span class="UserName-Title"> User Name: </span>
+                <span class="UserName-Info"> @accountItem.UserName </span>
             </div>
-        </div>
+            <div class="First-name">
+                <span class="FirstName-Title"> First Name: </span>
+                <span class="FirstName-Info"> @accountItem.FirstName </span>
+            </div>
+            <div class="Last-name">
+                <span class="LastName-Title"> Last Name: </span>
+                <span class="LastName-Info"> @accountItem.LastName </span>
+            </div>
+            <div class="Email">
+                <span class="Email-Title"> Email: </span>
+                <span class="Email-Info"> @accountItem.Email </span>
+            </div>
+            <div class="Phone">
+                <span class="Phone-Title"> Phone: </span>
+                <span class="Phone-Info"> @accountItem.Phone </span>
+            </div>
+            <div class="Address">
+                <span class="Address-Title"> Address: </span>
+                <span class="Address-Info"> @accountItem.Address </span>
+            </div>
+            <div class="Birthday">
+                <span class="Birthday-Title"> Birthday: </span>
+                <span class="Birthday-Info"> @accountItem.Birthday </span>
+            </div>
+            <div class="Gender">
+                <span class="Gender-Title"> Gender: </span>
+                @if (accountItem.Gender)
+                {
+                    <span class="Gender-Info"> Male </span>
+                }
+                else
+                {
+                    <span class="Gender-Info"> Female </span>
+                }
+            </div>
+            <div class="Incognito">
+                <span class="Incognito-Title"> Incognito: </span>
+                @if (accountItem.Incognito)
+                {
+                    <span class="Incognito-Info">Incognito</span>
+                }
+                else
+                {
+                    <span class="Incognito-Info"> Not Incognito </span>
+                }
+            </div>
+            if (accountItem.Role == "D")
+            {
+                <div class="Speciality">
+                    <span class="Speciality-Title"> Speciality: </span>
+                    <span class="Speciality-Info"> @accountItem.Speciality </span>
+                </div>
+                <div class="Experience">
+                    <span class="Experience-Title"> Experience: </span>
+                    <span class="Experience-Info"> @accountItem.Experience </span>
+                </div>
+                <div class="Achievement">
+                    <span class="Achievement-Title"> Achievement: </span>
+                    <span class="Achievement-Info"> @accountItem.Achievement </span>
+                </div>
+            }
 
+            <div class="Avatar">
+                <span class="Avatar-Title"> Avatar: </span>
+                @if (accountItem.Avatar == null)
+                {
+                    <img src="~/Image/avatar/shutterstock_534491617-600.jpg" />
+                }
+                else
+                {
+                    <div class="Avatar-Info"> @accountItem.Avatar </div>
+                }
+            </div>
+        }
     </div>
-
+    <div class="p-5">
+        @Html.ActionLink("EditInformation", "EditInformation", "UserAccount",null,new { @class = "btn btn-primary"})
+        @Html.ActionLink("ChangePassword", "ChangePassword", "UserAccount",null,new { @class = "btn btn-primary"  })
+    </div>
+</div>

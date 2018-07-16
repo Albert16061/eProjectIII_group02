@@ -206,6 +206,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Image\avatar\shutterstock_534491617-600.jpg" />
     <Content Include="Image\Banner_Pic\index_banner.jpg" />
     <Content Include="Image\Logo_Icon\avatar-50.png" />
     <Content Include="Image\Logo_Icon\comment-50.png" />
@@ -300,6 +301,8 @@
     <Content Include="Views\UserAccount\Login.cshtml" />
     <Content Include="Views\UserAccount\Register.cshtml" />
     <Content Include="Views\UserAccount\Information.cshtml" />
+    <Content Include="Views\UserAccount\EditInformation.cshtml" />
+    <Content Include="Views\UserAccount\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
