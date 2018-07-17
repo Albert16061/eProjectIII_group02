@@ -1,11 +1,15 @@
 ﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Topic>
-
+<style>
+    .btmartop{
+        margin-top: 10px;
+    }
+</style>
 @{
     ViewBag.Title = "List of Topic";
 }
 
-<p>
-    <button type="button" style="color: blue" class="btn btn-dark">@Html.ActionLink("Create New", "Create")</button>
+<p class="btmartop">
+    @Html.Raw("<a data-modal='' href='/Topics/Create/' title='Create'> <span class='btn btn-info'>Create new</span> </a>")
 </p>
 <table class="table">
     <tr>
@@ -49,9 +53,13 @@
                 @Html.DisplayFor(modelItem => item.Category.Category_Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Topic_Title }) |
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.Topic_Title }) |*@
                 @*@Html.ActionLink("Delete", "Delete", new { id = item.Topic_Title })*@
-                <button type="button" class="btn btn-danger btn-control btnDelete" data-toggle="modal" data-target="#myModal">Delete</button>
+                @Html.Raw("<a data-modal='' href='/Topics/Edit/" + item.Topic_Title + "' id='" + item.Topic_Title + "' title='Edit'> <span class='btn btn-info'>Edit</span> </a>")
+                <p class="btmartop"><button type="button" class="btn btn-danger btn-control btnDelete" data-toggle="modal" data-target="#myModal">Delete</button></p>
+                @*  *@
+                
+                @*@Html.Raw("<a data-toggle='modal' data-target='#myModal'> <span class='btn btn-info'>Delete</span> </a>")*@
             </td>
         </tr>
     }

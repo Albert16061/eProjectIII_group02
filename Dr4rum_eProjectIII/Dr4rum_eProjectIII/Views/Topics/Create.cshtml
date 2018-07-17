@@ -6,12 +6,15 @@
     .hide {
         display:none
     }
+    .stitle{
+        color: blue;
+    }
 </style>
 
 @using (Html.BeginForm("Create", "Topics", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    <h2>
+    <h2 class="stitle mt-2 ml-2">
         Create Topic
     </h2>
     <hr />
@@ -79,8 +82,9 @@
         </div>
         <div class="col-md-10">
             <!-- Button to Open the Modal -->
-            <button type="button" style="background-color: skyblue; font:bold" class="btn btn-primary" id="btnmodal" data-toggle="modal" data-target="#myModal">Create </button>
-            <button type="button" class="btn btn-danger"><b>@Html.ActionLink("Back to List", "Index")</b></button> 
+            @*<button type="button" style="background-color: skyblue; font:bold" class="btn btn-primary" id="btnmodal" data-toggle="modal" data-target="#myModal">Create </button>*@
+            <button type="button" class="btn btn-info" id="btnmodal" data-toggle="modal" data-target="#myModal">Create</button>
+            @Html.Raw("<a data-modal='' href='/Topics/Index/ ' title='Edit'> <span class='btn btn-danger'>Back to List</span> </a>")
         </div>
             <!-- The Modal -->
             <div class="modal" id="myModal">

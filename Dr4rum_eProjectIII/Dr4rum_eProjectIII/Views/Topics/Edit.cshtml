@@ -10,6 +10,14 @@
     .stitle h2{
         color: blue;
             }
+    .btmartop{
+        margin-top: 5px;
+    }
+    .btback{
+        font-style:normal;
+        color:white;
+        
+    }
 </style>
 <div class="stitle mt-2 ml-2">
     <h2>@Html.DisplayFor(model => model.Topic_Title, new { @disabled = "disabled", htmlAttributes = new { @class = "form-control" } })</h2>
@@ -88,16 +96,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                @*<input type="submit" value="Save" class="btn btn-default"/>*@
+                <button type="submit" class="btn btn-info" >Save</button>
+                @Html.Raw("<a data-modal='' href='/Topics/Index/ ' title='Edit'> <span class='btn btn-danger'>Back to List</span> </a>")
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Content/ckeditor/ckeditor.js"></script>
