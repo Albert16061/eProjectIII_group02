@@ -61,7 +61,7 @@
                     <span class="Speciality-Info"> @accountItem.Speciality </span>
                 </div>
                 <div class="Experience">
-                    <span class="Experience-Title"> Experience: </span>
+                    <span class="Experience-Title"> Experience: </span>  
                     <span class="Experience-Info"> @accountItem.Experience </span>
                 </div>
                 <div class="Achievement">
@@ -78,13 +78,13 @@
                 }
                 else
                 {
-                    <div class="Avatar-Info"> @accountItem.Avatar </div>
+                   <img src="~/Image/avatar/@accountItem.Avatar"/>
                 }
             </div>
         }
     </div>
     <div class="p-5">
-        @Html.ActionLink("EditInformation", "EditInformation", "UserAccount",null,new { @class = "btn btn-primary"})
-        @Html.ActionLink("ChangePassword", "ChangePassword", "UserAccount",null,new { @class = "btn btn-primary"  })
+        @Html.ActionLink("Edit Information", "EditInformation", "UserAccount",null,new { @class = "btn btn-primary"})
+        @Html.ActionLink("Change Password", "ChangePassword", "UserAccount",null,new { @class = "btn btn-primary"  })
     </div>
 </div>

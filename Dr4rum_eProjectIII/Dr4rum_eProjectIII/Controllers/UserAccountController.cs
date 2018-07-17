@@ -1,6 +1,7 @@
 ﻿using Dr4rum_eProjectIII.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -48,7 +49,7 @@ namespace Dr4rum_eProjectIII.Controllers
         [HttpPost]
         public ActionResult Login([Bind(Include = "UserName, Password")]Account account)
         {
-            if (account.UserName != null ||  account.Password != null)
+            if (account.UserName != null || account.Password != null)
             {
                 inputPasswordMD5 = CreateMD5(account.Password).ToString();
                 if (account.UserName == null || account.Password == null)
@@ -115,7 +116,7 @@ namespace Dr4rum_eProjectIII.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register(Account account , FormCollection form)
+        public ActionResult Register(Account account, FormCollection form)
         {
             string cfpassword = Convert.ToString(form["txtConfirmPassword"]);
 
@@ -164,45 +165,53 @@ namespace Dr4rum_eProjectIII.Controllers
         [HttpPost]
         public ActionResult EditInformation(Account account)
         {
-               
-            if (Session["UserAccount"] == null)
-                return RedirectToAction("Login");
-
-
-            string cfpasswordMD5 = CreateMD5(account.Password);
-
-            Account rs = db.Accounts.SingleOrDefault(s => s.UserName == account.UserName);
-            
-
-            if (rs != null )
+            if (account.Password != null)
             {
-                if (rs.Password == cfpasswordMD5.ToLower())
-                {
-                    rs.UserName = account.UserName;
-                    rs.LastName = account.LastName;
-                    rs.FirstName = account.FirstName;
-                    rs.Address = account.Address;
-                    rs.Phone = account.Phone;
-                    rs.Email = account.Email;
-                    rs.Birthday = account.Birthday;
-                    rs.Gender = account.Gender;
-                    rs.Speciality = account.Speciality;
-                    rs.Experience = account.Experience;
-                    rs.Achievement = account.Achievement;
-                    db.SaveChanges();
 
-                    Session["UserAccount"] = rs;
+                if (Session["UserAccount"] == null)
+                    return RedirectToAction("Login");
 
-                    return RedirectToAction("Information", new { ID = rs.Acc_ID });
-                }
-                else
+
+                string cfpasswordMD5 = CreateMD5(account.Password);
+
+                Account rs = db.Accounts.SingleOrDefault(s => s.UserName == account.UserName);
+
+
+                if (rs != null)
                 {
-                    ViewBag.ErrorConfirmPassword = "Invalid Password";
-                    return View(account);
+                    if (rs.Password == cfpasswordMD5.ToLower())
+                    {
+                        rs.UserName = account.UserName;
+                        rs.LastName = account.LastName;
+                        rs.FirstName = account.FirstName;
+                        rs.Address = account.Address;
+                        rs.Phone = account.Phone;
+                        rs.Email = account.Email;
+                        rs.Birthday = account.Birthday;
+                        rs.Gender = account.Gender;
+                        rs.Speciality = account.Speciality;
+                        rs.Experience = account.Experience;
+                        rs.Achievement = account.Achievement;
+                        db.SaveChanges();
+
+                        Session["UserAccount"] = rs;
+
+                        return RedirectToAction("Information", new { ID = rs.Acc_ID });
+                    }
+                    else
+                    {
+                        ViewBag.ErrorConfirmPassword = "Invalid Password";
+                        return View(account);
+                    }
                 }
+                ViewBag.ErrorConfirmPassword = "Account not existed";
+                return View(account);
             }
-            ViewBag.ErrorConfirmPassword = "Account not existed";
-            return View(account);
+            else
+            {
+                ViewBag.ErrorConfirmPassword = "Please enter confirm password";
+                return View(account);
+            }
         }
 
         public ActionResult ChangePassword()
@@ -213,7 +222,7 @@ namespace Dr4rum_eProjectIII.Controllers
         }
 
         [HttpPost]
-        public ActionResult ChangePassword([Bind(Include ="UserName,Password")] Account account , FormCollection form)
+        public ActionResult ChangePassword([Bind(Include = "UserName,Password")] Account account, FormCollection form)
         {
             var oldpass = Convert.ToString(form["old_password"]);
             var cfpass = Convert.ToString(form["confirm_password"]);
@@ -236,7 +245,7 @@ namespace Dr4rum_eProjectIII.Controllers
                 {
                     rs.Password = CreateMD5(account.Password).ToLower();
                     db.SaveChanges();
-                    return RedirectToAction("Information", new { @ID = rs.Acc_ID});
+                    return RedirectToAction("Information", new { @ID = rs.Acc_ID });
                 }
             }
             return View(account);
@@ -247,5 +256,139 @@ namespace Dr4rum_eProjectIII.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult ForgetPassword([Bind(Include = "UserName")] Account account)
+        {
+            if (account.UserName != null)
+            {
+
+                var rs = db.Accounts.SingleOrDefault(s => s.UserName == account.UserName);
+                if (rs != null)
+                {
+                    return RedirectToAction("ForgetPasswordAddNewPass", new { ID = rs.Acc_ID });
+                }
+                else
+                {
+                    ViewBag.ErrormessageForgetPassword = "Not Found";
+                    return View();
+                }
+            }
+            else
+            {
+                return View();
+            }
+
+        }
+
+
+
+        public ActionResult ForgetPasswordAddNewPass(int ID)
+        {
+            var rs = db.Accounts.SingleOrDefault(s => s.Acc_ID == ID);
+            string phone = rs.Phone;
+            string rsphone = rs.Phone.Substring(phone.Length - 3);
+            ViewBag.RsPhone = rsphone;
+            return View(rs);
+        }
+        [HttpPost]
+        public ActionResult ForgetPasswordAddNewPass([Bind(Include = "Acc_ID,Password,Phone")] Account account, FormCollection form)
+        {
+            if (account.UserName != null || account.Password != null)
+            {
+                string oldphone = form["old_phone"].ToString();
+                string cfpassword = form["confirm_password"].ToString();
+                string newpassword = account.Password;
+                string passwordMD5 = CreateMD5(newpassword);
+
+                Account rs = db.Accounts.SingleOrDefault(s => s.Acc_ID == account.Acc_ID);
+
+
+                if (rs.Phone == oldphone && cfpassword == newpassword)
+                {
+                    rs.Password = passwordMD5.ToLower();
+                    db.SaveChanges();
+                    return RedirectToAction("Login");
+
+                }
+                else
+                {
+                    if (account.Phone != oldphone)
+                    {
+                        ViewBag.ErrorOld_Phone = "Isvalid phone";
+                        return View(account);
+                    }
+                    else if (cfpassword != newpassword)
+                    {
+                        ViewBag.ErrorConfirm_password = "ConfirmPassword not match";
+                        return View(account);
+                    }
+                }
+            }
+            return View(account);
+        }
+
+        public ActionResult UploadImage()
+        {
+            ViewData["Message"] = "Please choose a image to Upload";
+            const string folderThumbPath = "/Content/Images/";
+            var directoryThumbs = new DirectoryInfo(Server.MapPath(folderThumbPath));
+            var listImages = directoryThumbs.GetFiles().Select(file => file.Name).ToList();
+            ViewData["listImages"] = listImages;
+            return View("/Views/Home/UploadImage.aspx");
+        }
+        [HttpGet]
+        public ActionResult UpImage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UpImage(Account account, HttpPostedFileBase filehinh)
+        {
+            if (ModelState.IsValid)
+            {
+
+                //if (filehinh == null)
+                //{
+                //    ViewBag.ErrorUpImage = "Chose image";
+                //    return View();
+                FileInfo dofileinfo = new FileInfo(filehinh.FileName);
+                string yenfliehinh = Guid.NewGuid().ToString("N") + dofileinfo.Extension;
+
+                filehinh.SaveAs(Server.MapPath("~/Image/avatar/" + yenfliehinh));
+
+                account.Avatar = yenfliehinh;
+
+                db.Accounts.Add(account);
+                db.SaveChanges();
+                return RedirectToAction("Information");
+            }
+            else
+            {
+                ModelState.AddModelError("", "error image");
+                return View(account);
+            }
+
+        }
+
+
+            //if (ModelState.IsValid)
+            //{
+            //    var filename = Path.GetFileName(filehinh.FileName);
+            //    var path = Path.Combine(Server.MapPath("~/Image/avatar/"), filename);
+            //    if (System.IO.File.Exists(path))
+            //    {
+            //        ViewBag.ErrorUpImage = "Image existed";
+            //    }
+            //    else
+            //    {
+            //        filehinh.SaveAs(path);
+            //    }
+            //    account.Avatar = filehinh.FileName;
+            //    db.Accounts.Add(account);
+            //    db.SaveChanges();
+            //}
+            //return View(); 
+
+        }
     }
-}

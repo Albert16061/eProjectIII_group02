@@ -26,13 +26,13 @@
                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
             </div>
         </div>
+    </div>
+    <span class="text-danger">@ViewBag.ErrorMessage</span>
+    @Html.ActionLink("ForgetPassword", "ForgetPassword", "UserAccount",null, new {@class = "pt-2 pb-2"})
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Log in" class="btn btn-default" />
         </div>
-        <span class="text-danger">@ViewBag.ErrorMessage</span>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Log in" class="btn btn-default" />
+    </div>
 
-            </div>
-        </div>
-
-        }
+}
