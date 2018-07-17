@@ -106,19 +106,31 @@ namespace Dr4rum_eProjectIII.Controllers
             return View(topic);
         }
 
-        // GET: Topics/Delete/5
-        //public ActionResult Delete(string id)
-        public ActionResult Delete(string title)
+        //Delete
+        public ActionResult _PartialDelete(string id)
         {
-            //var result = db.Topics.Where(t => t.Topic_Title == id).SingleOrDefault();
-            var result = db.Topics.Where(t => t.Topic_Title == title).SingleOrDefault();
-            if(result != null)
+            if (id == null)
             {
-                result.setV = false;
-                db.SaveChanges();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return RedirectToAction("Index");
+            Topic topic = db.Topics.Find(id);
+            if (topic == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("_PartialDelete", topic); /* Cai return nay nhan 2 tham so ("view de chuyen sang", gia tri truyen qua ben trang do)---ong mo lai coi thu coi*/
         }
-        
+        // POST: ChuongTrinhs/Delete/5
+        [HttpPost, ActionName("_PartialDelete")]
+        [ValidateAntiForgeryToken]
+        public JsonResult _PartialDeleteConfirmed(string id)
+        {
+            Topic topic = db.Topics.Find(id);
+            var result = db.Topics.Where(t => t.Topic_Title == id).SingleOrDefault();
+
+            result.setV = false;
+            db.SaveChanges();
+            return Json(new { Success = true });
+        }
     }
 }
