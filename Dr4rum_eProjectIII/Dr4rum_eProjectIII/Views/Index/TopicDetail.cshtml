@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="main-containt" id="TopicDetails-main-containt">
-            @Topic.Topic_Info
+            @Html.Raw(Topic.Topic_Info)
         </div>
         <div class="separate-containt position-relative">
             @Html.ActionLink("Add Post", "_PartialCreate","Posts", new { Topic_Title = Topic.Topic_Title }, new { @class = "btn btn-warning add-post-btn " })

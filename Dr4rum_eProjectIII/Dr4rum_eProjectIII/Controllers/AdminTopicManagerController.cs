@@ -57,6 +57,7 @@ namespace Dr4rum_eProjectIII.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public async Task<ActionResult> Edit([Bind(Include = "Topic_Title,Acc_ID,Category_Name,setV,Topic_Info,Report,date")] Topic topic)
         {
             if (ModelState.IsValid)
@@ -75,6 +76,17 @@ namespace Dr4rum_eProjectIII.Controllers
             if(result != null)
             {
                 result.setV = false;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+        // GET: Lecturers/Recovery/title
+        public async Task<ActionResult> Recovery(string title)
+        {
+            var result = db.Topics.Where(t => t.Topic_Title == title).SingleOrDefault();
+            if (result != null)
+            {
+                result.setV = true;
                 db.SaveChanges();
             }
             return RedirectToAction("Index");

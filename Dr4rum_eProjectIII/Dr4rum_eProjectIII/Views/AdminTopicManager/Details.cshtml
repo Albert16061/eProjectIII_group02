@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="main-containt " id="TopicDetails-main-containt">
-                    @Html.DisplayFor(model => model.Topic_Info)
+                    @Html.Raw(Model.Topic_Info)
                     <div class="right-conner">Post by : @Html.DisplayFor(model => model.Account.UserName)</div>
                     @{
                         var date = Model.date.ToString("dd/MM/yyyy");
