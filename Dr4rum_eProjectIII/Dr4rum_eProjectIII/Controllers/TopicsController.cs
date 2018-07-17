@@ -107,9 +107,11 @@ namespace Dr4rum_eProjectIII.Controllers
         }
 
         // GET: Topics/Delete/5
-        public ActionResult Delete(string id)
+        //public ActionResult Delete(string id)
+        public ActionResult Delete(string title)
         {
-            var result = db.Topics.Where(t => t.Topic_Title == id).SingleOrDefault();
+            //var result = db.Topics.Where(t => t.Topic_Title == id).SingleOrDefault();
+            var result = db.Topics.Where(t => t.Topic_Title == title).SingleOrDefault();
             if(result != null)
             {
                 result.setV = false;
