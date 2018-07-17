@@ -22,7 +22,7 @@
 </div>
 <!-- Information -->
 <div class="index-list-containt">
-    <div class="index-list">
+    <div class="index-list" style="overflow: auto">
         <table id="myTable">
             <thead>
                 <tr class="myTable-title-tr ">
@@ -32,7 +32,7 @@
                     <th> Report</th>
                     <th style="width: 75px !important">Post Day</th>
                     <th>Status</th>
-                    <th>Button</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -67,7 +67,7 @@
                             <td>
                                 @Html.ActionLink("Edit", "Edit", new { title = topic.Topic_Title }, new { @class = "btn btn-success btn-control" })
                                 @Html.ActionLink("Details", "Details", new { title = topic.Topic_Title }, new { @class = "btn btn-info btn-control" })
-                                @Html.ActionLink("Recovery", "Recovery", new { title = topic.Topic_Title }, new { @class = "btn btn-success btn-control" })
+                                @Html.ActionLink("Recovery", "Recovery", new { title = topic.Topic_Title }, new { @class = "btn btn-warning btn-control" })
                             </td>
                         </tr>
                     }
@@ -92,8 +92,8 @@
                         </div>
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" value="Delete">Delete</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancle</button>
+                            <button type="submit" class="btn btn-danger" value="Delete">Delete</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancle</button>
                         </div>
                     }
                 </div>

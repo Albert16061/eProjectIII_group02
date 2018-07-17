@@ -25,3 +25,28 @@
 #Edit-page{
     padding-bottom: 0px;
 }
+
+/*  DataTable for PostManagement */
+.topic-title-title{
+    width: 250px !important;
+}
+.topic-title-info {
+    text-transform: lowercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+}
+.topic-title-info::first-letter{
+    text-transform: uppercase;
+}
+.post-info-title{
+    width: 250px !important;
+}
+.post-info-info {
+    text-transform: lowercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+}

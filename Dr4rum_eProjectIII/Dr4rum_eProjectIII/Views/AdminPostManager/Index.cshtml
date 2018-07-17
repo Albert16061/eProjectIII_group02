@@ -1,0 +1,78 @@
+﻿@using Dr4rum_eProjectIII.Models
+@model List<Post>
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
+<!-- Banner-->
+<div class="Banner-containt">
+    <img src="~/Image/Banner_Pic/Admin/adminIndex_banner.jpg" class="img-fluid" alt="Responsive image">
+    <div class="Banner-title-containt">
+        <p class="Banner-title-info"> Admin Page</p>
+        <p class="Banner-title-info" id="Banner-child"> Welcome to Admin Page, Let's manager your Page !</p>
+    </div>
+</div>
+
+<!-- breadcrumb-->
+<div class="breadcrumb-containt">
+    <div class="btn-group btn-breadcrumb breadcrumb-primary">
+        <a href="@Url.Action("Index", "AdminIndex")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+        @Html.ActionLink("Home", "Index", "AdminIndex", null, new { @class = "btn btn-primary breadcrumb-link" })
+        <div class="btn btn-info c-info breadcrumb-link"> Post </div>
+    </div>
+</div>
+<!-- information -->
+<div class="index-list-containt">
+    <div class="index-list" style="overflow: auto">
+        <table id="myTable">
+            <thead>
+                <tr class="myTable-title-tr ">
+                    <th>ID</th>
+                    <th>User</th>
+                    <th class="topic-title-title">Topic Title</th>
+                    <th class="post-info-title"> Info</th>
+                    <th>Like</th>
+                    <th>Dislike</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Post post in Model)
+                {
+                    <tr class="myTable-info-tr alert alert-info">
+                        <td>@post.Post_ID</td>
+                        <td>@post.Account.UserName</td>
+                        <td class="topic-title-info">@post.Topic_Tile</td>
+                        <td class="post-info-info">@post.Post_Info</td>
+                        <td>@post.Like_Num</td>
+                        <td>@post.Dislike_Num</td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id = post.Post_ID }, new { @class = "btn btn-info btn-control" })
+                            @Html.Raw("<a data-modal='' href='/AdminPostManager/_PartialDelete/" + post.Post_ID + "' id='" + post.Post_ID + "' title='Delete'> <span class='btn btn-danger btn-control '>Delete</span> </a>")
+                        </td>
+                    </tr> 
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- modal placeholder -->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+
+@*load datatable css*@
+<link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />
+@*Load database to datatable*@
+@section Scripts{
+    <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+    @Scripts.Render("~/Scripts/myScript.js")
+}

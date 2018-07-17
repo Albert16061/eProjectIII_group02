@@ -1,0 +1,47 @@
+﻿@model Dr4rum_eProjectIII.Models.Post
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
+<!-- Banner-->
+<div class="Banner-containt">
+    <img src="~/Image/Banner_Pic/Admin/adminIndex_banner.jpg" class="img-fluid" alt="Responsive image">
+    <div class="Banner-title-containt">
+        <p class="Banner-title-info"> Admin Page</p>
+        <p class="Banner-title-info" id="Banner-child"> Welcome to Admin Page, Let's manager your Page !</p>
+    </div>
+</div>
+
+<!-- breadcrumb-->
+<div class="breadcrumb-containt">
+    <div class="btn-group btn-breadcrumb breadcrumb-primary">
+        <a href="@Url.Action("Index", "AdminIndex")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+        @Html.ActionLink("Home", "Index", "AdminIndex", null, new { @class = "btn btn-primary breadcrumb-link" })
+        @Html.ActionLink("Post", "Index", "AdminPostManager", null, new { @class = "btn btn-primary breadcrumb-link" })
+        <div class="btn btn-info c-info breadcrumb-link"> @Model.Topic.Topic_Title </div>
+    </div>
+</div>
+<!-- information -->
+<div class="index-list-containt">
+    <div class="index-list container" style="    padding-bottom: 10px;">
+        <div class="row">
+            <div class="col">
+                <div>ID: @Model.Post_ID</div>
+            </div>
+            <div class="col-12 col-sm-9 ">
+                <h2>@Model.Topic_Tile</h2>
+            </div>
+        </div>
+        <div class="row main-containt">
+            <div class="col-12">@Model.Post_Info </div>
+            <div class="col-12 right-conner">Post By: @Model.Account.UserName</div>
+        </div>
+        <div class="row" style="margin-top: 10px"> Like : @Model.Like_Num</div>
+        <div class="row"> Dislike : @Model.Dislike_Num</div>
+        <div class="row" style="margin-top: 10px">
+            @Html.ActionLink("Back ", "Index", null, new { @class = "btn btn-info btn-control" })
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+}

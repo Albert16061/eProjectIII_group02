@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Post>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Post_Info)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Like_Num)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dislike_Num)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Topic.Category_Name)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Post_Info)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Like_Num)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dislike_Num)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Topic.Category_Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Post_ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Post_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Post_ID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
