@@ -86,18 +86,19 @@ namespace Dr4rum_eProjectIII.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult _PartialEdit([Bind(Include = "Post_ID,Topic_Tile,Acc_ID,Post_Info,Like_Num,Dislike_Num,date")] Post post)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(post).State = EntityState.Modified;
                 db.SaveChanges();
-                return Json(new { Success = true, Message = "OK con de!" });
+                return Json(new { Success = true, Message = "Edit Successful !" });
             }
             return Json(new
             {
                 Success = false,
-                Message = "Loi CMNR !"
+                Message = "Error Message !"
             });
             return PartialView(post);
         }
