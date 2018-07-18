@@ -163,7 +163,7 @@ namespace Dr4rum_eProjectIII.Controllers
             return View(account);
         }
         [HttpPost]
-        public ActionResult EditInformation(Account account)
+        public ActionResult EditInformation(Account account, HttpPostedFileBase filehinh)
         {
             if (account.Password != null)
             {
@@ -175,7 +175,11 @@ namespace Dr4rum_eProjectIII.Controllers
                 string cfpasswordMD5 = CreateMD5(account.Password);
 
                 Account rs = db.Accounts.SingleOrDefault(s => s.UserName == account.UserName);
-
+                if (filehinh == null)
+                {
+                    ViewBag.ErrorUpImage = " Chose image";
+                    return View();
+                }
 
                 if (rs != null)
                 {
@@ -192,6 +196,17 @@ namespace Dr4rum_eProjectIII.Controllers
                         rs.Speciality = account.Speciality;
                         rs.Experience = account.Experience;
                         rs.Achievement = account.Achievement;
+                        var filename = Path.GetFileName(filehinh.FileName);
+                        var path = Path.Combine(Server.MapPath("~/Image/avatar"), filename);
+                        if (System.IO.File.Exists(path))
+                        {
+                            ViewBag.ErrorUpImage = "Image existed";
+                        }
+                        else
+                        {
+                            filehinh.SaveAs(path);
+                        }
+                        rs.Avatar = filehinh.FileName;
                         db.SaveChanges();
 
                         Session["UserAccount"] = rs;
@@ -336,59 +351,7 @@ namespace Dr4rum_eProjectIII.Controllers
             ViewData["listImages"] = listImages;
             return View("/Views/Home/UploadImage.aspx");
         }
-        [HttpGet]
-        public ActionResult UpImage()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult UpImage(Account account, HttpPostedFileBase filehinh)
-        {
-            if (ModelState.IsValid)
-            {
-
-                //if (filehinh == null)
-                //{
-                //    ViewBag.ErrorUpImage = "Chose image";
-                //    return View();
-                FileInfo dofileinfo = new FileInfo(filehinh.FileName);
-                string yenfliehinh = Guid.NewGuid().ToString("N") + dofileinfo.Extension;
-
-                filehinh.SaveAs(Server.MapPath("~/Image/avatar/" + yenfliehinh));
-
-                account.Avatar = yenfliehinh;
-
-                db.Accounts.Add(account);
-                db.SaveChanges();
-                return RedirectToAction("Information");
-            }
-            else
-            {
-                ModelState.AddModelError("", "error image");
-                return View(account);
-            }
-
-        }
-
-
-            //if (ModelState.IsValid)
-            //{
-            //    var filename = Path.GetFileName(filehinh.FileName);
-            //    var path = Path.Combine(Server.MapPath("~/Image/avatar/"), filename);
-            //    if (System.IO.File.Exists(path))
-            //    {
-            //        ViewBag.ErrorUpImage = "Image existed";
-            //    }
-            //    else
-            //    {
-            //        filehinh.SaveAs(path);
-            //    }
-            //    account.Avatar = filehinh.FileName;
-            //    db.Accounts.Add(account);
-            //    db.SaveChanges();
-            //}
-            //return View(); 
-
-        }
     }
+
+        
+}
