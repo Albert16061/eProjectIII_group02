@@ -6,23 +6,22 @@
     @using (@Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-            
+            <div class="form-horizontal">
                 <div class="modal-body">
-                    <div class="form-horizontal">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            <div class="col-sm-12">Topic Title</div>
-                            <div class="col-sm-12">
-                                @Html.TextBoxFor(model => model.Topic_Title, new { @class = "formcontrol required", @disabled = "disabled" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">Post By</div>
-                            <div class="col-sm-12">
-                                @Html.TextBoxFor(model => model.Account.UserName, new { @class = "formcontrol required", @disabled = "disabled" })
-                            </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-sm-12">Topic Title</div>
+                        <div class="col-sm-12">
+                            @Html.TextBoxFor(model => model.Topic_Title, new { @class = "formcontrol required", @disabled = "disabled" })
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">Post By</div>
+                        <div class="col-sm-12">
+                            @Html.TextBoxFor(model => model.Account.UserName, new { @class = "formcontrol required", @disabled = "disabled" })
+                        </div>
+                    </div>
+                </div>
                     <div class="modal-footer">
                         <input type="submit" id="btnDelete" ct_ma="@Model.Topic_Title" value="Delete"
                                class="btn btn-default btn-primary" />
