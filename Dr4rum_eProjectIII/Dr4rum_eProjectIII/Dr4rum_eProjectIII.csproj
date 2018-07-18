@@ -156,6 +156,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\TopicsController.cs" />
     <Compile Include="Controllers\AdminIndexController.cs" />
     <Compile Include="Controllers\AdminPostManagerController.cs" />
     <Compile Include="Controllers\AdminTopicManagerController.cs" />
@@ -1276,6 +1279,7 @@
     <Content Include="Image\Logo_Icon\edit-48.png" />
     <Content Include="Image\Logo_Icon\home-50.png" />
     <Content Include="Image\Logo_Icon\red_cross.png" />
+    <Content Include="Image\Topic\82f78c3277e147ad9f75a62398d2e890.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -1399,6 +1403,14 @@
     <Content Include="Views\AdminPostManager\Index.cshtml" />
     <Content Include="Views\AdminPostManager\Details.cshtml" />
     <Content Include="Views\AdminPostManager\_PartialDelete.cshtml" />
+    <Content Include="Views\Topics\Create.cshtml" />
+    <Content Include="Views\Topics\Edit.cshtml" />
+    <Content Include="Views\Topics\Index.cshtml" />
+    <Content Include="Views\Topics\_PartialDelete.cshtml" />
+    <Content Include="Views\Posts\_PartialCreate.cshtml" />
+    <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Posts\_PartialEdit.cshtml" />
+    <Content Include="Views\Posts\_PartialDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
