@@ -28,11 +28,19 @@
     {
         // Paste your license name and key here. If left blank, CKFinder will
         // be fully functional, in Demo Mode.
+<<<<<<< HEAD
         LicenseName = "@team2";
         LicenseKey = "AUKPSE6XSVSJTP4MSV9RQKJBKGLL3KN7";
 
         // The base URL used to reach files in CKFinder through the browser.
         BaseUrl = "~/Content/";
+=======
+        LicenseName = "@tuannguyen";
+        LicenseKey = "AUKPSE6XSVSJTP4MSV9RQKJBKGLL3KN7";
+
+        // The base URL used to reach files in CKFinder through the browser.
+        BaseUrl = "~/Image/";
+>>>>>>> nghia_posts
 
         // The phisical directory in the server where the file will end up. If
         // blank, CKFinder attempts to resolve BaseUrl.

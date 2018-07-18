@@ -15,13 +15,21 @@ namespace Dr4rum_eProjectIII.Models
 
     public partial class Post
     {
+<<<<<<< HEAD
         [Display(Name = "ID of Post")]
+=======
+
+>>>>>>> nghia_posts
         public int Post_ID { get; set; }
         [Display(Name = "Title of Topic")]
         public string Topic_Tile { get; set; }
         [Display(Name = "ID of Account")]
         public int Acc_ID { get; set; }
+<<<<<<< HEAD
         [Display(Name = "Info of Post")]
+=======
+        [Required(ErrorMessage ="loi")]
+>>>>>>> nghia_posts
         public string Post_Info { get; set; }
         [Display(Name = "Numbers of Like")]
         public int Like_Num { get; set; }

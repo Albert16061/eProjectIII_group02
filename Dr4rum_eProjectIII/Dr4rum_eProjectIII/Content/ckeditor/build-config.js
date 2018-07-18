@@ -1,5 +1,9 @@
 ﻿/**
+<<<<<<< HEAD
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+=======
+ * @license Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+>>>>>>> nghia_posts
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -13,10 +17,17 @@
  * (1) http://ckeditor.com/builder
  *     Visit online builder to build CKEditor from scratch.
  *
+<<<<<<< HEAD
  * (2) http://ckeditor.com/builder/50877b4c1fcbadd4a2c7659a7907c067
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
  * (3) http://ckeditor.com/builder/download/50877b4c1fcbadd4a2c7659a7907c067
+=======
+ * (2) http://ckeditor.com/builder/8b37330cbb5b78ddd6d6575b77b43773
+ *     Visit online builder to build CKEditor, starting with the same setup as before.
+ *
+ * (3) http://ckeditor.com/builder/download/8b37330cbb5b78ddd6d6575b77b43773
+>>>>>>> nghia_posts
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -26,6 +37,7 @@
 
 var CKBUILDER_CONFIG = {
 	skin: 'moono-lisa',
+<<<<<<< HEAD
 	preset: 'full',
 	ignore: [
 		'.bender',
@@ -38,10 +50,20 @@ var CKBUILDER_CONFIG = {
 		'.gitattributes',
 		'.gitignore',
 		'gruntfile.js',
+=======
+	preset: 'basic',
+	ignore: [
+		'.DS_Store',
+		'.bender',
+		'.editorconfig',
+		'.gitattributes',
+		'.gitignore',
+>>>>>>> nghia_posts
 		'.idea',
 		'.jscsrc',
 		'.jshintignore',
 		'.jshintrc',
+<<<<<<< HEAD
 		'less',
 		'.mailmap',
 		'node_modules',
@@ -109,6 +131,33 @@ var CKBUILDER_CONFIG = {
 		'toolbar' : 1,
 		'undo' : 1,
 		'wsc' : 1,
+=======
+		'.mailmap',
+		'.travis.yml',
+		'bender-err.log',
+		'bender-out.log',
+		'bender.ci.js',
+		'bender.js',
+		'dev',
+		'gruntfile.js',
+		'less',
+		'node_modules',
+		'package.json',
+		'tests'
+	],
+	plugins : {
+		'about' : 1,
+		'basicstyles' : 1,
+		'clipboard' : 1,
+		'enterkey' : 1,
+		'entities' : 1,
+		'floatingspace' : 1,
+		'indentlist' : 1,
+		'link' : 1,
+		'list' : 1,
+		'toolbar' : 1,
+		'undo' : 1,
+>>>>>>> nghia_posts
 		'wysiwygarea' : 1
 	},
 	languages : {
@@ -131,6 +180,10 @@ var CKBUILDER_CONFIG = {
 		'en-gb' : 1,
 		'eo' : 1,
 		'es' : 1,
+<<<<<<< HEAD
+=======
+		'es-mx' : 1,
+>>>>>>> nghia_posts
 		'et' : 1,
 		'eu' : 1,
 		'fa' : 1,

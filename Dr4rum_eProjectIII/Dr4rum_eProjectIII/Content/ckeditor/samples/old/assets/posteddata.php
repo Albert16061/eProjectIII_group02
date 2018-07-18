@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <?php
 /*
+<<<<<<< HEAD
 Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
+=======
+Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+>>>>>>> nghia_posts
 */
 ?>
 <html>
@@ -49,10 +54,17 @@ if (!empty($_POST))
 	<div id="footer">
 		<hr>
 		<p>
+<<<<<<< HEAD
 			CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
 		</p>
 		<p id="copy">
 			Copyright &copy; 2003-2017, <a class="samples" href="http://cksource.com/">CKSource</a> - Frederico Knabben. All rights reserved.
+=======
+			CKEditor - The text editor for the Internet - <a class="samples" href="https://ckeditor.com/">https://ckeditor.com</a>
+		</p>
+		<p id="copy">
+			Copyright &copy; 2003-2018, <a class="samples" href="https://cksource.com/">CKSource</a> - Frederico Knabben. All rights reserved.
+>>>>>>> nghia_posts
 		</p>
 	</div>
 </body>

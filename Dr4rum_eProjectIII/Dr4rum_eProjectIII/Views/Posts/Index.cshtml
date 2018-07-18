@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Post>
+
+<a class="btn btn-success" data-modal="" href="/Posts/_PartialCreate"
+   id="btnCreate">
+    Create New
+</a>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Topic.Topic_Title)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Post_Info)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Like_Num)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dislike_Num)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Account.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Topic.Topic_Title)
+        </td>
+        <td>
+            @Html.Raw(item.Post_Info)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Like_Num)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dislike_Num)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account.UserName)
+        </td>
+        <td>
+            @Html.Raw("<a data-modal='' href='/Posts/_PartialEdit/" +item.Post_ID + "' id='" + item.Post_ID + "' title='Edit'> <span class='btn btn-info'>Edit</span> </a>")
+            @Html.Raw("<a data-modal='' href='/Posts/_PartialDelete/" + item.Post_ID + "' id='" + item.Post_ID + "' title='Delete'> <span class='btn btn-info'>Delete</span> </a>")
+        </td>
+    </tr>
+}
+
+</table>
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/Scripts/myScript.js")
+
+}
