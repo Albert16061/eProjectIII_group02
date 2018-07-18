@@ -20,8 +20,10 @@ namespace Dr4rum_eProjectIII.Models
         {
             this.Posts = new HashSet<Post>();
         }
-        [Display(Name = "Title of Topic")]
-        [StringLength(60, ErrorMessage = "Character limit is 20!")]
+        [Display(Name = "Title")]
+        [Required(ErrorMessage = "Topic Title is Required")]
+        [StringLength(60, MinimumLength = 10, ErrorMessage = "Topic Title is must more than 10 and less than 60 character")]
+        [RegularExpression(@"^[^<>.,?;:'()!~%\-_@#/*""]+$", ErrorMessage = "Topic Title is must not include special character")]
         public string Topic_Title { get; set; }
         [Display(Name = "ID of Accout")]
         public int Acc_ID { get; set; }
