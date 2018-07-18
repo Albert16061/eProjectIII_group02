@@ -156,13 +156,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
-    <Compile Include="Controllers\TopicsController.cs" />
     <Compile Include="Controllers\AdminIndexController.cs" />
     <Compile Include="Controllers\AdminPostManagerController.cs" />
     <Compile Include="Controllers\AdminTopicManagerController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\TopicsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -206,6 +205,7 @@
     <Content Include="Content\assets\AdminIndex.css" />
     <Content Include="Content\assets\AdminManager.css" />
     <Content Include="Content\assets\style.css" />
+    <Content Include="Content\assets\TopicPost.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -1404,17 +1404,16 @@
     <Content Include="Views\AdminPostManager\Details.cshtml" />
     <Content Include="Views\AdminPostManager\_PartialDelete.cshtml" />
     <Content Include="Views\Topics\Create.cshtml" />
-    <Content Include="Views\Topics\Edit.cshtml" />
     <Content Include="Views\Topics\Index.cshtml" />
     <Content Include="Views\Topics\_PartialDelete.cshtml" />
     <Content Include="Views\Posts\_PartialCreate.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Posts\_PartialEdit.cshtml" />
     <Content Include="Views\Posts\_PartialDelete.cshtml" />
+    <Content Include="Views\Topics\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Image\Topic\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

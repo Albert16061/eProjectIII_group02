@@ -21,9 +21,12 @@ namespace Dr4rum_eProjectIII.Models
         public string Topic_Tile { get; set; }
         [Display(Name = "ID of Account")]
         public int Acc_ID { get; set; }
+
+        [Required(ErrorMessage = "Post Info is Required")]
+        [StringLength(Int32.MaxValue, MinimumLength = 10, ErrorMessage = "Post Info is must more than 10 character")]
         [Display(Name = "Info of Post")]
-        [Required(ErrorMessage ="loi")]
         public string Post_Info { get; set; }
+
         [Display(Name = "Numbers of Like")]
         public int Like_Num { get; set; }
         [Display(Name = "Numbers of Dislike")]

@@ -10,7 +10,9 @@
         <div class="btn btn-info c-info">
             @Html.ActionLink("Home", "Index", "Index", new { @class = "breadcrumb-link" })
         </div>
-        <div class="add-topic-btn btn-success"> Thêm Bài Viết </div>
+        <div class="">
+            @Html.ActionLink("Add Topic", "Create", "Topics", null, new { @class = "add-topic-btn btn-success" })
+        </div>
     </div>
 </div>
 <!-- main info-->
@@ -65,4 +67,15 @@
         }
     </div>
 </div>
-<script src="~/Scripts/MyScript/indexFunction.js"></script>
+<!-- modal placeholder -->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/Scripts/myScript.js");
+    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+}

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Dr4rum_eProjectIII.Models;
 using System.IO;
 using Microsoft.Ajax.Utilities;
+using System.Threading.Tasks;
 
 namespace Dr4rum_eProjectIII.Controllers
 {
@@ -17,7 +18,7 @@ namespace Dr4rum_eProjectIII.Controllers
         private Dr4rumEntities db = new Dr4rumEntities();
 
         // GET: Topics
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             //    var topics = db.Topics.Include(t => t.Acc_ID==1).Include(t => t.Category);
             //    return View(topics.ToList());
@@ -26,7 +27,7 @@ namespace Dr4rum_eProjectIII.Controllers
         }
 
         // GET: Topics/Details/5
-        public ActionResult Details(string id)
+        public async Task<ActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -41,7 +42,7 @@ namespace Dr4rum_eProjectIII.Controllers
         }
 
         // GET: Topics/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
             ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Category_Name").Distinct();
             return View();
@@ -53,25 +54,33 @@ namespace Dr4rum_eProjectIII.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "Topic_Title,Acc_ID,Category_Name,setV,Topic_Info,Report,date")] Topic topic, HttpPostedFileBase Topic_Info)
+        public async Task<ActionResult> Create([Bind(Include = "Topic_Title,Acc_ID,Category_Name,setV,Topic_Info,Report,date")] Topic topic, HttpPostedFileBase Topic_Info)
         {
-            if (ModelState.IsValid)
+            ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Category_Name");
+            var result = db.Topics.Where(t => t.Topic_Title == topic.Topic_Title).SingleOrDefault();
+            if (result == null)
             {
-                db.Topics.Add(topic);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Topics.Add(topic);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Your Topic Infomation is not Valid! Please check again ( May be your number character not > 100 )");
+                    return View(topic);
+                }
             }
             else
             {
-                ModelState.AddModelError("", "Error");
+                ModelState.AddModelError("","This topic has been existed!");
                 return View(topic);
             }
-            ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Category_Name", topic.Category_Name);
-            return View(topic);
         }
 
         // GET: Topics/Edit/5
-        public ActionResult Edit(string id)
+        public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
             {
@@ -93,21 +102,24 @@ namespace Dr4rum_eProjectIII.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "Topic_Title,Acc_ID,Category_Name,setV,Topic_Info,Report,date")] Topic topic)
+        public async Task<ActionResult> Edit([Bind(Include = "Topic_Title,Acc_ID,Category_Name,setV,Topic_Info,Report,date")] Topic topic)
         {
+            ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Category_Name", topic.Category_Name);
             if (ModelState.IsValid)
             {
                 db.Entry(topic).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Acc_ID = new SelectList(db.Accounts, "Acc_ID", "UserName", topic.Acc_ID);
-            ViewBag.Category_Name = new SelectList(db.Categories, "Category_Name", "Category_Name", topic.Category_Name);
-            return View(topic);
+            else
+            {
+                ModelState.AddModelError("", "Your Topic Infomation is not Valid! Please check again ( May be your number character not > 100 )");
+                return View(topic);
+            }
         }
 
         //Delete
-        public ActionResult _PartialDelete(string id)
+        public async Task<ActionResult>_PartialDelete(string id)
         {
             if (id == null)
             {
@@ -118,7 +130,7 @@ namespace Dr4rum_eProjectIII.Controllers
             {
                 return HttpNotFound();
             }
-            return PartialView("_PartialDelete", topic); /* Cai return nay nhan 2 tham so ("view de chuyen sang", gia tri truyen qua ben trang do)---ong mo lai coi thu coi*/
+            return PartialView("_PartialDelete", topic);
         }
         // POST: ChuongTrinhs/Delete/5
         [HttpPost, ActionName("_PartialDelete")]
@@ -127,7 +139,6 @@ namespace Dr4rum_eProjectIII.Controllers
         {
             Topic topic = db.Topics.Find(id);
             var result = db.Topics.Where(t => t.Topic_Title == id).SingleOrDefault();
-
             result.setV = false;
             db.SaveChanges();
             return Json(new { Success = true });

@@ -1,0 +1,35 @@
+﻿#TopicIndex-title{
+    flex-basis: 60%;
+    max-width: 60%;
+}
+#TopicIndex-postnum{
+    text-align: center;
+    flex-basis: 10%;
+    max-width: 10%;
+}
+#TopicIndex-btnControl{
+    text-align: center;
+    flex-basis: 20%;
+    max-width: 20%;
+}
+#TopicIndex-btnAdd{
+    padding: 5px 15px;
+    border-radius: 5px;
+    max-width: 105px !important;
+    position: inherit !important ;
+}
+.TopicDelete-title {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+#TopicDelete-overflow{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.TopicDelete-formControl {
+    max-width: 100%;
+    width: 100%;
+    border: 0px;
+    background-color: white;
+}

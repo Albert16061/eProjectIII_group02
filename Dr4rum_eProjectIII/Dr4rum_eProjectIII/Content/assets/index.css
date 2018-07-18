@@ -173,7 +173,11 @@ footer {
     left: 100%;
     z-index: 3;
 }
-
+#breadcrumb-topicTitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 /** The Spacing **/
 .btn-breadcrumb .btn {
     padding: 6px 12px 6px 24px;
@@ -219,6 +223,11 @@ footer {
     border-radius: 5px;
     cursor: pointer !important;
 }
+
+    .add-topic-btn:hover {
+        text-decoration: none;
+    }
+
 
 #add-btn-addTopic {
     padding: 5px 15px;
@@ -430,8 +439,15 @@ footer {
     position: absolute;
     top: 2%;
     right: 0px;
-    cursor: pointer;
 }
+
+.edit-btn-href:hover {
+    text-decoration: none;
+}
+
+    .edit-btn-href > img {
+        max-width: 20px;
+    }
 
 #topic-header-containt {
     padding-top: 1%;
@@ -599,6 +615,7 @@ footer {
         padding: 0px;
     }
 }
+
 @media only screen and (max-width: 500px) {
     .slogan-containt {
         font-size: 20px;
@@ -648,21 +665,25 @@ footer {
         margin-top: 30px !important;
     }
 }
+
 @media screen and (max-width: 375px) {
     .slogan-containt {
         font-size: 17px;
         padding-left: 10px;
     }
+
     .footer-img {
         margin-left: 12%;
     }
 }
-    @media only screen and (max-width: 320px) {
-        .dropdown-menu {
-            width: 259px;
-            text-align: center;
-        }
-        footer{
-            height:55px;
-        }
+
+@media only screen and (max-width: 320px) {
+    .dropdown-menu {
+        width: 259px;
+        text-align: center;
     }
+
+    footer {
+        height: 55px;
+    }
+}
