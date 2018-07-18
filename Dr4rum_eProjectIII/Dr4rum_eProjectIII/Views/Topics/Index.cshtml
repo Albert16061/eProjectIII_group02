@@ -9,7 +9,7 @@
 }
 
 <p class="btmartop">
-    @Html.Raw("<a data-modal='' href='/Topics/Create/' title='Create'> <span class='btn btn-info'>Create new</span> </a>")
+    @Html.Raw("<a @*data-modal=''*@ href='/Topics/Create/' title='Create'> <span class='btn btn-info'>Create new</span> </a>")
 </p>
 <table class="table">
     <tr>
@@ -53,28 +53,14 @@
                 @Html.DisplayFor(modelItem => item.Category.Category_Name)
             </td>
             <td>
-                @*@Html.ActionLink("Delete", "_PartialDelete", new { id = item.Topic_Title })*@
-                @Html.Raw("<a data-modal='' href='/Topics/Edit/" + item.Topic_Title + "' id='" + item.Topic_Title + "' title='Edit'> <span class='btn btn-info'>Edit</span> </a>") <!-- Cai nay chay ma fk / chay ngon-->
+                
+                @Html.Raw("<a @*data-modal=''*@ href='/Topics/Edit/" + item.Topic_Title + "' id='" + item.Topic_Title + "' title='Edit'> <span class='btn btn-info'>Edit</span> </a>")
+
                 @Html.Raw("<a data-modal='' href='/Topics/_PartialDelete/" + item.Topic_Title + "' id='" + item.Topic_Title + "' title='Delete'> <span class='btn btn-info'>Delete</span> </a>")
-                @*Hàm chạy r, vấn đề giống tui hồi nãy
-                        *@
-                
-
-                
-
-                @*@Html.ActionLink("Edit", "Edit", new { id = item.Topic_Title }) |*@
-                @*<p class="btmartop"><button type="button" class="btn btn-danger btn-control btnDelete" data-toggle="modal" data-target="#myModal">Delete</button></p>*@
-                @*@Html.Raw("<a data-modal='' href='/Topics/_PartialDelete/" + item.Topic_Title + "' id='" + item.Topic_Title + "' title='Delete'> <span class='btn btn-danger'>Delete</span> </a>")*@
-                @*  *@
-                @*@Html.Raw("<a data-toggle='modal' data-target='#myModal'> <span class='btn btn-info'>Delete</span> </a>")*@
             </td>
         </tr>
     }
 </table>
-
-
-
-
 <!-- modal placeholder-- nhu vay la du het roi ma. sau k the hien partialv/ Meo biet nua, hoi thanh' xem
     -->
 <div id='myModal' class='modal fade in'>
@@ -85,7 +71,7 @@
     </div>
 </div>
 @section Scripts{
-    @Scripts.Render("~/Scripts/Myscripts.js")
+    @Scripts.Render("~/Scripts/myScript.js")
 
 }
 
