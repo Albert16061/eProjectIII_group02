@@ -1,0 +1,139 @@
+﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Topic>
+<style>
+    .btmartop {
+        margin-top: 10px;
+    }
+</style>
+@{
+    ViewBag.Title = "List of Topic";
+}
+
+<p class="btmartop">
+    @Html.Raw("<a data-modal='' href='/Topics/Create/' title='Create'> <span class='btn btn-info'>Create new</span> </a>")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Topic_Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Report)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Account.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.Category_Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Topic_Title)
+            </td>
+            @*<td class="topic-title">
+                    @item.Topic_Title
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Report)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Category_Name)
+            </td>
+            <td>
+                @*@Html.ActionLink("Delete", "_PartialDelete", new { id = item.Topic_Title })*@
+                @Html.Raw("<a data-modal='' href='/Topics/Edit/" + item.Topic_Title + "' id='" + item.Topic_Title + "' title='Edit'> <span class='btn btn-info'>Edit</span> </a>") <!-- Cai nay chay ma fk / chay ngon-->
+                @Html.Raw("<a data-modal='' href='/Topics/_PartialDelete/" + item.Topic_Title + "' id='" + item.Topic_Title + "' title='Delete'> <span class='btn btn-info'>Delete</span> </a>")
+                @*Hàm chạy r, vấn đề giống tui hồi nãy
+                        *@
+                
+
+                
+
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.Topic_Title }) |*@
+                @*<p class="btmartop"><button type="button" class="btn btn-danger btn-control btnDelete" data-toggle="modal" data-target="#myModal">Delete</button></p>*@
+                @*@Html.Raw("<a data-modal='' href='/Topics/_PartialDelete/" + item.Topic_Title + "' id='" + item.Topic_Title + "' title='Delete'> <span class='btn btn-danger'>Delete</span> </a>")*@
+                @*  *@
+                @*@Html.Raw("<a data-toggle='modal' data-target='#myModal'> <span class='btn btn-info'>Delete</span> </a>")*@
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+
+<!-- modal placeholder-- nhu vay la du het roi ma. sau k the hien partialv/ Meo biet nua, hoi thanh' xem
+    -->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/Scripts/Myscripts.js")
+
+}
+
+@*day la phan them moi vao luc 17h50' ngay 17/07*@
+<!-- The Modal -->
+@*<div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                @using (Html.BeginForm("Delete", "Topics", FormMethod.Get))
+                {
+                            <!--Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="M-title">Delete Topic</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                            <!-- Modal body -->
+                    <div class="modal-body">
+                        Are You Sure to Delete This Topic ?<br />
+                        <input name="title" type="text" value="" style="border: 0; width: 100%; max-width: 100%; height: 50px; background: white;" disabled />
+                    </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" value="Delete">Delete</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancle</button>
+                            </div>
+                }
+            </div>
+        </div>
+    </div>
+    @section Scripts{
+        <script>
+            $(".btnDelete").click(function () {
+                // Lay cai row hien tai dang chua btnDelete
+                let row = $(this).parents('tr');
+                // Lay title cua cai topic trong cai row nay
+                let title = $(row).find('.topic-title').text();
+                // Dua len modal (Thua! hoi bos di)
+                $('#myModal [name="title"]').val(title);
+            });
+
+            $('#myModal form').on('submit', function () {
+                $('[name="title"').prop('disabled', false);
+                window.location.reload();
+            });
+        </script>
+    }*@
+@*day la phan them moi vao luc 17h50' ngay 17/07*@
+
+
+
+
