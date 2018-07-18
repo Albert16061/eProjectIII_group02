@@ -72,6 +72,7 @@ namespace Dr4rum_eProjectIII.Controllers
                             Address = res.Address,
                             Birthday = res.Birthday,
                             Gender = Convert.ToBoolean(res.Gender),
+                            Incognito = res.Incognito,
                             Speciality = res.Speciality,
                             Achievement = res.Achievement,
                             Experience = res.Experience,
@@ -177,7 +178,7 @@ namespace Dr4rum_eProjectIII.Controllers
                 Account rs = db.Accounts.SingleOrDefault(s => s.UserName == account.UserName);
                 if (filehinh == null)
                 {
-                    ViewBag.ErrorUpImage = " Chose image";
+                    ViewBag.ErrorUpImage = " Choose image";
                     return View();
                 }
 
@@ -193,6 +194,7 @@ namespace Dr4rum_eProjectIII.Controllers
                         rs.Email = account.Email;
                         rs.Birthday = account.Birthday;
                         rs.Gender = account.Gender;
+                        rs.Incognito = account.Incognito;
                         rs.Speciality = account.Speciality;
                         rs.Experience = account.Experience;
                         rs.Achievement = account.Achievement;

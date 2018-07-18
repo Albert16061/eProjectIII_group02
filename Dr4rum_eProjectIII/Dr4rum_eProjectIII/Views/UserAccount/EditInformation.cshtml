@@ -14,8 +14,8 @@
             @Html.LabelFor(m => m.FirstName, new { @class = "control-label" })
             <div class="col-md">
                 <div class="input-group ">
-                    @Html.EditorFor(Model => Model.FirstName, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "First Name" } })
-                    @Html.ValidationMessageFor(Model => Model.FirstName, "", new { @class = "text-danger col-12" })
+                    @Html.EditorFor(m => m.FirstName, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "First Name" } })
+                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger col-12" })
                 </div>
             </div>
         </div>
@@ -23,8 +23,8 @@
             <div class="col-md inputGroupContainer">
                 @Html.LabelFor(m => m.LastName, new { @class = "control-label" })
                 <div class="input-group ">
-                    @Html.EditorFor(Model => Model.LastName, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Last Name" } })
-                    @Html.ValidationMessageFor(Model => Model.LastName, "", new { @class = "text-danger col-12" })
+                    @Html.EditorFor(m => m.LastName, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Last Name" } })
+                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger col-12" })
                 </div>
             </div>
         </div>
@@ -32,8 +32,8 @@
             <div class="col-md inputGroupContainer">
                 @Html.LabelFor(m => m.Address, new { @class = "control-label" })
                 <div class="input-group ">
-                    @Html.EditorFor(Model => Model.Address, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Address" } })
-                    @Html.ValidationMessageFor(Model => Model.Address, "", new { @class = "text-danger col-12" })
+                    @Html.EditorFor(m => m.Address, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Address" } })
+                    @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger col-12" })
                 </div>
             </div>
         </div>
@@ -41,8 +41,8 @@
             <div class="col-md inputGroupContainer">
                 @Html.LabelFor(m => m.Phone, new { @class = "control-label" })
                 <div class="input-group ">
-                    @Html.EditorFor(Model => Model.Phone, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Phone" } })
-                    @Html.ValidationMessageFor(Model => Model.Phone, "", new { @class = "text-danger col-12" })
+                    @Html.EditorFor(m => m.Phone, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Phone" } })
+                    @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger col-12" })
                 </div>
             </div>
         </div>
@@ -50,8 +50,8 @@
             <div class="col-md inputGroupContainer">
                 @Html.LabelFor(m => m.Email, new { @class = "control-label" })
                 <div class="input-group ">
-                    @Html.EditorFor(Model => Model.Email, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Email" } })
-                    @Html.ValidationMessageFor(Model => Model.Email, "", new { @class = "text-danger col-12" })
+                    @Html.EditorFor(m => m.Email, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Email" } })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger col-12" })
                 </div>
             </div>
         </div>
@@ -59,8 +59,8 @@
             <div class="col-md inputGroupContainer">
                 @Html.LabelFor(m => m.Birthday, new { @class = "control-label" })
                 <div class="input-group ">
-                    @Html.EditorFor(Model => Model.Birthday, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Birthday" } })
-                    @Html.ValidationMessageFor(Model => Model.Birthday, "", new { @class = "text-danger col-12" })
+                    @Html.EditorFor(m => m.Birthday, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Birthday" } })
+                    @Html.ValidationMessageFor(m => m.Birthday, "", new { @class = "text-danger col-12" })
                 </div>
             </div>
         </div>
@@ -69,10 +69,10 @@
                 <label class=" mr-2">Gender:</label>
                 <div class="pl-1">
                     <label class="radio-inline">
-                        @Html.RadioButtonFor(Model => Model.Gender, true, new { @checked = true })<span>Male</span>
+                        @Html.RadioButtonFor(m => m.Gender, true, new { @checked = true })<span>Male</span>
                     </label>
                     <label class="radio-inline">
-                        @Html.RadioButtonFor(Model => Model.Gender, false)<span class="ml-2">Female</span>
+                        @Html.RadioButtonFor(m => m.Gender, false)<span class="ml-2">Female</span>
                     </label>
                 </div>
             </div>
@@ -82,17 +82,17 @@
                 <label class="mr-2">Incognito:</label>
                 <div class="pl-1">
                     <label class="radio-inline">
-                        @Html.RadioButtonFor(Model => Model.Incognito, true, new { @checked = true })<span>Incognito</span>
+                        @Html.RadioButtonFor(m => m.Incognito, true, new { @checked = true })<span>Incognito</span>
                     </label>
                     <label class="radio-inline">
-                        @Html.RadioButtonFor(Model => Model.Incognito, false)<span class="ml-2">Not Incognito</span>
+                        @Html.RadioButtonFor(m => m.Incognito, false)<span class="ml-2">Not Incognito</span>
                     </label>
                 </div>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md inputGroupContainer">
-                @Html.LabelFor(Model => Model.Avatar , new { htmlAttribute = new { @class = "form-control col-12" } })
+                @Html.LabelFor(m => m.Avatar , new { htmlAttribute = new { @class = "form-control col-12" } })
                 <div class="col-md-10">
                     <input type="file" name="filehinh"/>
                     @ViewBag.ErrorUpImage
@@ -106,8 +106,8 @@
                     <div class="col-md inputGroupContainer">
                         @Html.LabelFor(m => m.Experience, new { @class = "control-label" })
                         <div class="input-group ">
-                            @Html.EditorFor(Model => Model.Experience, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Experience" } })
-                            @Html.ValidationMessageFor(Model => Model.Experience, "", new { @class = "text-danger col-12" })
+                            @Html.EditorFor(m => m.Experience, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Experience" } })
+                            @Html.ValidationMessageFor(m => m.Experience, "", new { @class = "text-danger col-12" })
                         </div>
                     </div>
                 </div>
@@ -115,8 +115,8 @@
                     <div class="col-md inputGroupContainer">
                         @Html.LabelFor(m => m.Achievement, new { @class = "control-label" })
                         <div class="input-group ">
-                            @Html.EditorFor(Model => Model.Achievement, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Achievement" } })
-                            @Html.ValidationMessageFor(Model => Model.Achievement, "", new { @class = "text-danger col-12" })
+                            @Html.EditorFor(m => m.Achievement, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Achievement" } })
+                            @Html.ValidationMessageFor(m => m.Achievement, "", new { @class = "text-danger col-12" })
                         </div>
                     </div>
                 </div>
@@ -124,8 +124,8 @@
                     <div class="col-md inputGroupContainer">
                         @Html.LabelFor(m => m.Speciality, new { @class = "control-label" })
                         <div class="input-group ">
-                            @Html.EditorFor(Model => Model.Speciality, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Speciality" } })
-                            @Html.ValidationMessageFor(Model => Model.Speciality, "", new { @class = "text-danger col-12" })
+                            @Html.EditorFor(m => m.Speciality, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Speciality" } })
+                            @Html.ValidationMessageFor(m => m.Speciality, "", new { @class = "text-danger col-12" })
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                     <label class="col-md">Confirm Your Passowrd</label>
                     <div class="col-md inputGroupContainer">
                         <div class="input-group">
-                            @Html.EditorFor(m => m.Password, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Confirm password" } })
+                            @Html.PasswordFor(m => m.Password, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Confirm password" } })
                             @*<input name="txtConfirmPassword" placeholder="Confirm Password" class="form-control" type="password"/>*@
                             <span class="text-danger col-12">@ViewBag.ErrorConfirmPassword</span>
                         </div>
