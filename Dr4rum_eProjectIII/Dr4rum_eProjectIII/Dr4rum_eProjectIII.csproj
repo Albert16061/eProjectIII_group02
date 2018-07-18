@@ -160,7 +160,6 @@
     <Compile Include="Controllers\AdminPostManagerController.cs" />
     <Compile Include="Controllers\AdminTopicManagerController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1399,11 +1398,6 @@
     <Content Include="Views\AdminTopicManager\Edit.cshtml" />
     <Content Include="Views\AdminPostManager\Index.cshtml" />
     <Content Include="Views\AdminPostManager\Details.cshtml" />
-    <Content Include="Views\Test\Create.cshtml" />
-    <Content Include="Views\Test\Delete.cshtml" />
-    <Content Include="Views\Test\Details.cshtml" />
-    <Content Include="Views\Test\Edit.cshtml" />
-    <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\AdminPostManager\_PartialDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
