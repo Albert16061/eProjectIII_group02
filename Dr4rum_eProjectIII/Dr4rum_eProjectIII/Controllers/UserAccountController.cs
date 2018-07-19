@@ -195,6 +195,7 @@ namespace Dr4rum_eProjectIII.Controllers
                         rs.Birthday = account.Birthday;
                         rs.Gender = account.Gender;
                         rs.Incognito = account.Incognito;
+                        rs.Role = account.Role;
                         rs.Speciality = account.Speciality;
                         rs.Experience = account.Experience;
                         rs.Achievement = account.Achievement;

@@ -26,19 +26,27 @@ namespace Dr4rum_eProjectIII.Models
 
         [Required(ErrorMessage ="User is not null!")]
         [Display(Name = "UserName")]
+        [MaxLength (16, ErrorMessage = "UserName must be less than 16 characters")]
+        [MinLength(6, ErrorMessage = "UserName must be at least 6 characters")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "Password is not null!")]
         [Display(Name = "Password")]
+        [MaxLength(32, ErrorMessage = "Password must be less than 32 characters")]
+        [MinLength(6, ErrorMessage = "Password must be at least 6 characters")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "FirstName is not null!")]
         [Display(Name = "FirstName")]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Enter only alphabets")]
+        [MaxLength(29 , ErrorMessage ="FirstName must be less than 29 character")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "LastName is not null!")]
         [Display(Name = "LastName")]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Enter only alphabets")]
+        [MaxLength(29, ErrorMessage = "LastName must be less than 29 character")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Email is not null!")]
@@ -47,6 +55,7 @@ namespace Dr4rum_eProjectIII.Models
 
         [Required(ErrorMessage = "Address is not null!")]
         [Display(Name = "Address")]
+        [MaxLength(100, ErrorMessage = "Address must be less than 100 characters")]
         public string Address { get; set; }
 
         [Required(ErrorMessage = "Birthday is not null!")]
