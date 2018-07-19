@@ -37,10 +37,8 @@ namespace Dr4rum_eProjectIII.Controllers
         }
 
         // GET: Posts/Create
-        public ActionResult _PartialCreate(string Topic_Title)
+        public ActionResult _PartialCreate()
         {
-            Topic_Title = "Vô sinh là bệnh gì?";
-            TempData["data"] = Topic_Title;
             return PartialView();
         }
 
@@ -55,15 +53,13 @@ namespace Dr4rum_eProjectIII.Controllers
             {
                 db.Posts.Add(post);
                 db.SaveChanges();
-                return Json(new { Success = true, Message = "OK con de!" });
+                return Json(new { Success = true, Message = "Add successfull!" });
             }
             return Json(new
             {
                 Success = false,
-                Message = "Loi CMNR !"
+                Message = "Please check your post info again and make sure that it is not empty or less than 10 character  !"
             });
-            ViewBag.Topic_Tile = new SelectList(db.Topics, "Topic_Title", "Topic_Title", post.Topic_Tile).Distinct();
-            return PartialView(post);
         }
 
         // GET: Posts/Edit/5
@@ -92,14 +88,13 @@ namespace Dr4rum_eProjectIII.Controllers
             {
                 db.Entry(post).State = EntityState.Modified;
                 db.SaveChanges();
-                return Json(new { Success = true, Message = "OK con de!" });
+                return Json(new { Success = true, Message = "Edit successfull!" });
             }
             return Json(new
             {
                 Success = false,
-                Message = "Loi CMNR !"
+                Message = "Please check your post info again and make sure that it is not empty or less than 10 character  !"
             });
-            return PartialView(post);
         }
 
         // GET: Posts/Delete/5

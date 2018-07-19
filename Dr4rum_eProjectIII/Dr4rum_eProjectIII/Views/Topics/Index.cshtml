@@ -37,7 +37,7 @@
             {
                 <div class="category-topic-info ">
                     <div class="info-topicTitle">
-                        @item.Topic_Title
+                        @Html.ActionLink(@item.Topic_Title, "TopicDetail","Index", new { TopicTitle = @item.Topic_Title }, new { @class = "" })
                     </div>
                     <div class="info-topicDay">
                         @item.date.ToString("dd/MM/yyy")

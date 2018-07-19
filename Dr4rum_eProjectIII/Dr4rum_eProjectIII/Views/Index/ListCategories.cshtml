@@ -14,8 +14,8 @@
     </div>
     <!--- End Breadcrumb -->
     <div class="info-containt">
-        <h2>@Caterory.Category_Name</h2>
-        <div class="add-topic-btn btn-success" id="add-btn-addTopic"> Thêm Bài Viết </div>
+        <h2 style="margin-bottom: 15px">@Caterory.Category_Name</h2>
+        @Html.ActionLink("Add Topic", "Create", "Topics", null, new { @class = "add-topic-btn btn-success", @id = "add-btn-addTopic" })
         <div class="main-containt ">
             <div class="alert alert-warning  category-topic-titleContaint">
                 <div class="title-topicTitle">
@@ -32,35 +32,35 @@
                 </div>
             </div>
             @foreach (var Topic in Caterory.Topics.ToList())
-            {
-                <div class="category-topic-info ">
-                    <div class="info-topicTitle">
-                        <div class="info-Title">@Html.ActionLink(@Topic.Topic_Title, "TopicDetail", new { TopicTitle = @Topic.Topic_Title }, new { @class = "" }) </div>
-                        <div class="info-Name">@Topic.Account.UserName</div>
-                    </div>
-                    <div class="info-topicDay">
-                        @{ DateTime dateTopic = Topic.date;
-                            var dateTopicF = dateTopic.ToString("dd/MM/yyyy");}
-                        @dateTopicF
-                    </div>
-                    <div class="info-topicPostnum">
-                        @Topic.Posts.Count()
-                    </div>
-                    @foreach (var post in Topic.Posts.OrderByDescending(a => a.Post_ID).Take(1))
-                    {
-                        <div class="post-info-containt">
-                            <div class="info-topicPoster">
-                                @post.Account.UserName
-                            </div>
-                            <div class="info-Name">
-                                @{ DateTime datePost = post.date;
-                                    var datePostF = datePost.ToString("dd/MM/yyyy");}
-                                @datePostF
-                            </div>
-                        </div>
-                    }
+        {
+            <div class="category-topic-info ">
+                <div class="info-topicTitle">
+                    <div class="info-Title">@Html.ActionLink(@Topic.Topic_Title, "TopicDetail", new { TopicTitle = @Topic.Topic_Title }, new { @class = "" }) </div>
+                    <div class="info-Name">@Topic.Account.UserName</div>
                 </div>
-            }
+                <div class="info-topicDay">
+                    @{ DateTime dateTopic = Topic.date;
+                    var dateTopicF = dateTopic.ToString("dd/MM/yyyy");}
+                    @dateTopicF
+                </div>
+                <div class="info-topicPostnum">
+                    @Topic.Posts.Count()
+                </div>
+                @foreach (var post in Topic.Posts.OrderByDescending(a => a.Post_ID).Take(1))
+            {
+                <div class="post-info-containt">
+                    <div class="info-topicPoster">
+                        @post.Account.UserName
+                    </div>
+                    <div class="info-Name">
+                        @{ DateTime datePost = post.date;
+                        var datePostF = datePost.ToString("dd/MM/yyyy");}
+                        @datePostF
+                    </div>
+                </div>
+        }
+            </div>
+    }
         </div>
     </div>
 }

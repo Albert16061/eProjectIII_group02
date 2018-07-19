@@ -44,6 +44,7 @@ namespace Dr4rum_eProjectIII.Controllers
         public async Task<ActionResult> TopicDetail(string TopicTitle)
         {
             var listTopic = db.Topics.Where(a => a.Topic_Title == TopicTitle).ToList();
+            Session["topic"] = TopicTitle;
             return View(listTopic);
         }
         

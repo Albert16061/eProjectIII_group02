@@ -1,80 +1,22 @@
 ﻿@model Dr4rum_eProjectIII.Models.Post
 
-<div class="modal-header TopicTitle">
-    <h5 class="modal-title">
-        @Html.TextAreaFor(model => model.Topic_Tile, new { @class = "", disabled = "disabled" })
-    </h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
+<div class="modal-header alert alert-success">
+    <h4 class="modal- title">Delete Post</h4>
+    <button type="button" class="close" data-dismiss="modal" ariahidden="true">×</button>
 </div>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
-        <div class="modal-body">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Post_ID)
-
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Post_Info)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Post_Info)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Like_Num)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Like_Num)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Dislike_Num)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Dislike_Num)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.date)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.date)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Account.UserName)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Account.UserName)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Topic.Category_Name)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Topic.Category_Name)
-                </dd>
-
-            </dl>
-
-        </div>
+        <div class="col-sm-12 TopicDelete-title ">Are you sure to delete this Post ?</div>
         <div class="modal-footer">
-            <input type="submit" id="btnDelete" ct_ma="@Model.Post_ID" value="Delete" class="btn btn-default btn-primary" />
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <input type="submit" id="btnDelete" ct_ma="@Model.Post_ID" value="Submit" class="btn btn-default btn-danger" />
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancle</button>
         </div>
     </div>
 
- }
+}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

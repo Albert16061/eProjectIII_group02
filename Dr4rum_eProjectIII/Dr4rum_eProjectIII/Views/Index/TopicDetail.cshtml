@@ -37,21 +37,22 @@
             @Html.Raw(Topic.Topic_Info)
         </div>
         <div class="separate-containt position-relative">
-            @Html.ActionLink("Add Post", "_PartialCreate", "Posts", new { Topic_Title = Topic.Topic_Title }, new { @class = "btn btn-warning add-post-btn " })
+            @Html.Raw("<a data-modal='' href='/Posts/_PartialCreate/'> <span class='btn btn-warning add-post-btn'>Add Post</span> </a>")
+            @*@Html.ActionLink("Add Post", "_PartialCreate","Posts", new { Topic_Title = Topic.Topic_Title }, new { @class = "btn btn-warning add-post-btn editCourseModal", @data_target = "editCourseModal" })*@
+
         </div>
         @foreach (var listPost in Topic.Posts)
         {
             <div class="alert alert-primary" id="topic-containt">
-                @if (listPost.Acc_ID == 4)
+                @if (listPost.Acc_ID == 1)
                 {
                     <div class="edit-btn dropdown">
                         <a class="dropdown-toggle edit-btn-href" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="~/Image/Logo_Icon/edit-48.png" />
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            @Html.Raw("<a data-modal='' href='/Posts/_PartialEdit/" + listPost.Post_ID + "' id='" + listPost.Post_ID + "' title='Edit'> <span class='dropdown-item'>Edit</span> </a>")
+                            @Html.Raw("<a data-modal='' href='/Posts/_PartialDelete/" + listPost.Post_ID + "' id='" + listPost.Post_ID + "' title='Delete'> <span class='dropdown-item'>Delete</span> </a>")
                         </div>
                     </div>
                 }
@@ -73,10 +74,30 @@
         }
     </div>
 }
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 @section Scripts {
     <script src="~/Scripts/MyScript/indexFunction.js"></script>
+    @Scripts.Render("~/Scripts/myScript.js")
     <script type="text/javascript">
         $('.dropdown-toggle').dropdown()
+        //For partialView addPost
+        $(function () {
+            $('.editCourseModal').on("click", function (e) {
+                e.preventDefault();
+                //perform the url load  then
+                $('#myModal').modal({
+                    keyboard: true
+                }, 'show');
+                return false;
+            })
+        })
     </script>
 }

@@ -1,80 +1,99 @@
 ﻿@model Dr4rum_eProjectIII.Models.Topic
+<link rel="stylesheet" type="text/css" href="~/Content/assets/TopicPost.css">
 <style>
     .hide {
         display: none
     }
 </style>
-<div class="stitle mt-2 ml-2">
-    <h2>@Html.DisplayFor(model => model.Topic_Title, new { @disabled = "disabled", htmlAttributes = new { @class = "form-control" } })</h2>
+
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
+<!-- Banner-->
+<img src="~/Image/Banner_Pic/User/index_banner.jpg" class="img-fluid" alt="Responsive image">
+<!-- breadcrumb-->
+<div class="breadcrumb-containt">
+    <div class="btn-group btn-breadcrumb breadcrumb-primary">
+        <a href="@Url.Action("Index", "Index")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+        <a href="@Url.Action("Index", "Index")" class="btn btn-primary breadcrumb-link ">Home</a>
+        @Html.ActionLink("UserName", "ListGroup", new { }, new { @class = "btn btn-primary breadcrumb-link" })
+        @Html.ActionLink("List Topic", "Index", "Topics", new { id = 4 }, new { @class = "btn btn-primary breadcrumb-link" })
+        <div class="btn btn-info c-info breadcrumb-link"> Edit Topic </div>
+    </div>
 </div>
+<!-- main info-->
+<div class="index-list-containt">
+    <div class="index-list">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <div class="stitle mt-2 ml-2">
+                    <h2>@Html.DisplayFor(model => model.Topic_Title, new { @disabled = "disabled", htmlAttributes = new { @class = "form-control" } })</h2>
+                </div>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Topic_Title)
+                <div class="form-group hide">
+                    @Html.LabelFor(model => model.Acc_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Acc_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Acc_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    <div class="form-horizontal">
+                <div class="form-group TopicDelete-title">
+                    @Html.LabelFor(model => model.Category_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Category_Name", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Category_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Topic_Title)
-        <div class="form-group hide">
-            @Html.LabelFor(model => model.Acc_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Acc_ID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Acc_ID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group hide ">
+                    @Html.LabelFor(model => model.setV, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(model => model.setV, new { @checked = "checked", htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Category_Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Category_Name", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Category_Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    <div class="col-md-2 TopicDelete-title">Topic Info</div>
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(model => model.Topic_Info, new { @id = "Topic_Info" })
+                    </div>
+                </div>
 
-        <div class="form-group hide ">
-            @Html.LabelFor(model => model.setV, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.CheckBoxFor(model => model.setV, new { @checked = "checked", htmlAttributes = new { @class = "form-control" } })
+                <div class="form-group hide">
+                    @Html.LabelFor(model => model.Report, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Report, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Report, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group hide">
+                    @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @{
+                            var curentdate = DateTime.Now.ToString("dd/MM/yyyy");
+                        }
+                        @Html.TextBoxFor(model => model.date, new { @Value = curentdate, htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.Raw("<a @*data-modal=''*@ href='/Topics/Index/ ' title='Edit'> <span class='btn btn-info'>Back to List</span> </a>")
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Topic_Info, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-12">
-                @Html.TextAreaFor(model => model.Topic_Info, new { @id = "Topic_Info" })
-            </div>
-        </div>
-
-        <div class="form-group hide">
-            @Html.LabelFor(model => model.Report, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Report, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Report, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group hide">
-            @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @{
-                    var curentdate = DateTime.Now.ToString("dd/MM/yyyy");
-                }
-                @Html.TextBoxFor(model => model.date, new { @Value = curentdate, htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                @Html.Raw("<a @*data-modal=''*@ href='/Topics/Index/ ' title='Edit'> <span class='btn btn-info'>Back to List</span> </a>")
-                <button type="submit" class="btn btn-success">Save</button>
-            </div>
-        </div>
+        }
     </div>
-}
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Content/ckeditor/ckeditor.js"></script>
