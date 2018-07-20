@@ -1,0 +1,152 @@
+﻿@model Dr4rum_eProjectIII.Models.Account
+@{
+    ViewBag.Title = "Edit Information";
+}
+
+<div class="container pt-5">
+    @using (Html.BeginForm("EditInformation", "UserAccount", FormMethod.Post, new { @class = "well form-horizontal col-md-6 col-sm-12 form-register" , enctype ="multipart/form-data"}))
+    {
+        <legend><center><h2><b>@ViewBag.Title</b></h2></center></legend><br>
+
+
+        @Html.HiddenFor(m => m.UserName);
+        <div class="form-group">
+            @Html.LabelFor(m => m.FirstName, new { @class = "control-label" })
+            <div class="col-md">
+                <div class="input-group ">
+                    @Html.EditorFor(m => m.FirstName, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "First Name" } })
+                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger col-12" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md inputGroupContainer">
+                @Html.LabelFor(m => m.LastName, new { @class = "control-label" })
+                <div class="input-group ">
+                    @Html.EditorFor(m => m.LastName, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Last Name" } })
+                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger col-12" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md inputGroupContainer">
+                @Html.LabelFor(m => m.Address, new { @class = "control-label" })
+                <div class="input-group ">
+                    @Html.EditorFor(m => m.Address, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Address" } })
+                    @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger col-12" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md inputGroupContainer">
+                @Html.LabelFor(m => m.Phone, new { @class = "control-label" })
+                <div class="input-group ">
+                    @Html.EditorFor(m => m.Phone, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Phone" } })
+                    @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger col-12" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md inputGroupContainer">
+                @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                <div class="input-group ">
+                    @Html.EditorFor(m => m.Email, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Email" } })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger col-12" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md inputGroupContainer">
+                @Html.LabelFor(m => m.Birthday, new { @class = "control-label" })
+                <div class="input-group ">
+                    @Html.EditorFor(m => m.Birthday, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Birthday" } })
+                    @Html.ValidationMessageFor(m => m.Birthday, "", new { @class = "text-danger col-12" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md inputGroupContainer d-flex flex-row">
+                <label class=" mr-2">Gender:</label>
+                <div class="pl-1">
+                    <label class="radio-inline">
+                        @Html.RadioButtonFor(m => m.Gender, true, new { @checked = true })<span>Male</span>
+                    </label>
+                    <label class="radio-inline">
+                        @Html.RadioButtonFor(m => m.Gender, false)<span class="ml-2">Female</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md inputGroupContainer d-flex flex-row">
+                <label class="mr-2">Incognito:</label>
+                <div class="pl-1">
+                    <label class="radio-inline">
+                        @Html.RadioButtonFor(m => m.Incognito, true, new { @checked = true })<span>Incognito</span>
+                    </label>
+                    <label class="radio-inline">
+                        @Html.RadioButtonFor(m => m.Incognito, false)<span class="ml-2">Not Incognito</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md inputGroupContainer">
+                @Html.LabelFor(m => m.Avatar , new { htmlAttribute = new { @class = "form-control col-12" } })
+                <div class="col-md-10">
+                    <input type="file" name="filehinh"/>
+                    @ViewBag.ErrorUpImage
+                </div>
+            </div>
+        </div>
+               if (Model.Role == "D")
+                {
+                <div class="form-group">
+                    <div class="col-md inputGroupContainer">
+                        @Html.LabelFor(m => m.Experience, new { @class = "control-label" })
+                        <div class="input-group ">
+                            @Html.EditorFor(m => m.Experience, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Experience" } })
+                            @Html.ValidationMessageFor(m => m.Experience, "", new { @class = "text-danger col-12" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md inputGroupContainer">
+                        @Html.LabelFor(m => m.Achievement, new { @class = "control-label" })
+                        <div class="input-group ">
+                            @Html.EditorFor(m => m.Achievement, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Achievement" } })
+                            @Html.ValidationMessageFor(m => m.Achievement, "", new { @class = "text-danger col-12" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md inputGroupContainer">
+                        @Html.LabelFor(m => m.Speciality, new { @class = "control-label" })
+                        <div class="input-group ">
+                            @Html.EditorFor(m => m.Speciality, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Speciality" } })
+                            @Html.ValidationMessageFor(m => m.Speciality, "", new { @class = "text-danger col-12" })
+                        </div>
+                    </div>
+                </div>
+                }
+
+                <hr />
+                <div class="form-group">
+                    <label class="col-md">Confirm Your Passowrd</label>
+                    <div class="col-md inputGroupContainer">
+                        <div class="input-group">
+                            @Html.PasswordFor(m => m.Password, new { htmlAttribute = new { @class = "form-control col-12", placeholder = "Confirm password" } })
+                            @*<input name="txtConfirmPassword" placeholder="Confirm Password" class="form-control" type="password"/>*@
+                            <span class="text-danger col-12">@ViewBag.ErrorConfirmPassword</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md"></label>
+                    <div class="col-md d-flex flex-row-reverse">
+                        <button type="submit" class="btn btn-dark">Submit</button>
+                    </div>
+                </div>
+                }
+</div>
