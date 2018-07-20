@@ -7,48 +7,41 @@
     @Html.AntiForgeryToken()
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-<<<<<<< HEAD
     <div class="Login-info-contain" style="border: 1px solid #b2b0b0; border-radius: 5px">
         <div class="form-group">
             @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control"})
-=======
-    <div class="Login-info-contain">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
             <div>
                 @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
->>>>>>> f72b7af737b225b53a7472cccb6de98f04c056f9
                 @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-<<<<<<< HEAD
             @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
                 @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger"})
-=======
-            @Html.LabelFor(m => m.Password, new { @class = "control-label" })
-            <div>
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
->>>>>>> f72b7af737b225b53a7472cccb6de98f04c056f9
+                @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                <div>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
     </div>
     <span class="text-danger">@ViewBag.ErrorMessage</span>
-<<<<<<< HEAD
 
     <div class="form-group" style="margin-top: 10px">
-=======
-    @Html.ActionLink("ForgetPassword", "ForgetPassword", "UserAccount",null, new {@class = "pt-2 pb-2"})
-    <div class="form-group">
->>>>>>> f72b7af737b225b53a7472cccb6de98f04c056f9
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Log in" class="btn btn-default" />
+        @Html.ActionLink("ForgetPassword", "ForgetPassword", "UserAccount", null, new { @class = "pt-2 pb-2" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Log in" class="btn btn-default" />
+            </div>
         </div>
     </div>
-
 }
