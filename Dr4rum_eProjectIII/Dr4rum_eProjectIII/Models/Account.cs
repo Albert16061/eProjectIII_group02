@@ -23,21 +23,6 @@ namespace Dr4rum_eProjectIII.Models
         }
         public int Acc_ID { get; set; }
 
-<<<<<<< HEAD
-        [Required(ErrorMessage = "User is must not null!")]
-        public string UserName { get; set; }
-
-        [Required(ErrorMessage = "password is must not null!")]
-        public string Password { get; set; }
-
-        [Required(ErrorMessage = "firstName is must not null!")]
-        public string FirstName { get; set; }
-
-        [Required(ErrorMessage = "Lastname is must not null!")]
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Address { get; set; }
-=======
         [Required(ErrorMessage ="User is not null!")]
         [Display(Name = "UserName")]
         [MaxLength (16, ErrorMessage = "UserName must be less than 16 characters")]
@@ -74,16 +59,12 @@ namespace Dr4rum_eProjectIII.Models
 
         [Required(ErrorMessage = "Birthday is not null!")]
         [Display(Name = "Birthday")]
->>>>>>> f72b7af737b225b53a7472cccb6de98f04c056f9
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public System.DateTime Birthday { get; set; }
-<<<<<<< HEAD
-=======
 
         [Required(ErrorMessage = "Phone is not null!")]
         [RegularExpression("^(01[2689]|09)[0-9]{8}$",ErrorMessage = "Invalid Phone")]
->>>>>>> f72b7af737b225b53a7472cccb6de98f04c056f9
         public string Phone { get; set; }
         public bool Gender { get; set; }
         public string Role { get; set; }
