@@ -21,55 +21,31 @@ namespace Dr4rum_eProjectIII.Models
             this.Posts = new HashSet<Post>();
             this.Topics = new HashSet<Topic>();
         }
-
         public int Acc_ID { get; set; }
 
-        [Required]
-        [Display(Name = "UserName")]
+        [Required(ErrorMessage = "User is must not null!")]
         public string UserName { get; set; }
 
-        [Required]
-        [Display(Name = "Password")]
+        [Required(ErrorMessage = "password is must not null!")]
         public string Password { get; set; }
 
-        [Required]
-        [Display(Name = "FirstName")]
+        [Required(ErrorMessage = "firstName is must not null!")]
         public string FirstName { get; set; }
 
-        [Required]
-        [Display(Name = "LastName")]
+        [Required(ErrorMessage = "Lastname is must not null!")]
         public string LastName { get; set; }
-
-        [Required]
-        [EmailAddress(ErrorMessage = "Invalid Email")]
         public string Email { get; set; }
-
-        [Required]
-        [Display(Name = "Address")]
         public string Address { get; set; }
-
         [DataType(DataType.Date)]
         public System.DateTime Birthday { get; set; }
-
-        [Required]
-        [RegularExpression("^(01[2689]|09)[0-9]{8}$",ErrorMessage = "Invalid Phone")]
         public string Phone { get; set; }
-
-        [Required]
         public bool Gender { get; set; }
-
         public string Role { get; set; }
-
         public bool Incognito { get; set; }
-
         public bool SetV { get; set; }
-
         public string Speciality { get; set; }
-
         public string Experience { get; set; }
-
         public string Achievement { get; set; }
-
         public string Avatar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
