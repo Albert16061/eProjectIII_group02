@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Post>
+<div class="card dashboard-tag alert alert-success">
+    <div class="card-header dashboard-tag-header ">
+        <div class="tag-header-left">
+            <img class="" src="~/Image/Logo_Icon/Admin/Post-icon-50.png">
+        </div>
+        <div class="tag-header-right">
+            <div class="tag-info-title"> Posts Number </div>
+            <div class="tag-info-num"> @Model.Count()</div>
+        </div>
+    </div>
+    <div class="card-body">
+        <a href="@Url.Action("Index", "AdminPostManager")" class="btn btn-success">View Details</a>
+    </div>
+</div>

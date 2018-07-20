@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Group>
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
+<!-- Banner-->
+<img src="~/Image/Banner_Pic/User/index_banner.jpg" class="img-fluid" alt="Responsive image">
+<!-- breadcrumb-->
+<div class="breadcrumb-containt">
+    <div class="btn-group btn-breadcrumb breadcrumb-primary">
+        <a href="@Url.Action("Index", "Index")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+        <div class="btn btn-info c-info">
+            @Html.ActionLink("Home", "Index", "Index", new { @class = "breadcrumb-link" })
+        </div>
+        <div class="">
+            @Html.ActionLink("Add Topic", "Create", "Topics", null, new { @class = "add-topic-btn btn-success" })
+        </div>
+    </div>
+</div>
+<!-- main info-->
+<div class="index-list-containt">
+    <div class="index-list">
+        @foreach (var groupItem in Model)
+        {
+            // The variable GroupItem now represents a Group in the table
+            // Each loop will display a group in Group table
+            // Display Group name
+            <div class="alert alert-danger" role="alert">
+                <h3>@groupItem.Group_Name</h3>
+            </div>
+            // Display Group's category list
+            foreach (var cateItem in groupItem.Categories)
+            {
+                // The variable cateItem now represents a Category in GroupItem
+                // Each loop will display a Category item  in current Group
+                // Display Category name
+                <div class="category-containt">
+                    <div class="category-icon-containt">
+                        <img src="~/Image/Logo_Icon/comment-50.png" class="category-icon" alt="Site Logo" />
+                    </div>
+                    <div class="category-title">
+                        <p>@Html.ActionLink(@cateItem.Category_Name, "ListCategories", new { Category_Name = @cateItem.Category_Name }, new { @class = "" })</p>
+                        <p class="num-topic">Số Bài Viết : @cateItem.Topics.Count </p>
+                    </div>
+                    <div class="Topic-info ">
+                        <!-- new Topic Title -->
+                        <p class="new-topic">
+                            Bài mới :
+                            @foreach (var topicItem in cateItem.Topics.Take(1))
+                            {
+                                @Html.ActionLink(@topicItem.Topic_Title, "TopicDetail", new { TopicTitle = @topicItem.Topic_Title }, new { @class = "" })
+                            }
+                        </p>
+                        @foreach (var topicItem in cateItem.Topics.Take(1))
+                        {
+                            <p class="new-topic">
+                                <!-- Date post Topic -->
+                                Ngày Đăng :
+                                @topicItem.date
+                            </p>
+                            <p class="new-topic">
+                                <!-- Owner Topic -->
+                                Đăng Bởi :   @topicItem.Account.UserName
+                            </p>
+                        }
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+<!-- modal placeholder -->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/Scripts/myScript.js");
+    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+}

@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Topic>
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
+<!-- Banner-->
+<img src="~/Image/Banner_Pic/User/topic_info.jpg" class="img-fluid" alt="Responsive image">
+@foreach (var Topic in Model)
+{
+    <!-- breadcrumb-->
+    <div class="breadcrumb-containt">
+        <div class="btn-group btn-breadcrumb breadcrumb-primary">
+            <a href="@Url.Action("Index", "Index")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+            <a href="@Url.Action("Index", "Index")" class="btn btn-primary breadcrumb-link ">Home</a>
+            @Html.ActionLink(Topic.Category.Group_Name, "ListGroup", new { Group_name = Topic.Category.Group_Name }, new { @class = "btn btn-primary breadcrumb-link " })
+            @Html.ActionLink(@Topic.Category.Category_Name, "ListCategories", new { Category_Name = @Topic.Category.Category_Name }, new { @class = "btn btn-primary breadcrumb-link " })
+            <div class="btn btn-info c-info breadcrumb-link" id="breadcrumb-topicTitle"> @Topic.Topic_Title </div>
+        </div>
+    </div>
+    <!--- End Breadcrumb -->
+    <div class="TopicDetail-Containt info-containt">
+        <div class="header-containt">
+            <div class="avt-header-containt">
+                <img src="~/Image/Logo_Icon/avatar-50.png" class="header-avt" alt="Responsive image">
+                <div class="TopicDetail-name-topicPoster info-Title">
+                    @Topic.Account.UserName
+                </div>
+                <div class="TopicDetail-name-topicDay info-Name">
+                    @{ DateTime dateTopic = Topic.date;
+                        var dateTopicF = dateTopic.ToString("dd/MM/yyyy");}
+                    @dateTopicF
+                </div>
+            </div>
+            <div class="Topic-header-containt">
+                <h2> @Topic.Topic_Title </h2>
+            </div>
+        </div>
+        <div class="main-containt" id="TopicDetails-main-containt">
+            @Html.Raw(Topic.Topic_Info)
+        </div>
+        <div class="separate-containt position-relative">
+            @Html.Raw("<a data-modal='' href='/Posts/_PartialCreate/'> <span class='btn btn-warning add-post-btn'>Add Post</span> </a>")
+            @*@Html.ActionLink("Add Post", "_PartialCreate","Posts", new { Topic_Title = Topic.Topic_Title }, new { @class = "btn btn-warning add-post-btn editCourseModal", @data_target = "editCourseModal" })*@
+
+        </div>
+        @foreach (var listPost in Topic.Posts)
+        {
+            <div class="alert alert-primary" id="topic-containt">
+                @if (listPost.Acc_ID == 1)
+                {
+                    <div class="edit-btn dropdown">
+                        <a class="dropdown-toggle edit-btn-href" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="~/Image/Logo_Icon/edit-48.png" />
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            @Html.Raw("<a data-modal='' href='/Posts/_PartialEdit/" + listPost.Post_ID + "' id='" + listPost.Post_ID + "' title='Edit'> <span class='dropdown-item'>Edit</span> </a>")
+                            @Html.Raw("<a data-modal='' href='/Posts/_PartialDelete/" + listPost.Post_ID + "' id='" + listPost.Post_ID + "' title='Delete'> <span class='dropdown-item'>Delete</span> </a>")
+                        </div>
+                    </div>
+                }
+                <div class="header-containt" id="topic-header-containt">
+                    <div class="avt-header-containt" id="topic-avt-header-containt">
+                        <img src="~/Image/Logo_Icon/avatar-50.png" class="header-avt" alt="Responsive image">
+                        <div class="TopicDetail-name-topicPoster info-Title">
+                            @listPost.Account.UserName
+                        </div>
+                        <div class="TopicDetail-name-topicDay info-Name" id="post-day">
+                            @{ DateTime datePost = listPost.date;
+                                var datePostF = datePost.ToString("dd/MM/yyyy");}
+                            @datePostF
+                        </div>
+                    </div>
+                    <div class="post-info" id="post-info"> @listPost.Post_Info</div>
+                </div>
+            </div>
+        }
+    </div>
+}
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+@section Scripts {
+    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+    @Scripts.Render("~/Scripts/myScript.js")
+    <script type="text/javascript">
+        $('.dropdown-toggle').dropdown()
+        //For partialView addPost
+        $(function () {
+            $('.editCourseModal').on("click", function (e) {
+                e.preventDefault();
+                //perform the url load  then
+                $('#myModal').modal({
+                    keyboard: true
+                }, 'show');
+                return false;
+            })
+        })
+    </script>
+}

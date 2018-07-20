@@ -1,0 +1,67 @@
+﻿@model Dr4rum_eProjectIII.Models.Post
+
+<link rel="stylesheet" type="text/css" href="~/Content/assets/TopicPost.css">
+<style>
+    .hide{
+        display: none
+    }
+</style>
+<!--Header-->
+<div class="modal-header alert alert-success">
+    <h4 class="modal-title">Edit Post</h4>
+    <button type="button" class="close" data-dismiss="modal" ariahidden="true">×</button>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Post_ID)
+            <div class="form-group row ">
+                <div class="control-label col-md-12 TopicDelete-title">Topic Title</div>
+                <div class="col-md-12 Edit-post-temp">
+                    @Html.TextBoxFor(model => model.Topic_Tile, new {  htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group row hide">
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.Acc_ID, new { @Value = 1, htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="control-label col-md-12 TopicDelete-title">Topic information</div>
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.Post_Info, new { @class = "form-control EditPost-textArea" })
+                    @Html.ValidationMessageFor(model => model.Post_Info, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group hide">
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Like_Num, new { @Value = 0, htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group hide">
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Dislike_Num, new { @Value = 0, htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group hide">
+                <div class="col-md-10">
+                    @{
+                        var currentDay = DateTime.Now.ToString("dd/MM/yyyy");
+                    }
+                    @Html.TextBoxFor(model => model.date, new { @Value = currentDay, htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+        <!-- modal-footer -->
+        <div class="modal-footer">
+            <input type="submit" value="Save" class="btn btn-success" />
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,689 @@
+﻿@font-face {
+    font-family: Balqis;
+    src: url("../font/Balqis.otf");
+    src: local("Balqis"), url("../font/Balqis.otf")format("truetype");
+}
+
+body {
+    background-color: rgb(240,240,240);
+    padding-top: 0px !important;
+}
+
+footer {
+    background-color: #343A40;
+}
+
+.btn-login {
+    margin-right: 5px;
+}
+
+.navbar-logo {
+    height: 25px;
+    width: 25px;
+    margin-bottom: 0.55rem;
+}
+
+.navbar-title {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.searching {
+    margin: auto;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    font-size: 20px;
+}
+
+#Cat {
+    height: 200px;
+    overflow-y: scroll;
+}
+
+#Group {
+    height: 150px;
+    overflow-y: scroll;
+}
+
+.img-fluid {
+    width: 100%;
+    height: 330px;
+}
+/*Breadcumb begn*/
+.breadcrumb-containt {
+    position: relative;
+}
+
+.breadcrumb-link {
+    color: white !important;
+    text-decoration: none;
+    font-size: 20px !important;
+    font-weight: bold;
+    text-transform: lowercase;
+}
+
+    .breadcrumb-link::first-letter {
+        text-transform: uppercase !important;
+    }
+
+.btn.btn-info.c-info::first-letter {
+    text-transform: uppercase !important;
+}
+
+.breadcrumb-link:hover {
+    text-decoration: none;
+}
+
+@media (max-width: 767px) {
+    .btn-breadcrumb {
+        margin-left: 10px;
+        margin-right: 10px;
+        width: calc(100% - 20px) !important;
+    }
+}
+
+.btn-breadcrumb {
+    width: 100%;
+    background-color: #fff;
+    border: solid 1px #ccc;
+}
+
+    .btn-breadcrumb .btn {
+        border-color: transparent;
+        border: 0px solid transparent;
+        border-right: 1px solid transparent !important;
+        font-size: 11px;
+    }
+
+.breadcrumb-default {
+    background-color: #fff;
+}
+
+.btn-primary, .breadcrumb-primary {
+    background-color: #343A40;
+}
+
+    .btn-primary:hover {
+        background-color: #286090;
+    }
+
+.breadcrumb-success {
+    background-color: #5cb85c;
+}
+
+.breadcrumb-info {
+    background-color: #138496;
+}
+
+.breadcrumb-warning {
+    background-color: #f0ad4e;
+}
+
+.breadcrumb-danger {
+    background-color: #d9534f;
+}
+
+.breadcrumb-negro {
+    background-color: #d4d4d4;
+}
+
+.btn-breadcrumb .btn:last-child {
+    font-weight: bold;
+}
+
+    .btn-breadcrumb .btn:last-child:after {
+        margin-left: -2px;
+        display: none;
+    }
+
+    .btn-breadcrumb .btn:last-child:before {
+        margin-left: -1px;
+        display: none;
+    }
+
+.btn-breadcrumb .btn:after {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 13px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 10px solid white;
+    position: absolute;
+    top: 50%;
+    margin-top: -14px;
+    margin-left: 0px;
+    left: 100%;
+    z-index: 3;
+}
+
+.btn-breadcrumb .btn:before {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 13px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 10px solid rgb(173, 173, 173);
+    position: absolute;
+    top: 50%;
+    margin-top: -14px;
+    margin-left: 1px;
+    left: 100%;
+    z-index: 3;
+}
+#breadcrumb-topicTitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/** The Spacing **/
+.btn-breadcrumb .btn {
+    padding: 6px 12px 6px 24px;
+}
+
+    .btn-breadcrumb .btn:first-child {
+        padding: 6px 6px 6px 10px;
+    }
+
+    .btn-breadcrumb .btn:last-child {
+        padding: 6px 18px 6px 24px;
+        background-color: #17a2b8;
+    }
+
+
+    /** Primary button **/
+    .btn-breadcrumb .btn.btn-primary:after {
+        border-left: 10px solid #343A40;
+    }
+
+    .btn-breadcrumb .btn.btn-primary:hover:after {
+        border-left: 10px solid #286090;
+    }
+
+    .btn-breadcrumb .btn.btn-primary:hover:before, .btn-breadcrumb .btn.btn-primary:before {
+        border-left: 10px solid #204d74;
+    }
+
+.breadcrumb-primary {
+    border: solid 1px #204d74;
+}
+
+.breadcrumb-info {
+    font-size: 20px !important;
+}
+
+.add-topic-btn {
+    position: absolute;
+    right: 15px;
+    margin-right: 1%;
+    top: 15%;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer !important;
+}
+
+    .add-topic-btn:hover {
+        text-decoration: none;
+    }
+
+
+#add-btn-addTopic {
+    padding: 5px 15px;
+    border-radius: 5px;
+    max-width: 130px;
+    /*unset*/
+    position: inherit;
+}
+/*Breadcumb end*/
+.index-list-containt {
+    background-color: #FFFFFF;
+}
+
+.index-list {
+    padding-top: 20px;
+    padding-bottom: 100px;
+    max-width: 95%;
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+}
+
+.category-containt {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #d7edfc;
+}
+
+.category-icon-containt {
+    flex-basis: 3%;
+    max-width: 3%;
+}
+
+    .category-icon-containt > img {
+        width: 40px;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+.category-containt > div {
+    margin: 5px;
+}
+
+.category-title {
+    flex-basis: 60%;
+    max-width: 60%;
+    padding-left: 10px;
+    font-weight: bold;
+    color: darkslateblue;
+    margin-top: 1%;
+}
+
+.Topic-info {
+    flex-basis: 30%;
+    max-width: 30%;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    font-size: 14px;
+    padding-top: 1%;
+    padding-right: 15px;
+}
+
+    .Topic-info > p {
+        text-align: left;
+        margin-bottom: 0px !important;
+        margin-left: 10px;
+    }
+
+.num-topic {
+    font-weight: normal;
+    color: black;
+}
+
+.main-containt {
+    margin-top: 1%;
+    border: solid 1px darkgray;
+    padding: 1%;
+    border-radius: 5px;
+    text-align: justify;
+}
+
+#TopicDetails-main-containt {
+    border-radius: 0px;
+}
+
+.new-topic {
+    /* Substring when character too long*/
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* This code for ListCategories*/
+.info-containt {
+    background-color: white;
+    padding: 2%;
+}
+
+.alert.alert-warning.category-topic-titleContaint {
+    display: flex !important;
+    justify-content: center;
+    padding: 1%;
+    align-items: center;
+}
+
+.title-topicTitle {
+    flex-basis: 58%;
+    max-width: 58%;
+}
+
+.title-topicDay {
+    flex-basis: 15%;
+    max-width: 15%;
+    text-align: center
+}
+
+.title-topicPostnum {
+    flex-basis: 8%;
+    max-width: 8%;
+}
+
+.title-topicPoster {
+    flex-basis: 15%;
+    max-width: 15%;
+    text-align: end;
+}
+
+.info-topicTitle {
+    flex-basis: 60%;
+    max-width: 60%;
+}
+
+.info-Title {
+    text-transform: lowercase;
+    color: darkblue;
+}
+
+.info-Name {
+    font-size: 12px;
+    color: darkgray;
+}
+
+.info-Title::first-letter {
+    text-transform: uppercase;
+}
+
+.info-topicDay {
+    flex-basis: 15%;
+    max-width: 15%;
+    text-align: center;
+    border-right: solid 1px lightblue;
+}
+
+.info-topicPostnum {
+    flex-basis: 5%;
+    max-width: 5%;
+    text-align: center;
+    border-right: solid 1px lightblue;
+}
+
+.post-info-containt {
+    text-align: end;
+    flex-basis: 20%;
+}
+
+.info-topicPoster {
+    text-align: end;
+    color: darkblue;
+}
+
+.category-topic-info {
+    display: flex;
+    padding: 1%;
+    border-bottom: solid 1px lightblue;
+}
+/*  This code for TopicDetails */
+.header-containt {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2%
+}
+
+.avt-header-containt {
+    flex-basis: 15%;
+    max-width: 15%;
+    border-right: solid 1px lavender;
+}
+
+.Topic-header-containt {
+    flex-basis: 80%;
+    max-width: 80%
+}
+
+.separate-containt {
+    background-image: url(../../Image/Banner_Pic/User/separate.jpg);
+    max-width: 100%;
+    height: 50px;
+    background-position: center;
+}
+
+#topic-containt {
+    margin-top: 5px;
+    margin-bottom: 0px !important;
+    position: relative;
+    max-width: 100%;
+}
+
+.edit-btn {
+    position: absolute;
+    top: 2%;
+    right: 0px;
+}
+
+.edit-btn-href:hover {
+    text-decoration: none;
+}
+
+    .edit-btn-href > img {
+        max-width: 20px;
+    }
+
+#topic-header-containt {
+    padding-top: 1%;
+    justify-content: unset;
+}
+
+#topic-avt-header-containt {
+    border-right: solid 1px cornflowerblue;
+    flex-basis: 12%;
+    max-width: 12%;
+}
+
+#post-info {
+    color: black;
+    padding-left: 5%;
+    text-align: justify;
+}
+
+.post-info {
+    flex-basis: 83%;
+    max-width: 83%;
+}
+
+#post-day {
+    color: black;
+}
+
+.add-post-btn {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+}
+/*   end TopicDetails */
+/** This code for groupList**/
+.header-line {
+    height: 5px;
+    width: 100%;
+    content: '';
+    display: block;
+}
+
+.gradient-color-1 {
+    background: -webkit-linear-gradient(left,#fc636b 0,#ff6d92 60%,#fd9a00 100%);
+    background: linear-gradient(to right,#fc636b 0,#ff6d92 60%,#fd9a00 100%);
+}
+
+.no-margin-top {
+    margin-top: 0;
+}
+
+.btn-moreCat {
+    float: right !important;
+    padding: 1%;
+    border-radius: 0px;
+    font-weight: bold;
+}
+
+#LisGroup-mainContaint {
+    padding: 0px;
+    border: solid 1px azure;
+}
+
+#catItem-title {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 45px;
+    margin-bottom: 0px;
+    padding-left: 3%;
+}
+
+#header-ListGroup-containt {
+    background-color: #F7F7F7;
+}
+
+.ListGroup-titleContaint {
+    display: flex;
+    max-width: 95%;
+    margin: 10px auto;
+}
+
+    .ListGroup-titleContaint.tittle {
+        font-weight: bold;
+    }
+
+.ListGroup-topicTitle {
+    flex-basis: 65%;
+    max-width: 65%;
+}
+
+.ListGroup-topicDay {
+    flex-basis: 20%;
+    max-width: 20%;
+}
+
+.ListGroup-topicPostby {
+    flex-basis: 15%;
+    max-width: 15%;
+}
+
+.ListGroup-mainInfo-containt {
+    max-width: 95%;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: -8px;
+}
+
+#ListGroup-mainInfo {
+    margin: 0px;
+    max-width: 100%;
+    border-bottom: 1px solid darkgray;
+    padding-bottom: 5px;
+}
+
+#footer-ListGroup-containt {
+    display: flex;
+    max-width: 100%;
+}
+
+.footer-Topic-count {
+    flex-basis: 50%;
+    max-width: 50%;
+    padding-left: 1%;
+}
+
+.footer-Post-count {
+    flex-basis: 50%;
+    max-width: 50%;
+    padding-left: 14%;
+}
+/** end groupList**/
+/**  Footer */
+.footer-containt {
+    position: relative;
+}
+
+.slogan-containt {
+    position: absolute;
+    top: 0;
+    padding: 3%;
+    font-size: 25px;
+    font-family: Balqis;
+}
+
+.slogan-1 {
+    color: #D5D5E2;
+}
+
+.slogan-2 {
+    padding-left: 6%;
+    color: #EE9BAE;
+}
+
+.footer-img {
+    width: 20%;
+    margin-left: 5%;
+    opacity: 0.5;
+}
+/** End  Footer */
+
+
+/* -------------------------- This code for Responsive  --------------------------*/
+/* Index page*/
+@media only screen and (max-width: 750px) {
+    .slogan-containt {
+        padding: 0px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .slogan-containt {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .img-fluid {
+        width: 100%;
+        height: 150px;
+    }
+
+    .btn-breadcrumb {
+        margin-left: 0px;
+        width: 100%
+    }
+
+    .btn.btn-info.c-info {
+        display: none
+    }
+
+    .category-icon {
+        display: none;
+    }
+
+    .category-containt {
+        display: block;
+    }
+
+    .category-title {
+        max-width: 100%
+    }
+
+    .Topic-info {
+        max-width: 100%;
+    }
+
+    .category-title > p {
+        font-size: 20px;
+    }
+
+    .num-topic {
+        font-size: 12px !important;
+    }
+
+    .alert.alert-danger {
+        margin-top: 30px !important;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .slogan-containt {
+        font-size: 17px;
+        padding-left: 10px;
+    }
+
+    .footer-img {
+        margin-left: 12%;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .dropdown-menu {
+        width: 259px;
+        text-align: center;
+    }
+
+    footer {
+        height: 55px;
+    }
+}

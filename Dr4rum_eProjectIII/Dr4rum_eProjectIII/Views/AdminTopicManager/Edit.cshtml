@@ -1,0 +1,111 @@
+﻿@model Dr4rum_eProjectIII.Models.Topic
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
+<!-- Banner-->
+<div class="Banner-containt">
+    <img src="~/Image/Banner_Pic/Admin/adminIndex_banner.jpg" class="img-fluid" alt="Responsive image">
+    <div class="Banner-title-containt">
+        <p class="Banner-title-info"> Admin Page</p>
+        <p class="Banner-title-info" id="Banner-child"> Welcome to Admin Page, Let's manager your Page !</p>
+    </div>
+</div>
+
+<!-- breadcrumb-->
+<div class="breadcrumb-containt">
+    <div class="btn-group btn-breadcrumb breadcrumb-primary">
+        <a href="@Url.Action("Index", "AdminIndex")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+        @Html.ActionLink("Home", "Index", "AdminIndex", null, new { @class = "btn btn-primary breadcrumb-link" })
+        @Html.ActionLink("Topic", "Index", "AdminTopicManager", null, new { @class = "btn btn-primary breadcrumb-link" })
+        <div class="btn btn-info c-info breadcrumb-link"> @Model.Topic_Title </div>
+    </div>
+</div>
+<!-- Information -->
+<div class="index-list-containt">
+    <div class="index-list" id="Edit-page">
+        @using (Html.BeginForm("Edit", "AdminTopicManager", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Topic_Title)
+                <h4>@Model.Topic_Title</h4>
+                <hr />
+                <div class="form-group hide">
+                    @Html.LabelFor(model => model.Acc_ID, "Acc_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Acc_ID, new { @Value = 8, htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Category_Name, "Category_Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Category_Name", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Category_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group hide">
+                    @Html.LabelFor(model => model.setV, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.setV)
+                            @Html.ValidationMessageFor(model => model.setV, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Topic_Info, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Topic_Info)
+                        @Html.ValidationMessageFor(model => model.Topic_Info, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group hide">
+                    @Html.LabelFor(model => model.Report, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Report, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Report, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group hide">
+                    @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @{
+                            var currDate = DateTime.Now.ToString("dd/MM/yyyy");
+                        }
+                        @Html.TextBoxFor(model => model.date, new { @Value = currDate, htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-1">
+                            <input type="submit" value="Save" class="btn btn-success" />
+                        </div>
+                        <div class="col-md-offset-2 col-md-1">
+                            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/ckfinder/ckfinder.js"></script>
+    <script type="text/javascript">
+        var editor = CKEDITOR.instances['Topic_Info'];
+        if (editor) { editor.destroy(true); }
+        CKEDITOR.replace('Topic_Info', { enterMode: CKEDITOR.ENTER_BR, });
+    CKFinder.setupCKEditor(null, '@Url.Content("~/Content/ckfinder/")');
+    </script>
+}

@@ -1,0 +1,52 @@
+﻿.hide{
+    display: none
+}
+.alert-info {
+    background-color: #d1ecf1 !important;
+}
+.alert-danger {
+    background-color: #f8d7da !important;
+}
+.myTable-info-tr > td {
+    border-bottom: 1px solid lightseagreen;
+    color: black;
+}
+.btn-control {
+    width: 90px !important;
+    margin-bottom: 5px;
+}
+.right-conner {
+    font-weight: bold;
+    text-align: right;
+}
+.title-containt{
+    text-align: center ;
+}
+#Edit-page{
+    padding-bottom: 0px;
+}
+
+/*  DataTable for PostManagement */
+.topic-title-title{
+    width: 250px !important;
+}
+.topic-title-info {
+    text-transform: lowercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+}
+.topic-title-info::first-letter{
+    text-transform: uppercase;
+}
+.post-info-title{
+    width: 250px !important;
+}
+.post-info-info {
+    text-transform: lowercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+}

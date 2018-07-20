@@ -11,7 +11,8 @@ namespace Dr4rum_eProjectIII.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Topic
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,18 +20,45 @@ namespace Dr4rum_eProjectIII.Models
         {
             this.Posts = new HashSet<Post>();
         }
-    
+        [Display(Name = "Title")]
+        [Required(ErrorMessage = "Topic Title is Required")]
+        [StringLength(60, MinimumLength = 10, ErrorMessage = "Topic Title is must more than 10 and less than 60 character")]
+        [RegularExpression(@"^[^<>.,?;:'()!~%\-_@#/*""]+$" ,ErrorMessage = "Topic Title is must not include special character")]
         public string Topic_Title { get; set; }
+        
+        [Display(Name = "ID of Accout")]
         public int Acc_ID { get; set; }
+        [Display(Name = "Name of Category")]
         public string Category_Name { get; set; }
+        [Display(Name = "Set Visible")]
         public bool setV { get; set; }
+
+        [Required(ErrorMessage = "Topic Info is Required")]
+        [StringLength(Int32.MaxValue, MinimumLength = 100, ErrorMessage = "Topic Info is must more than 100 character")]
+        [Display(Name = "Info")]
         public string Topic_Info { get; set; }
+
+        [Display(Name = "Report")]
         public int Report { get; set; }
+        [Display(Name = "Date")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime date { get; set; }
-    
+        [Display(Name = "Account")]
         public virtual Account Account { get; set; }
+        [Display(Name = "Category")]
         public virtual Category Category { get; set; }
+        [Display(Name = "Posts")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Post> Posts { get; set; }
+        
+        internal static object Detail()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static object Detail(long id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

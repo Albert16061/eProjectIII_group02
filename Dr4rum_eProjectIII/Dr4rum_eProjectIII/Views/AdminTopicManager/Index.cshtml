@@ -1,0 +1,130 @@
+﻿@using Dr4rum_eProjectIII.Models
+@model List<Topic>
+
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
+<!-- Banner-->
+<div class="Banner-containt">
+    <img src="~/Image/Banner_Pic/Admin/adminIndex_banner.jpg" class="img-fluid" alt="Responsive image">
+    <div class="Banner-title-containt">
+        <p class="Banner-title-info"> Admin Page</p>
+        <p class="Banner-title-info" id="Banner-child"> Welcome to Admin Page, Let's manager your Page !</p>
+    </div>
+</div>
+
+<!-- breadcrumb-->
+<div class="breadcrumb-containt">
+    <div class="btn-group btn-breadcrumb breadcrumb-primary">
+        <a href="@Url.Action("Index", "AdminIndex")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+        @Html.ActionLink("Home", "Index", "AdminIndex", null, new { @class = "btn btn-primary breadcrumb-link" })
+        <div class="btn btn-info c-info breadcrumb-link"> Topic </div>
+    </div>
+</div>
+<!-- Information -->
+<div class="index-list-containt">
+    <div class="index-list" style="overflow: auto">
+        <table id="myTable">
+            <thead>
+                <tr class="myTable-title-tr ">
+                    <th>UserName</th>
+                    <th>Category </th>
+                    <th>Topic Title</th>
+                    <th> Report</th>
+                    <th style="width: 75px !important">Post Day</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Topic topic in Model)
+                {
+                    if (topic.setV == true)
+                    {
+
+                        <tr class="myTable-info-tr alert alert-info">
+                            <td>@topic.Account.UserName</td>
+                            <td>@topic.Category_Name</td>
+                            <td><p class="topic-title">@topic.Topic_Title</p></td>
+                            <td style="text-align: center;">@topic.Report</td>
+                            <td>@topic.date.ToString("dd/MM/yyyy")</td>
+                            <td style="text-align: center;">@(topic.setV ? "Enable" : "Disable")</td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { title = topic.Topic_Title }, new { @class = "btn btn-success btn-control" })
+                                @Html.ActionLink("Details", "Details", new { title = topic.Topic_Title }, new { @class = "btn btn-info btn-control" })
+                                <button type="button" class="btn btn-danger btn-control btnDelete" data-toggle="modal" data-target="#myModal">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr class="myTable-info-tr alert alert-danger">
+                            <td>@topic.Account.UserName</td>
+                            <td>@topic.Category_Name</td>
+                            <td>@topic.Topic_Title</td>
+                            <td style="text-align: center;">@topic.Report</td>
+                            <td>@topic.date.ToString("dd/MM/yyyy")</td>
+                            <td style="text-align: center;">@(topic.setV ? "Enable" : "Disable")</td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { title = topic.Topic_Title }, new { @class = "btn btn-success btn-control" })
+                                @Html.ActionLink("Details", "Details", new { title = topic.Topic_Title }, new { @class = "btn btn-info btn-control" })
+                                @Html.ActionLink("Recovery", "Recovery", new { title = topic.Topic_Title }, new { @class = "btn btn-warning btn-control" })
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    @using (Html.BeginForm("Delete", "AdminTopicManager", FormMethod.Get))
+                    {
+                        <!--Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="M-title">Delete Topic</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            Are You Sure to Delete This Topic ?<br />
+                            <input name="title" type="text" value="" style="border: 0; width: 100%; max-width: 100%; height: 50px; background: white;" disabled />
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger" value="Delete">Delete</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancle</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*load datatable css*@
+<link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />
+@*Load database to datatable*@
+@section Scripts{
+    <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+
+        $(".btnDelete").click(function () {
+            // Lay cai row hien tai dang chua btnDelete
+            let row = $(this).parents('tr');
+            // Lay title cua cai topic trong cai row nay
+            let title = $(row).find('.topic-title').text();
+            // Dua len modal 
+            $('#myModal [name="title"]').val(title);
+        });
+
+        $('#myModal form').on('submit', function () {
+            $('[name="title"').prop('disabled', false);
+            window.location.reload();
+        });
+    </script>
+}

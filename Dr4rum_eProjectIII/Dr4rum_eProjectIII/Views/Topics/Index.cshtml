@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Topic>
+<link rel="stylesheet" type="text/css" href="~/Content/assets/TopicPost.css">
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
+<!-- Banner-->
+<img src="~/Image/Banner_Pic/User/index_banner.jpg" class="img-fluid" alt="Responsive image">
+<!-- breadcrumb-->
+<div class="breadcrumb-containt">
+    <div class="btn-group btn-breadcrumb breadcrumb-primary">
+        <a href="@Url.Action("Index", "Index")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+        <a href="@Url.Action("Index", "Index")" class="btn btn-primary breadcrumb-link ">Home</a>
+        @Html.ActionLink("UserName", "ListGroup", new { }, new { @class = "btn btn-primary breadcrumb-link" })
+        <div class="btn btn-info c-info breadcrumb-link"> List Topic </div>
+    </div>
+</div>
+<!-- main info-->
+<div class="index-list-containt">
+    <div class="index-list">
+        <h2>Name's List Topic</h2>
+        @Html.ActionLink("Add Topic", "Create", "Topics", null, new { @class = "add-topic-btn btn-success", @id = "TopicIndex-btnAdd" })
+        <div class="main-containt ">
+            <div class="alert alert-warning  category-topic-titleContaint">
+                <div class="title-topicTitle" id="TopicIndex-title">
+                    Topic Title
+                </div>
+                <div class="title-topicDay">
+                    Date Created
+                </div>
+                <div class="title-topicPostnum" id="TopicIndex-postnum">
+                    Post Num
+                </div>
+                <div class="title-topicPoster" id="TopicIndex-btnControl">
+                    Button Control
+                </div>
+            </div>
+            @foreach (var item in Model)
+            {
+                <div class="category-topic-info ">
+                    <div class="info-topicTitle">
+                        @Html.ActionLink(@item.Topic_Title, "TopicDetail","Index", new { TopicTitle = @item.Topic_Title }, new { @class = "" })
+                    </div>
+                    <div class="info-topicDay">
+                        @item.date.ToString("dd/MM/yyy")
+                    </div>
+                    <div class="info-topicPostnum" id="TopicIndex-postnum">
+                        @item.Posts.Count()
+                    </div>
+                    <div class="title-topicPoster" id="TopicIndex-btnControl">
+                        @Html.ActionLink("Edit", "Edit", "Topics", new { id = item.Topic_Title }, new { @class = "btn btn-success btn-control" })
+
+                        @Html.Raw("<a data-modal='' href='/Topics/_PartialDelete/" + item.Topic_Title + "' id='" + item.Topic_Title + "' title='Delete'> <span class='btn btn-danger btn-control'>Delete</span> </a>")
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- modal placeholder -->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/Scripts/myScript.js")
+    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+}
+
+
+
+

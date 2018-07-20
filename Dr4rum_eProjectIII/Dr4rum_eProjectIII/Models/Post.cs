@@ -11,18 +11,31 @@ namespace Dr4rum_eProjectIII.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Post
     {
+        [Display(Name = "ID of Post")]
         public int Post_ID { get; set; }
+        [Display(Name = "Title of Topic")]
         public string Topic_Tile { get; set; }
+        [Display(Name = "ID of Account")]
         public int Acc_ID { get; set; }
+
+        [Required(ErrorMessage = "Post Info is Required")]
+        [StringLength(Int32.MaxValue, MinimumLength = 10, ErrorMessage = "Post Info is must more than 10 character")]
+        [Display(Name = "Info of Post")]
         public string Post_Info { get; set; }
+
+        [Display(Name = "Numbers of Like")]
         public int Like_Num { get; set; }
+        [Display(Name = "Numbers of Dislike")]
         public int Dislike_Num { get; set; }
+        //[Display(Name = "Date")]
         public System.DateTime date { get; set; }
-    
+        [Display(Name = "Account")]
         public virtual Account Account { get; set; }
+        [Display(Name = "Topic")]
         public virtual Topic Topic { get; set; }
     }
 }

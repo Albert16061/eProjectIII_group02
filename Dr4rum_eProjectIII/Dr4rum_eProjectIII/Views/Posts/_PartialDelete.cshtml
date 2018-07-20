@@ -1,0 +1,22 @@
+﻿@model Dr4rum_eProjectIII.Models.Post
+
+<div class="modal-header alert alert-success">
+    <h4 class="modal- title">Delete Post</h4>
+    <button type="button" class="close" data-dismiss="modal" ariahidden="true">×</button>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="col-sm-12 TopicDelete-title ">Are you sure to delete this Post ?</div>
+        <div class="modal-footer">
+            <input type="submit" id="btnDelete" ct_ma="@Model.Post_ID" value="Submit" class="btn btn-default btn-danger" />
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancle</button>
+        </div>
+    </div>
+
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

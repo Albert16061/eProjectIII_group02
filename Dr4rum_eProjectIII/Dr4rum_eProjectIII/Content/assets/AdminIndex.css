@@ -1,0 +1,181 @@
+﻿.Banner-containt {
+    position: relative;
+}
+
+.Banner-title-containt {
+    position: absolute;
+    top: 35%;
+    left: 25%;
+    border: 1px solid #bfbfbf;
+    border-radius: 5px;
+    width: auto;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 20px;
+}
+
+.Banner-title-info {
+    font-size: 30px;
+    font-weight: bold;
+    margin: auto
+}
+
+#Banner-child {
+    font-size: 20px;
+    color: gray;
+    font-weight: normal;
+}
+
+.Big-title {
+    margin: auto;
+    font-size: 30px;
+    font-weight: bold;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.card-containt{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border: 1px solid  #bfbfbf;
+    border-radius: 5px;
+    padding: 20px;
+}
+.card-body{
+    padding-bottom: 0px;
+    padding-left: 0px;
+}
+.dashboard-tag {
+    flex: 0 0 32%;
+    max-width: 32%;
+    margin-bottom: 20px;
+}
+
+.dashboard-tag-header {
+    display: flex;
+}
+
+.tag-header-left {
+    flex-basis: 40%;
+    max-width: 40%;
+}
+
+    .tag-header-left > img {
+        margin-top: 10%;
+    }
+
+.tag-header-right {
+    flex-basis: 60%;
+    max-width: 60%;
+    color: black;
+}
+.tag-info-num{
+    font-size: 30px;
+}
+
+/** This is for responsive*/
+@media screen and (max-width: 1024px) {
+    .tag-info-title {
+        font-size: 13px;
+    }
+    .card-containt{
+        padding: 10px;
+    }
+    .card-body > a{
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .Banner-title-containt {
+        top: 30%;
+        left: 15%;
+    }
+    .Big-title{
+        font-size: 45px;
+    }
+    .dashboard-tag {
+        flex: 0 0 48%;
+        max-width: 48%;
+        margin-bottom: 20px;
+    }
+    .tag-info-title {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 760px) {
+    .Banner-title-containt {
+        top: 27%;
+        left: 1%;
+    }
+    .btn-breadcrumb {
+         margin-left: 0px; 
+         margin-right: 0px; 
+         width: 100% !important; 
+    }
+    .dashboard-tag-header{
+        display: inline;
+        text-align: center;
+    }
+    .tag-header-left{
+        max-width:100%;
+    }
+    .tag-header-right{
+        max-width: 100%
+    }
+    .tag-info-title {
+        font-size: 16px;
+        margin-top: 5px;
+    }
+
+}
+@media screen and (max-width: 500px) {
+    .Banner-title-containt {
+        top: 35%;
+        left: 25%;
+    }
+    #Banner-child {
+        display: none;
+    }
+    .tag-info-title{
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 450px) {
+    .Banner-title-containt {
+        top: 25%;
+    }
+    .alert.alert-danger {
+         margin-top: 0px !important; 
+    }
+    .tag-info-title {
+        font-size: 16px;
+    }
+    .tag-info-num {
+        font-size: 25px;
+    }
+}
+@media screen and (max-width: 375px) {
+    .Banner-title-containt {
+        left: 20%;
+    }
+    .card-containt{
+        display: inline;
+    }
+    .dashboard-tag{
+        max-width: 100%
+    }
+    .tag-header-left > img {
+         margin-top: 0px; 
+    }
+    .card-body > a {
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .Banner-title-containt {
+        left: 14%;
+    }
+}
+
+
