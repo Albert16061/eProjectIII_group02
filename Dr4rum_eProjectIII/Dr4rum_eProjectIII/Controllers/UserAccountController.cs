@@ -332,7 +332,7 @@ namespace Dr4rum_eProjectIII.Controllers
                 {
                     if (account.Phone != oldphone)
                     {
-                        ViewBag.ErrorOld_Phone = "Isvalid phone";
+                        ViewBag.ErrorOld_Phone = "Isvalid Phone";
                         return View(account);
                     }
                     else if (cfpassword != newpassword)
