@@ -1,0 +1,177 @@
+﻿@model Dr4rum_eProjectIII.Models.Account
+@{
+    ViewBag.Title = "Register";
+    if (ViewBag.MessageForUsername == "Success")
+    {
+        <script type="text/javascript">
+            alert("Successfully registered!");
+            setTimeout(function () {
+                $('#btnlogin').click();
+            }, 1000);
+        </script>
+    }
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("Register", "UserAccount", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = " form-horizontal", role = "from" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    @ViewBag.MessageForUsername
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Confirm password</label>
+                <div class="col-md-10">
+                    <input type="password" name="txtConfirmPassword" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    <div class="form-check">
+                        @Html.RadioButtonFor(m => m.Gender, true, new { @id = "gender-male" })
+                        <label class="form-check-label" for="gender-male">
+                            Male
+                        </label>
+                        &nbsp;&nbsp;
+                        @Html.RadioButtonFor(m => m.Gender, false, new { @id = "gender-female" })
+                        <label class="form-check-label" for="gender-female">
+                            Female
+                        </label>
+                    </div>
+                    <div class="form-check">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label>Birthday</label>
+                    @Html.EditorFor(m => m.Birthday, new { @htmlAttributes = new { @class = "form-control", @min = "today", @max = "2100-01-01" } })
+                    @Html.ValidationMessageFor(m => m.Birthday, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Address, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-10">Are you an user or doctor?</label>
+                <div class="col-md-10">
+                    @Html.HiddenFor(m => m.Role, new { Value = "U" })
+                    @Html.DropDownList("select-role", new List<SelectListItem>() { new SelectListItem() { Text = "User", Value = "U" }, new SelectListItem() { Text = "Doctor", Value = "D" } }, new { @class = "form-control" })
+                </div>
+            </div>
+            <div id="doctor-attrib" style="display: none;">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Speciality, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Speciality, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Speciality, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Experience, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Experience, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Experience, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Achievement, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Achievement, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Achievement, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Register" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $('[name="select-role"]').on('change', function () {
+        $('[name="Role"]').val($(this).val());
+        if ($(this).val() == 'D') {
+            $('#doctor-attrib').show();
+            $('#Speciality').prop('required', true);
+            $('#Experience').prop('required', true);
+            $('#Achievement').prop('required', true);
+        } else {
+            $('#doctor-attrib').hide();
+            $('#Speciality').prop('required', false);
+            $('#Experience').prop('required', false);
+            $('#Achievement').prop('required', false);
+        }
+    });
+
+    $('[type="submit"]').on('click', function (e) {
+        if ($('[name="txtConfirmPassword"]').val() != $('[name="Password"]').val()) {
+            alert('Confirm password did not match!');
+            e.preventDefault();
+            $('[name="txtConfirmPassword"]').focus();
+        }
+    });
+</script>
