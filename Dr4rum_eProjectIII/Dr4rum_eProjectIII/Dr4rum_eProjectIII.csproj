@@ -156,6 +156,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\UserAccountController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\AdminIndexController.cs" />
     <Compile Include="Controllers\AdminPostManagerController.cs" />
@@ -1261,10 +1262,14 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Image\avt\avatar-icon-D-Incognito.png" />
+    <Content Include="Image\avt\avatar-icon-filled.png" />
+    <Content Include="Image\avt\avatar-icon-U-Incognito.png" />
     <Content Include="Image\Banner_Pic\Admin\adminIndex_banner.jpg" />
     <Content Include="Image\Banner_Pic\heart2.png" />
     <Content Include="Image\Banner_Pic\User\group.jpg" />
     <Content Include="Image\Banner_Pic\User\index_banner.jpg" />
+    <Content Include="Image\Banner_Pic\User\register_banner.jpg" />
     <Content Include="Image\Banner_Pic\User\separate.jpg" />
     <Content Include="Image\Banner_Pic\User\topic.jpg" />
     <Content Include="Image\Banner_Pic\User\topic_info.jpg" />
@@ -1282,8 +1287,8 @@
     <Content Include="Image\Topic\82f78c3277e147ad9f75a62398d2e890.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1355,7 +1360,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\myScript.js" />
     <Content Include="Scripts\MyScript\indexFunction.js" />
-    <Content Include="Scripts\MyScript\login.js" />
+    <Content Include="Scripts\MyJQuery.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -1411,6 +1416,14 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\UserAccount\Login.cshtml" />
+    <Content Include="Views\UserAccount\Register.cshtml" />
+    <Content Include="Views\UserAccount\Information.cshtml" />
+    <Content Include="Views\UserAccount\EditInformation.cshtml" />
+    <Content Include="Views\UserAccount\ChangePassword.cshtml" />
+    <Content Include="Views\UserAccount\ForgetPasswordAddNewPass.cshtml" />
+    <Content Include="Views\UserAccount\ForgetPassword.cshtml" />
+    <Content Include="Views\Index\viewOtherDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Dr4rumModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Dr4rumModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Accounts">
           <Key>
             <PropertyRef Name="Acc_ID" />
@@ -164,7 +164,8 @@
             <End Role="Topic" EntitySet="Topic" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Dr4rumModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -188,9 +189,9 @@
           <Property Name="Speciality" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Experience" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Achievement" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Posts" Relationship="Self.FK_Post_Accounts1" FromRole="Accounts" ToRole="Post" />
           <NavigationProperty Name="Topics" Relationship="Self.FK_Topic_Accounts1" FromRole="Accounts" ToRole="Topic" />
-          <Property Name="Avatar" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -220,9 +221,9 @@
           <Property Name="Post_Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Like_Num" Type="Int32" Nullable="false" />
           <Property Name="Dislike_Num" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Account" Relationship="Self.FK_Post_Accounts1" FromRole="Post" ToRole="Accounts" />
           <NavigationProperty Name="Topic" Relationship="Self.FK_Post_Topic" FromRole="Post" ToRole="Topic" />
-          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -309,7 +310,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Dr4rumEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Dr4rumEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Groups" EntityType="Self.Group" />
@@ -342,11 +343,10 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Dr4rumModelStoreContainer" CdmEntityContainer="Dr4rumEntities">
+        <EntityContainerMapping StorageEntityContainer="Dr4rumModelStoreContainer" CdmEntityContainer="Dr4rumEntities3">
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="Dr4rumModel.Account">
               <MappingFragment StoreEntitySet="Accounts">
-                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
                 <ScalarProperty Name="Acc_ID" ColumnName="Acc_ID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -363,6 +363,7 @@
                 <ScalarProperty Name="Speciality" ColumnName="Speciality" />
                 <ScalarProperty Name="Experience" ColumnName="Experience" />
                 <ScalarProperty Name="Achievement" ColumnName="Achievement" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -386,13 +387,13 @@
           <EntitySetMapping Name="Posts">
             <EntityTypeMapping TypeName="Dr4rumModel.Post">
               <MappingFragment StoreEntitySet="Post">
-                <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="Post_ID" ColumnName="Post_ID" />
                 <ScalarProperty Name="Topic_Tile" ColumnName="Topic_Tile" />
                 <ScalarProperty Name="Acc_ID" ColumnName="Acc_ID" />
                 <ScalarProperty Name="Post_Info" ColumnName="Post_Info" />
                 <ScalarProperty Name="Like_Num" ColumnName="Like_Num" />
                 <ScalarProperty Name="Dislike_Num" ColumnName="Dislike_Num" />
+                <ScalarProperty Name="date" ColumnName="date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

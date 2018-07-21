@@ -11,7 +11,7 @@ namespace Dr4rum_eProjectIII.Controllers
 {
     public class IndexController : Controller
     {
-        Dr4rumEntities db = new Dr4rumEntities();
+        Dr4rumEntities3 db = new Dr4rumEntities3();
         // GET: Index
         public async Task<ActionResult> Index()
         {
@@ -47,6 +47,13 @@ namespace Dr4rum_eProjectIII.Controllers
             Session["topic"] = TopicTitle;
             return View(listTopic);
         }
-        
+
+        // GET: Index
+        public async Task<ActionResult> viewOtherDetails(int? ID)
+        {
+            var detail = db.Accounts.Where(d => d.Acc_ID == ID).SingleOrDefault();
+            return PartialView("viewOtherDetails",detail);
+        }
+
     }
 }

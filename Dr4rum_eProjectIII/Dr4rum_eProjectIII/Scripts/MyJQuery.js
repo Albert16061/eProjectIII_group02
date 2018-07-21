@@ -8,5 +8,4 @@
         $(".modal-body  hr").remove();
         $("#exampleModal").modal();
     });
-
 });

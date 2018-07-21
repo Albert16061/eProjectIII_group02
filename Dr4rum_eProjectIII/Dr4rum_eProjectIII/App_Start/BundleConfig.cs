@@ -22,7 +22,8 @@ namespace Dr4rum_eProjectIII
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                       "~/Scripts/popper.js",
+                      "~/Scripts/popper.js",
+                      "~/Scripts/MyJQuery.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -30,7 +31,7 @@ namespace Dr4rum_eProjectIII
                       "~/Content/assets/index.css",
                       "~/Content/assets/style.css",
                       "~/Content/assets/AdminIndex.css",
-                          "~/Content/assets/AdminManager.css",
+                      "~/Content/assets/AdminManager.css",
                       "~/Content/site.css"));
         }
     }

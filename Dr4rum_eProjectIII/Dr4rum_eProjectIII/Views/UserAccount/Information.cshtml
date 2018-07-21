@@ -1,0 +1,134 @@
+﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Account>
+
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
+<!-- Banner-->
+<img src="~/Image/Banner_Pic/User/register_banner.jpg" class="img-fluid" alt="Responsive image">
+@foreach (var accountItem in Model)
+{
+    <!-- breadcrumb-->
+    <div class="breadcrumb-containt">
+        <div class="btn-group btn-breadcrumb breadcrumb-primary">
+            <a href="@Url.Action("Index", "Index")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+            <a href="@Url.Action("Index", "Index")" class="btn btn-primary breadcrumb-link ">Home</a>
+            <div class="btn btn-info c-info breadcrumb-link"> @accountItem.UserName</div>
+        </div>
+    </div>
+    <!-- Main Info -->
+    <div class="index-list-containt" style="overflow-x: auto">
+        <div class="justify-content-md-center" style="padding-top: 30px; margin: auto">
+            <!-- Col 1 -->
+            <div class="row" style="margin: auto; text-align: center; margin-bottom: 20px">
+                <div class="Avatar col-12">
+                    @if (accountItem.Avatar == null)
+                    {
+                        <img style="width:200px" src="~/Image/avatar/shutterstock_534491617-600.jpg" />
+                    }
+                    else
+                    {
+                        <img style="width:200px" src="~/Image/avatar/@accountItem.Avatar" />
+                    }
+                </div>
+                <div class="Information-UserName col-12" style="margin-bottom: 10px;">
+                    <span class="UserName-Info"> @accountItem.UserName </span>
+                </div>
+                <div class="col-12">
+                    @Html.ActionLink("List Topic", "Index", "Topics", new { ID = accountItem.Acc_ID }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Change Password", "ChangePassword", "UserAccount", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+            <!-- Col 2 -->
+            <div class="row">
+                <div class="col-md-6 col-6 columns_2">
+                    <div class="FirstName-Title "> First Name: </div>
+                    <div class="LastName-Title"> Last Name: </div>
+                    <div class="Email-Title"> Email: </div>
+                    <div class="Phone-Title"> Phone: </div>
+                    <div class="Address-Title"> Address: </div>
+                    <div class="Birthday-Title"> Birthday: </div>
+                    <div class="Gender-Title"> Gender: </div>
+                    <div class="Incognito-Title"> Incognito: </div>
+                    @if (accountItem.Role == "D")
+                    {
+                        <div class="Speciality-Title"> Speciality: </div>
+                        <div class="Experience-Title"> Experience: </div>
+                        <div class="Achievement-Title"> Achievement: </div>
+                    }
+                </div>
+                <!-- Col 3-->
+                <div class="col-6">
+                    <div>@accountItem.FirstName </div>
+                    <div>@accountItem.LastName </div>
+                    <div>@accountItem.Email </div>
+                    <div>
+                        @{
+                            var phone = accountItem.Phone;
+                            var First = phone.Substring(0, 2);
+                            var Last = phone.Substring(phone.Length - 3, 3);
+                            var EncryptPhone = First + "XXXXX" + Last;
+                        }
+                        @EncryptPhone
+                    </div>
+                    <div>@accountItem.Address </div>
+                    <div>@accountItem.Birthday.ToString("dd/MM/yyyy") </div>
+                    @if (accountItem.Gender)
+                    {
+                        <div class="Gender-Info"> Male </div>
+                    }
+                    else
+                    {
+                        <div class="Gender-Info"> Female </div>
+                    }
+                    @if (accountItem.Incognito)
+                    {
+                        <div class="Incognito-Info">Yes</div>
+                    }
+                    else
+                    {
+                        <div class="Incognito-Info"> No </div>
+                    }
+                    @if (accountItem.Role == "D")
+                    {
+                        var Speciality = accountItem.Speciality;
+                        if (Speciality == null)
+                        {
+                            <div>None</div>
+                        }
+                        else
+                        {
+                            <div>@Speciality</div>
+                        }
+
+                        var Experience = accountItem.Experience;
+                        if (Experience == null)
+                        {
+                            <div>None</div>
+                        }
+                        else
+                        {
+                            <div>@Experience</div>
+                        }
+
+                        var Achievement = accountItem.Achievement;
+                        if (Achievement == null)
+                        {
+                            <div>None</div>
+                        }
+                        else
+                        {
+                            <div>@Achievement</div>
+                        }
+                    }
+                </div>
+            </div>
+
+        </div>
+
+        <div class="p-5">
+            @*@Html.ActionLink("Edit Information", "EditInformation", "UserAccount",null,new { @class = "btn btn-primary"})*@
+        </div>
+    </div>
+}
+@section Scripts{
+    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+}

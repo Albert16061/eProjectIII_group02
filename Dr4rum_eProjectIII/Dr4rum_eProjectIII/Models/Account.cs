@@ -11,7 +11,8 @@ namespace Dr4rum_eProjectIII.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Account
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,15 +21,50 @@ namespace Dr4rum_eProjectIII.Models
             this.Posts = new HashSet<Post>();
             this.Topics = new HashSet<Topic>();
         }
-    
         public int Acc_ID { get; set; }
+
+        [Required(ErrorMessage ="User is not null!")]
+        [Display(Name = "UserName")]
+        [MaxLength (16, ErrorMessage = "UserName must be less than 16 characters")]
+        [MinLength(6, ErrorMessage = "UserName must be at least 6 characters")]
         public string UserName { get; set; }
+
+        [Required(ErrorMessage = "Password is not null!")]
+        [Display(Name = "Password")]
+        [MaxLength(32, ErrorMessage = "Password must be less than 32 characters")]
+        [MinLength(6, ErrorMessage = "Password must be at least 6 characters")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Required(ErrorMessage = "FirstName is not null!")]
+        [Display(Name = "FirstName")]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Enter only alphabets")]
+        [MaxLength(29 , ErrorMessage ="FirstName must be less than 29 character")]
         public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "LastName is not null!")]
+        [Display(Name = "LastName")]
+        [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Enter only alphabets")]
+        [MaxLength(29, ErrorMessage = "LastName must be less than 29 character")]
         public string LastName { get; set; }
+
+        [Required(ErrorMessage = "Email is not null!")]
+        [EmailAddress(ErrorMessage = "Invalid Email")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Address is not null!")]
+        [Display(Name = "Address")]
+        [MaxLength(100, ErrorMessage = "Address must be less than 100 characters")]
         public string Address { get; set; }
+
+        [Required(ErrorMessage = "Birthday is not null!")]
+        [Display(Name = "Birthday")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public System.DateTime Birthday { get; set; }
+
+        [Required(ErrorMessage = "Phone is not null!")]
+        [RegularExpression("^(01[2689]|09)[0-9]{8}$",ErrorMessage = "Invalid Phone")]
         public string Phone { get; set; }
         public bool Gender { get; set; }
         public string Role { get; set; }

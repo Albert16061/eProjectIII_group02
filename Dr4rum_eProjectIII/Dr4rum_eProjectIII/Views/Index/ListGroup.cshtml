@@ -16,73 +16,87 @@
     <!--- End Breadcrumb -->
     <div class="info-containt">
         <h2 style="margin-bottom: 15px;">@groupItem.Group_Name</h2>
-        @Html.ActionLink("Add Topic", "Create", "Topics", null, new { @class = "add-topic-btn btn-success", @id = "add-btn-addTopic" })
+        @if (Session["UserAccount"] != null)
+        {
+            @Html.ActionLink("Add Topic", "Create", "Topics", null, new { @class = "add-topic-btn btn-success", @id = "add-btn-addTopic" })
+        }
 
-        @foreach (var catItem in groupItem.Categories)
-    {
-        <div class="main-containt " id="LisGroup-mainContaint">
-            <!-- header -->
-            <div class="card cta cta--featured" id="catItem-containt">
-                <div class="card-block " id="header-ListGroup-containt">
-                    <div class="card-title no-margin-top" id="catItem-title">
-                        @catItem.Category_Name
-                        <span>
-                            @Html.ActionLink(" See More", "ListCategories", new { Category_Name = catItem.Category_Name }, new { @class = "btn btn-warning btn-moreCat" })
-                        </span>
-                    </div>
-                </div>
-                <span class="header-line gradient-color-1"></span>
-                <div class="card-block">
-                    <!-- Main Infomation -->
-                    <!-- Title -->
-                    <div class="alert alert-danger ListGroup-titleContaint tittle">
-                        <div class="ListGroup-topicTitle">
-                            Tiêu Đề
-                        </div>
-                        <div class="ListGroup-topicPostby">
-                            Người Đăng
-                        </div>
-                        <div class="ListGroup-topicDay">
-                            Ngày Đăng
+        @foreach (var catItem in groupItem.Categories.Where(c => c.SetV == true).ToList())
+        {
+            <div class="main-containt " id="LisGroup-mainContaint">
+                <!-- header -->
+                <div class="card cta cta--featured" id="catItem-containt">
+                    <div class="card-block " id="header-ListGroup-containt">
+                        <div class="card-title no-margin-top" id="catItem-title">
+                            @catItem.Category_Name
+                            <span>
+                                @Html.ActionLink(" See More", "ListCategories", new { Category_Name = catItem.Category_Name }, new { @class = "btn btn-warning btn-moreCat" })
+                            </span>
                         </div>
                     </div>
-                    <!-- Info-->
-                    <div class="ListGroup-mainInfo-containt alert alert-success">
-                        @foreach (var Topic in catItem.Topics.ToList().Take(3))
-                    {
-                        <div class="ListGroup-titleContaint" id="ListGroup-mainInfo">
+                    <span class="header-line gradient-color-1"></span>
+                    <div class="card-block">
+                        <!-- Main Infomation -->
+                        <!-- Title -->
+                        <div class="alert alert-danger ListGroup-titleContaint tittle">
                             <div class="ListGroup-topicTitle">
-                                <div class="info-Title">@Html.ActionLink(@Topic.Topic_Title, "TopicDetail", new { TopicTitle = @Topic.Topic_Title }, new { @class = "" }) </div>
+                                Tiêu Đề
                             </div>
                             <div class="ListGroup-topicPostby">
-                                @Topic.Account.UserName
+                                Người Đăng
                             </div>
                             <div class="ListGroup-topicDay">
-                                @{ DateTime dateTopic = Topic.date;
-                                var dateTopicF = dateTopic.ToString("dd/MM/yyyy");}
-                                @dateTopicF
+                                Ngày Đăng
                             </div>
                         </div>
-                }
+                        <!-- Info-->
+                        <div class="ListGroup-mainInfo-containt alert alert-success">
+                            @foreach (var Topic in catItem.Topics.ToList().Take(3))
+                            {
+                                <div class="ListGroup-titleContaint" id="ListGroup-mainInfo">
+                                    <div class="ListGroup-topicTitle">
+                                        <div class="info-Title">@Html.ActionLink(@Topic.Topic_Title, "TopicDetail", new { TopicTitle = @Topic.Topic_Title }, new { @class = "" }) </div>
+                                    </div>
+                                    <div class="ListGroup-topicPostby">
+                                        @Html.Raw("<a data-modal='' href='/Index/viewOtherDetails/" + Topic.Acc_ID + "' id='" + Topic.Acc_ID + "' title='Detail'> <span '>" + Topic.Account.UserName + "</span> </a>")
+                                    </div>
+                                    <div class="ListGroup-topicDay">
+                                        @{ DateTime dateTopic = Topic.date;
+                                            var dateTopicF = dateTopic.ToString("dd/MM/yyyy");}
+                                        @dateTopicF
+                                    </div>
+                                </div>
+                            }
+                        </div>
                     </div>
-                </div>
-                <!-- Footer -->
-                <div class="card-footer text-muted" id="footer-ListGroup-containt">
-                    <div class="footer-Topic-count">Total Topics: @catItem.Topics.Count</div>
-                    <div class="footer-Post-count">
-                        @{
-                        int sum = 0;
-                        foreach (var topicItem in catItem.Topics)
-                        {
-                            sum = sum + topicItem.Posts.Count;
-                        }
-                        }
-                        Total Posts: @sum
+                    <!-- Footer -->
+                    <div class="card-footer text-muted" id="footer-ListGroup-containt">
+                        <div class="footer-Topic-count">Total Topics: @catItem.Topics.Count</div>
+                        <div class="footer-Post-count">
+                            @{
+                                int sum = 0;
+                                foreach (var topicItem in catItem.Topics)
+                                {
+                                    sum = sum + topicItem.Posts.Count;
+                                }
+                            }
+                            Total Posts: @sum
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-}
+        }
     </div>
 }
-<script src="~/Scripts/MyScript/indexFunction.js"></script>
+<!-- modal placeholder -->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/Scripts/myScript.js");
+    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+}

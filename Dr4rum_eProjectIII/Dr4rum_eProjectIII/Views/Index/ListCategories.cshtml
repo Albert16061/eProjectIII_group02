@@ -15,52 +15,68 @@
     <!--- End Breadcrumb -->
     <div class="info-containt">
         <h2 style="margin-bottom: 15px">@Caterory.Category_Name</h2>
+    @if (Session["UserAccount"] != null)
+    {
         @Html.ActionLink("Add Topic", "Create", "Topics", null, new { @class = "add-topic-btn btn-success", @id = "add-btn-addTopic" })
-        <div class="main-containt ">
-            <div class="alert alert-warning  category-topic-titleContaint">
-                <div class="title-topicTitle">
-                    Tiêu Đề
-                </div>
-                <div class="title-topicDay">
-                    Ngày Đăng
-                </div>
-                <div class="title-topicPostnum">
-                    Số Bài Viết
-                </div>
-                <div class="title-topicPoster">
-                    Bài Viết Cuối
-                </div>
+    }
+    <div class="main-containt ">
+        <div class="alert alert-warning  category-topic-titleContaint">
+            <div class="title-topicTitle">
+                Tiêu Đề
             </div>
-            @foreach (var Topic in Caterory.Topics.ToList())
+            <div class="title-topicDay">
+                Ngày Đăng
+            </div>
+            <div class="title-topicPostnum">
+                Số Bài Viết
+            </div>
+            <div class="title-topicPoster">
+                Bài Viết Cuối
+            </div>
+        </div>
+        @foreach (var Topic in Caterory.Topics.Where(t => t.setV == true).ToList())
         {
             <div class="category-topic-info ">
                 <div class="info-topicTitle">
                     <div class="info-Title">@Html.ActionLink(@Topic.Topic_Title, "TopicDetail", new { TopicTitle = @Topic.Topic_Title }, new { @class = "" }) </div>
-                    <div class="info-Name">@Topic.Account.UserName</div>
+                    <div class="info-Name">
+                        @Html.Raw("<a data-modal='' href='/Index/viewOtherDetails/" + Topic.Acc_ID + "' id='" + Topic.Acc_ID + "' title='Detail'> <span '>" + Topic.Account.UserName + "</span> </a>")
+                    </div>
                 </div>
                 <div class="info-topicDay">
                     @{ DateTime dateTopic = Topic.date;
-                    var dateTopicF = dateTopic.ToString("dd/MM/yyyy");}
+                        var dateTopicF = dateTopic.ToString("dd/MM/yyyy");}
                     @dateTopicF
                 </div>
                 <div class="info-topicPostnum">
                     @Topic.Posts.Count()
                 </div>
                 @foreach (var post in Topic.Posts.OrderByDescending(a => a.Post_ID).Take(1))
-            {
-                <div class="post-info-containt">
-                    <div class="info-topicPoster">
-                        @post.Account.UserName
+                {
+                    <div class="post-info-containt">
+                        <div class="info-topicPoster">
+                            @Html.Raw("<a data-modal='' href='/Index/viewOtherDetails/" + post.Acc_ID + "' id='" + post.Acc_ID + "' title='Detail'> <span '>" + post.Account.UserName + "</span> </a>")
+                        </div>
+                        <div class="info-Name">
+                            @{ DateTime datePost = post.date;
+                                var datePostF = datePost.ToString("dd/MM/yyyy");}
+                            @datePostF
+                        </div>
                     </div>
-                    <div class="info-Name">
-                        @{ DateTime datePost = post.date;
-                        var datePostF = datePost.ToString("dd/MM/yyyy");}
-                        @datePostF
-                    </div>
-                </div>
-        }
+                }
             </div>
-    }
+        }
+    </div>
+    </div>
+}
+<!-- modal placeholder -->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
         </div>
     </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/Scripts/myScript.js");
 }

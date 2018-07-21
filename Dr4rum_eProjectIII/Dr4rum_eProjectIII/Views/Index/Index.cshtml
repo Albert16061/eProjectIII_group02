@@ -10,9 +10,12 @@
         <div class="btn btn-info c-info">
             @Html.ActionLink("Home", "Index", "Index", new { @class = "breadcrumb-link" })
         </div>
+            @if (Session["UserAccount"] != null)
+            {
         <div class="">
             @Html.ActionLink("Add Topic", "Create", "Topics", null, new { @class = "add-topic-btn btn-success" })
         </div>
+            }
     </div>
 </div>
 <!-- main info-->
@@ -58,7 +61,8 @@
                             </p>
                             <p class="new-topic">
                                 <!-- Owner Topic -->
-                                Đăng Bởi :   @topicItem.Account.UserName
+                                Đăng Bởi :   
+                                @Html.Raw("<a data-modal='' href='/Index/viewOtherDetails/" + topicItem.Acc_ID + "' id='" + topicItem.Acc_ID + "' title='Detail'> <span '>"+ @topicItem.Account.UserName+"</span> </a>")
                             </p>
                         }
                     </div>
