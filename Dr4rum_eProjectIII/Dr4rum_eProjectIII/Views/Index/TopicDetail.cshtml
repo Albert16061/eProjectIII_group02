@@ -21,7 +21,7 @@
             <div class="avt-header-containt">
                 <img src="~/Image/Logo_Icon/avatar-50.png" class="header-avt" alt="Responsive image">
                 <div class="TopicDetail-name-topicPoster info-Title">
-                    @Topic.Account.UserName
+                    @Html.Raw("<a data-modal='' href='/Index/viewOtherDetails/" + Topic.Acc_ID + "' id='" + Topic.Acc_ID + "' title='Detail'> <span '>" + Topic.Account.UserName + "</span> </a>")
                 </div>
                 <div class="TopicDetail-name-topicDay info-Name">
                     @{ DateTime dateTopic = Topic.date;
@@ -60,7 +60,7 @@
                     <div class="avt-header-containt" id="topic-avt-header-containt">
                         <img src="~/Image/Logo_Icon/avatar-50.png" class="header-avt" alt="Responsive image">
                         <div class="TopicDetail-name-topicPoster info-Title">
-                            @listPost.Account.UserName
+                            @Html.Raw("<a data-modal='' href='/Index/viewOtherDetails/" + listPost.Acc_ID + "' id='" + listPost.Acc_ID + "' title='Detail'> <span '>" + listPost.Account.UserName + "</span> </a>")
                         </div>
                         <div class="TopicDetail-name-topicDay info-Name" id="post-day">
                             @{ DateTime datePost = listPost.date;
@@ -85,7 +85,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 @section Scripts {
     <script src="~/Scripts/MyScript/indexFunction.js"></script>
-    @Scripts.Render("~/Scripts/myScript.js")
+    <script src="~/Scripts/myScript.js"></script>
     <script type="text/javascript">
         $('.dropdown-toggle').dropdown()
         //For partialView addPost

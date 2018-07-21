@@ -12,7 +12,7 @@ namespace Dr4rum_eProjectIII.Controllers
 {
     public class PostsController : Controller
     {
-        private Dr4rumEntities db = new Dr4rumEntities();
+        private Dr4rumEntities3 db = new Dr4rumEntities3();
 
         // GET: Posts
         public ActionResult Index()
@@ -119,7 +119,7 @@ namespace Dr4rum_eProjectIII.Controllers
         {
             Post post = db.Posts.Find(id);
             var result = db.Posts.Where(y => y.Post_ID == id).Select(x => x.Post_ID).ToList();
-            if (result.Count > 0)
+            if (result.Count() > 0)
             {
                 db.Posts.Remove(post);
                 db.SaveChanges();

@@ -80,15 +80,12 @@ namespace Dr4rum_eProjectIII.Controllers
                             Role = res.Role
                         };
                         Session["UserAccount"] = userProfile;
+                        Session["Role"] = userProfile.Role;
+                        Session["ID"] = userProfile.Acc_ID;
                         if (userProfile.Role == "A")
-                        {
-                            return RedirectToAction("Index", "adminIndex");
-                        }
+                        {   return RedirectToAction("Index", "AdminIndex");  }
                         else
-                        {
-                            return RedirectToAction("Index", "Home");
-                        }
-
+                        {   return RedirectToAction("Index", "Index");  }
                     }
                     else
                     {
@@ -103,13 +100,11 @@ namespace Dr4rum_eProjectIII.Controllers
             }
 
         }
-
-
-
         public ActionResult Logout()
         {
             Session["UserAccount"] = null;
-            return RedirectToAction("Index", "Home");
+            Session["Role"] = null;
+            return RedirectToAction("Index", "Index");
         }
 
         public ActionResult Register()
@@ -146,7 +141,7 @@ namespace Dr4rum_eProjectIII.Controllers
         }
 
 
-        public ActionResult Information(int ID)
+        public ActionResult Information(int? ID)
         {
             var accID = ID;
             var listInfo = db.Accounts.Where(a => a.Acc_ID == accID).ToList();
@@ -326,13 +321,12 @@ namespace Dr4rum_eProjectIII.Controllers
                     rs.Password = passwordMD5.ToLower();
                     db.SaveChanges();
                     return RedirectToAction("Login");
-
                 }
                 else
                 {
                     if (account.Phone != oldphone)
                     {
-                        ViewBag.ErrorOld_Phone = "Isvalid Phone";
+                        ViewBag.ErrorOld_Phone = "This is not your phone's number";
                         return View(account);
                     }
                     else if (cfpassword != newpassword)
@@ -356,5 +350,5 @@ namespace Dr4rum_eProjectIII.Controllers
         }
     }
 
-        
+
 }

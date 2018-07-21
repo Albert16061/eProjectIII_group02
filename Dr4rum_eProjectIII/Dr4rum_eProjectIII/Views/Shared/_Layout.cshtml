@@ -26,39 +26,55 @@
             </div>
         </div>
     </div>
-    <script src="~/Scripts/MyScript/login.js" `></script>
     <div class="container body-content">
         <nav class="navbar navbar-expand-lg navbar-dark  bg-dark ">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            @*this code is used to check role => router for each role*@
+            @{
+                var role = Session["Role"];
+                if (role == null)
+                {
+                    role = "U";
+                }
+            }
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <div class="navbar-header pull-left">
-                    <a class="navbar-brand navbar-title" href="@Url.Action("Index", "Index")">
-                        <img src="~/Image/Logo_Icon/red_cross.png" class="navbar-logo" alt="Site Logo" /> Dr4rum
-                    </a>
+                    @if (role.ToString() != "A")
+                    {
+                        <a class="navbar-brand navbar-title" href="@Url.Action("Index", "Index")">
+                            <img src="~/Image/Logo_Icon/red_cross.png" class="navbar-logo" alt="Site Logo" /> Dr4rum
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="navbar-brand navbar-title" href="@Url.Action("Index", "AdminIndex")">
+                            <img src="~/Image/Logo_Icon/red_cross.png" class="navbar-logo" alt="Site Logo" /> Dr4rum
+                        </a>
+                    }
                 </div>
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     @Html.Action("CategoryDropDown", "Index")
                 </ul>
 
-                <!-- Searching-->
-                <form class="form-inline my-2 my-lg-0 searching">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                @*Searching
+                    <form class="form-inline my-2 my-lg-0 searching">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                    </form>*@
 
                 <!-- Button Login -->
                 <div class="form-inline my-2 my-lg-0">
                     @if (Session["UserAccount"] == null)
                     {
                         <button id="btnlogin" class="my-2 my-sm-0 btn btn-outline-warning btn-login nav-link ">Login</button>
-                        <button id="btnregister" class="my-2 my-sm-0 btn  btn-outline-light nav-link " type="submit">  @Html.ActionLink("Register", "Register", "UserAccount", null, new { @class = "" })</button>
+                        <button id="btnregister" class="my-2 my-sm-0 btn  btn-outline-light nav-link " type="submit">  @Html.ActionLink("Register", "Register", "UserAccount", null, new { @class = "link-register" })</button>
                     }
                     else
                     {
-                        <div>@Html.ActionLink("Hello : " + account.UserName.ToString(), "Information", "UserAccount",new { ID = account.Acc_ID.ToString()} ,new { @class = "nav-link" })</div>
-                        <div class="nav-link"> @Html.ActionLink("Logout", "Logout", "UserAccount")</div>
+                        <div class="">@Html.ActionLink("Hello : " + account.UserName.ToString(), "Information", "UserAccount", new { ID = account.Acc_ID.ToString() }, new { @class = "nav-link getting-layout" })</div>
+                        <div class="nav-link"> @Html.ActionLink("Logout", "Logout", "UserAccount", null, new { @class = "btn  btn-outline-light nav-link" })</div>
                     }
                 </div>
             </div>
@@ -84,8 +100,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
-        <script src="~/Scripts/MyJQuery.js"></script>
-        @RenderSection("scripts", required: false)
+    @*<script src="~/Scripts/MyJQuery.js"></script>*@
 
 </body>
 </html>

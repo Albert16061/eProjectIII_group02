@@ -10,7 +10,7 @@ namespace Dr4rum_eProjectIII.Controllers
 {
     public class AdminIndexController : Controller
     {
-        Dr4rumEntities db = new Dr4rumEntities();
+        Dr4rumEntities3 db = new Dr4rumEntities3();
         //Get: Account List
         public async Task<ActionResult> ListAccount()
         {

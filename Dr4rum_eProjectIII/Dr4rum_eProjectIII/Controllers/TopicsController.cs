@@ -15,14 +15,12 @@ namespace Dr4rum_eProjectIII.Controllers
 {
     public class TopicsController : Controller
     {
-        private Dr4rumEntities db = new Dr4rumEntities();
+        private Dr4rumEntities3 db = new Dr4rumEntities3();
 
         // GET: Topics
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? ID)
         {
-            //    var topics = db.Topics.Include(t => t.Acc_ID==1).Include(t => t.Category);
-            //    return View(topics.ToList());
-            var topics = db.Topics.Where(t => t.Acc_ID == 1 && t.setV == true).ToList();
+            var topics = db.Topics.Where(t => t.Acc_ID == ID && t.setV == true).ToList();
             return View(topics);
         }
 
@@ -64,7 +62,7 @@ namespace Dr4rum_eProjectIII.Controllers
                 {
                     db.Topics.Add(topic);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Index");
                 }
                 else
                 {

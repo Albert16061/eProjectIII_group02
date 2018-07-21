@@ -12,7 +12,7 @@ namespace Dr4rum_eProjectIII.Controllers
 {
     public class AdminTopicManagerController : Controller
     {
-        Dr4rumEntities db = new Dr4rumEntities();
+        Dr4rumEntities3 db = new Dr4rumEntities3();
         // GET: AdminTopicManager
         public async Task<ActionResult> Index()
         {

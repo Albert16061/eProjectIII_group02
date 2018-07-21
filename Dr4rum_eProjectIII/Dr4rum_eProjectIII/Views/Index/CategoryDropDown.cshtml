@@ -1,28 +1,57 @@
 ﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Group>
-    <!-- This view display a Category DropDownList that is containt by _Layout-->
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Groups
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="Group">
-        @foreach (var groupItem in Model)
-        {
-            @Html.ActionLink(groupItem.Group_Name, "ListGroup", new { Group_name = @groupItem.Group_Name }, new { @class = "dropdown-item" })
-        }
-    </div>
-</li>
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Categories
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="Cat">
-        @foreach (var groupItem in Model)
-        {
-            foreach (var catItem in groupItem.Categories)
+<!-- This view display a Category DropDownList that is containt by _Layout-->
+@{
+    var role = Session["Role"];
+    if (role == null)
+    {
+        role = "U";
+    }
+}
+@if (role.ToString().Equals("A"))
+{
+    <li class="nav-item">
+        @Html.ActionLink("Group ", "Index", "AdminGroupManager", null, new { @class = "nav-link" })
+    </li>
+    <li class="nav-item">
+        @Html.ActionLink("Category ", "Index", "AdminCatManager", null, new { @class = "nav-link" })
+    </li>
+    <li class="nav-item">
+        @Html.ActionLink("Account ", "Index", "AdminAccManager", null, new { @class = "nav-link" })
+    </li>
+    <li class="nav-item">
+        @Html.ActionLink("Topic ", "Index", "AdminTopicManager", null, new { @class = "nav-link" })
+    </li>
+    <li class="nav-item">
+        @Html.ActionLink("Post ", "Index", "AdminPostManager", null, new { @class = "nav-link" })
+    </li>
+}
+else
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Groups
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="Group">
+            @foreach (var groupItem in Model)
             {
-                @Html.ActionLink(catItem.Category_Name, "ListCategories", new { Category_Name = @catItem.Category_Name }, new { @class = "dropdown-item" })
+                @Html.ActionLink(groupItem.Group_Name, "ListGroup", new { Group_name = @groupItem.Group_Name }, new { @class = "dropdown-item" })
             }
-        }
-    </div>
-</li>
+        </div>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categories
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="Cat">
+            @foreach (var groupItem in Model)
+            {
+                foreach (var catItem in groupItem.Categories)
+                {
+                    @Html.ActionLink(catItem.Category_Name, "ListCategories", new { Category_Name = @catItem.Category_Name }, new { @class = "dropdown-item" })
+                }
+            }
+        </div>
+    </li>
+}
+
 

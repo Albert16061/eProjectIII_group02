@@ -11,18 +11,26 @@
         </script>
     }
 }
-
-<h2>@ViewBag.Title.</h2>
-
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
+<!-- Banner-->
+<img src="~/Image/Banner_Pic/User/register_banner.jpg" class="img-fluid" alt="Responsive image">
+<!-- breadcrumb-->
+<div class="breadcrumb-containt">
+    <div class="btn-group btn-breadcrumb breadcrumb-primary">
+        <a href="@Url.Action("Index", "Index")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+        <a href="@Url.Action("Index", "Index")" class="btn btn-primary breadcrumb-link ">Home</a>
+        <div class="btn btn-info c-info breadcrumb-link"> Register</div>
+    </div>
+</div>
 @using (Html.BeginForm("Register", "UserAccount", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = " form-horizontal", role = "from" }))
 {
     @Html.AntiForgeryToken()
     <hr />
     <div class="row">
         <div class="col-md-6">
-
             <div class="form-group">
-                @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(m => m.UserName, new { @class = "col-md-12 control-label" })
                 <div class="col-md-10">
                     @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
@@ -30,28 +38,28 @@
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-12 control-label" })
                 <div class="col-md-10">
                     @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-2 control-label">Confirm password</label>
+                <label class="col-md-12 control-label">Confirm password</label>
                 <div class="col-md-10">
                     <input type="password" name="txtConfirmPassword" class="form-control" />
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(m => m.FirstName, new { @class = "col-md-12 control-label" })
                 <div class="col-md-10">
                     @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(m => m.LastName, new { @class = "col-md-12 control-label" })
                 <div class="col-md-10">
                     @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
@@ -59,7 +67,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
+                @Html.LabelFor(m => m.Gender, new { @class = "col-md-12 control-label" })
                 <div class="col-md-10">
                     <div class="form-check">
                         @Html.RadioButtonFor(m => m.Gender, true, new { @id = "gender-male" })
@@ -80,7 +88,7 @@
             <div class="form-group">
                 <div class="col-md-10">
                     <label>Birthday</label>
-                    @Html.EditorFor(m => m.Birthday, new { @htmlAttributes = new { @class = "form-control", @min = "today", @max = "2100-01-01" } })
+                    @Html.EditorFor(m => m.Birthday, new { @htmlAttributes = new { @class = "form-control", @min = "1990-01-01", @max = "2100-01-01" } })
                     @Html.ValidationMessageFor(m => m.Birthday, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -146,32 +154,34 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Register" class="btn btn-default" />
+            <input type="submit" value="Register" class="btn btn-success" />
         </div>
     </div>
 }
+@section Scripts{
+    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+    <script type="text/javascript">
+        $('[name="select-role"]').on('change', function () {
+            $('[name="Role"]').val($(this).val());
+            if ($(this).val() == 'D') {
+                $('#doctor-attrib').show();
+                $('#Speciality').prop('required', true);
+                $('#Experience').prop('required', true);
+                $('#Achievement').prop('required', true);
+            } else {
+                $('#doctor-attrib').hide();
+                $('#Speciality').prop('required', false);
+                $('#Experience').prop('required', false);
+                $('#Achievement').prop('required', false);
+            }
+        });
 
-<script type="text/javascript">
-    $('[name="select-role"]').on('change', function () {
-        $('[name="Role"]').val($(this).val());
-        if ($(this).val() == 'D') {
-            $('#doctor-attrib').show();
-            $('#Speciality').prop('required', true);
-            $('#Experience').prop('required', true);
-            $('#Achievement').prop('required', true);
-        } else {
-            $('#doctor-attrib').hide();
-            $('#Speciality').prop('required', false);
-            $('#Experience').prop('required', false);
-            $('#Achievement').prop('required', false);
-        }
-    });
-
-    $('[type="submit"]').on('click', function (e) {
-        if ($('[name="txtConfirmPassword"]').val() != $('[name="Password"]').val()) {
-            alert('Confirm password did not match!');
-            e.preventDefault();
-            $('[name="txtConfirmPassword"]').focus();
-        }
-    });
-</script>
+        $('[type="submit"]').on('click', function (e) {
+            if ($('[name="txtConfirmPassword"]').val() != $('[name="Password"]').val()) {
+                alert('Confirm password did not match!');
+                e.preventDefault();
+                $('[name="txtConfirmPassword"]').focus();
+            }
+        });
+    </script>
+}

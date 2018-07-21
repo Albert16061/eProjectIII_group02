@@ -1,90 +1,134 @@
 ﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Account>
-<div class="index-list-containt">
-    <div class="index-list">
 
-        @foreach (var accountItem in Model)
-        {
-            <div class="UserName">
-                <span class="UserName-Title"> User Name: </span>
-                <span class="UserName-Info"> @accountItem.UserName </span>
-            </div>
-            <div class="First-name">
-                <span class="FirstName-Title"> First Name: </span>
-                <span class="FirstName-Info"> @accountItem.FirstName </span>
-            </div>
-            <div class="Last-name">
-                <span class="LastName-Title"> Last Name: </span>
-                <span class="LastName-Info"> @accountItem.LastName </span>
-            </div>
-            <div class="Email">
-                <span class="Email-Title"> Email: </span>
-                <span class="Email-Info"> @accountItem.Email </span>
-            </div>
-            <div class="Phone">
-                <span class="Phone-Title"> Phone: </span>
-                <span class="Phone-Info"> @accountItem.Phone </span>
-            </div>
-            <div class="Address">
-                <span class="Address-Title"> Address: </span>
-                <span class="Address-Info"> @accountItem.Address </span>
-            </div>
-            <div class="Birthday">
-                <span class="Birthday-Title"> Birthday: </span>
-                <span class="Birthday-Info"> @accountItem.Birthday </span>
-            </div>
-            <div class="Gender">
-                <span class="Gender-Title"> Gender: </span>
-                @if (accountItem.Gender)
-                {
-                    <span class="Gender-Info"> Male </span>
-                }
-                else
-                {
-                    <span class="Gender-Info"> Female </span>
-                }
-            </div>
-            <div class="Incognito">
-                <span class="Incognito-Title"> Incognito: </span>
-                @if (accountItem.Incognito)
-                {
-                    <span class="Incognito-Info">Incognito</span>
-                }
-                else
-                {
-                    <span class="Incognito-Info"> Not Incognito </span>
-                }
-            </div>
-            if (accountItem.Role == "D")
-            {
-                <div class="Speciality">
-                    <span class="Speciality-Title"> Speciality: </span>
-                    <span class="Speciality-Info"> @accountItem.Speciality </span>
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
+<!-- Banner-->
+<img src="~/Image/Banner_Pic/User/register_banner.jpg" class="img-fluid" alt="Responsive image">
+@foreach (var accountItem in Model)
+{
+    <!-- breadcrumb-->
+    <div class="breadcrumb-containt">
+        <div class="btn-group btn-breadcrumb breadcrumb-primary">
+            <a href="@Url.Action("Index", "Index")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+            <a href="@Url.Action("Index", "Index")" class="btn btn-primary breadcrumb-link ">Home</a>
+            <div class="btn btn-info c-info breadcrumb-link"> @accountItem.UserName</div>
+        </div>
+    </div>
+    <!-- Main Info -->
+    <div class="index-list-containt" style="overflow-x: auto">
+        <div class="justify-content-md-center" style="padding-top: 30px; margin: auto">
+            <!-- Col 1 -->
+            <div class="row" style="margin: auto; text-align: center; margin-bottom: 20px">
+                <div class="Avatar col-12">
+                    @if (accountItem.Avatar == null)
+                    {
+                        <img style="width:200px" src="~/Image/avatar/shutterstock_534491617-600.jpg" />
+                    }
+                    else
+                    {
+                        <img style="width:200px" src="~/Image/avatar/@accountItem.Avatar" />
+                    }
                 </div>
-                <div class="Experience">
-                    <span class="Experience-Title"> Experience: </span>  
-                    <span class="Experience-Info"> @accountItem.Experience </span>
+                <div class="Information-UserName col-12" style="margin-bottom: 10px;">
+                    <span class="UserName-Info"> @accountItem.UserName </span>
                 </div>
-                <div class="Achievement">
-                    <span class="Achievement-Title"> Achievement: </span>
-                    <span class="Achievement-Info"> @accountItem.Achievement </span>
+                <div class="col-12">
+                    @Html.ActionLink("List Topic", "Index", "Topics", new { ID = accountItem.Acc_ID }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Change Password", "ChangePassword", "UserAccount", null, new { @class = "btn btn-primary" })
                 </div>
-            }
+            </div>
+            <!-- Col 2 -->
+            <div class="row">
+                <div class="col-md-6 col-6 columns_2">
+                    <div class="FirstName-Title "> First Name: </div>
+                    <div class="LastName-Title"> Last Name: </div>
+                    <div class="Email-Title"> Email: </div>
+                    <div class="Phone-Title"> Phone: </div>
+                    <div class="Address-Title"> Address: </div>
+                    <div class="Birthday-Title"> Birthday: </div>
+                    <div class="Gender-Title"> Gender: </div>
+                    <div class="Incognito-Title"> Incognito: </div>
+                    @if (accountItem.Role == "D")
+                    {
+                        <div class="Speciality-Title"> Speciality: </div>
+                        <div class="Experience-Title"> Experience: </div>
+                        <div class="Achievement-Title"> Achievement: </div>
+                    }
+                </div>
+                <!-- Col 3-->
+                <div class="col-6">
+                    <div>@accountItem.FirstName </div>
+                    <div>@accountItem.LastName </div>
+                    <div>@accountItem.Email </div>
+                    <div>
+                        @{
+                            var phone = accountItem.Phone;
+                            var First = phone.Substring(0, 2);
+                            var Last = phone.Substring(phone.Length - 3, 3);
+                            var EncryptPhone = First + "XXXXX" + Last;
+                        }
+                        @EncryptPhone
+                    </div>
+                    <div>@accountItem.Address </div>
+                    <div>@accountItem.Birthday.ToString("dd/MM/yyyy") </div>
+                    @if (accountItem.Gender)
+                    {
+                        <div class="Gender-Info"> Male </div>
+                    }
+                    else
+                    {
+                        <div class="Gender-Info"> Female </div>
+                    }
+                    @if (accountItem.Incognito)
+                    {
+                        <div class="Incognito-Info">Yes</div>
+                    }
+                    else
+                    {
+                        <div class="Incognito-Info"> No </div>
+                    }
+                    @if (accountItem.Role == "D")
+                    {
+                        var Speciality = accountItem.Speciality;
+                        if (Speciality == null)
+                        {
+                            <div>None</div>
+                        }
+                        else
+                        {
+                            <div>@Speciality</div>
+                        }
 
-            <div class="Avatar">
-                <span class="Avatar-Title"> Avatar: </span>
-                @if (accountItem.Avatar == null)
-                {
-                    <img style="width:200px" src="~/Image/avatar/shutterstock_534491617-600.jpg" />
-                }
-                else
-                {
-                   <img style="width:200px" src="~/Image/avatar/@accountItem.Avatar"/>
-                }
+                        var Experience = accountItem.Experience;
+                        if (Experience == null)
+                        {
+                            <div>None</div>
+                        }
+                        else
+                        {
+                            <div>@Experience</div>
+                        }
+
+                        var Achievement = accountItem.Achievement;
+                        if (Achievement == null)
+                        {
+                            <div>None</div>
+                        }
+                        else
+                        {
+                            <div>@Achievement</div>
+                        }
+                    }
+                </div>
             </div>
-        }
+
+        </div>
+
+        <div class="p-5">
+            @*@Html.ActionLink("Edit Information", "EditInformation", "UserAccount",null,new { @class = "btn btn-primary"})*@
+        </div>
     </div>
-    <div class="p-5">
-        @*@Html.ActionLink("Edit Information", "EditInformation", "UserAccount",null,new { @class = "btn btn-primary"})*@
-        @Html.ActionLink("Change Password", "ChangePassword", "UserAccount",null,new { @class = "btn btn-primary"  })
-    </div>
-</div>
+}
+@section Scripts{
+    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+}
