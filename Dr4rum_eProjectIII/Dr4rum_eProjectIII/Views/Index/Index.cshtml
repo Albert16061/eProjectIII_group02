@@ -10,12 +10,12 @@
         <div class="btn btn-info c-info">
             @Html.ActionLink("Home", "Index", "Index", new { @class = "breadcrumb-link" })
         </div>
-            @if (Session["UserAccount"] != null)
-            {
-        <div class="">
-            @Html.ActionLink("Add Topic", "Create", "Topics", null, new { @class = "add-topic-btn btn-success" })
-        </div>
-            }
+        @if (Session["UserAccount"] != null)
+        {
+            <div class="">
+                @Html.ActionLink("Add Topic", "Create", "Topics", null, new { @class = "add-topic-btn btn-success" })
+            </div>
+        }
     </div>
 </div>
 <!-- main info-->
@@ -46,23 +46,25 @@
                     <div class="Topic-info ">
                         <!-- new Topic Title -->
                         <p class="new-topic">
+                            <!-- take the new topic title of the category user choice-->
                             Bài mới :
-                            @foreach (var topicItem in cateItem.Topics.Take(1))
+                            @foreach (var topicItem in cateItem.Topics.OrderByDescending(t => t.date).Take(1))
                             {
                                 @Html.ActionLink(@topicItem.Topic_Title, "TopicDetail", new { TopicTitle = @topicItem.Topic_Title }, new { @class = "" })
                             }
                         </p>
-                        @foreach (var topicItem in cateItem.Topics.Take(1))
+                        @foreach (var topicItem in cateItem.Topics.OrderByDescending(t => t.date).Take(1))
                         {
                             <p class="new-topic">
-                                <!-- Date post Topic -->
+                                <!-- Loop the new topic  of the category user choice-->
+                                <!-- Take date post Topic -->
                                 Ngày Đăng :
                                 @topicItem.date
                             </p>
                             <p class="new-topic">
-                                <!-- Owner Topic -->
-                                Đăng Bởi :   
-                                @Html.Raw("<a data-modal='' href='/Index/viewOtherDetails/" + topicItem.Acc_ID + "' id='" + topicItem.Acc_ID + "' title='Detail'> <span '>"+ @topicItem.Account.UserName+"</span> </a>")
+                                <!-- Take owner Topic -->
+                                Đăng Bởi :
+                                @Html.Raw("<a data-modal='' href='/Index/viewOtherDetails/" + topicItem.Acc_ID + "' id='" + topicItem.Acc_ID + "' title='Detail'> <span '>" + @topicItem.Account.UserName + "</span> </a>")
                             </p>
                         }
                     </div>
@@ -80,6 +82,6 @@
     </div>
 </div>
 @section Scripts{
-    @Scripts.Render("~/Scripts/myScript.js");
-    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+    @Scripts.Render("~/Scripts/myScript.js"); <!-- this script for modal-->
+    <script src="~/Scripts/MyScript/indexFunction.js"></script> <!-- this script for scroll-top-button-->
 }

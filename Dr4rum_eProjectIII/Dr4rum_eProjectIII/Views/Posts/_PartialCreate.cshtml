@@ -26,10 +26,12 @@
                     @Html.TextBoxFor(model => model.Topic_Tile, new { @Value = topicTitle.ToString(), htmlAttributes = new { @class = "formcontrol required TopicDelete-formControl", @disabled = "disabled", @id = "TopicDelete-overflow" } })
                 </div>
             </div>
-
+            @{
+                int ID = Convert.ToInt32(Session["ID"]);
+            }
             <div class="form-group row hide">
                 <div class="col-sm-10">
-                    @Html.TextBoxFor(model => model.Acc_ID, new { @Value = 1, htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextBoxFor(model => model.Acc_ID, new { @Value = ID, htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
 

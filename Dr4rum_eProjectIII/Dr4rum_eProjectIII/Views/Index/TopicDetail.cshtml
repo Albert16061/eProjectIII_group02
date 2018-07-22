@@ -38,14 +38,16 @@
         </div>
         <div class="separate-containt position-relative">
             @Html.Raw("<a data-modal='' href='/Posts/_PartialCreate/'> <span class='btn btn-warning add-post-btn'>Add Post</span> </a>")
-            @*@Html.ActionLink("Add Post", "_PartialCreate","Posts", new { Topic_Title = Topic.Topic_Title }, new { @class = "btn btn-warning add-post-btn editCourseModal", @data_target = "editCourseModal" })*@
-
         </div>
         @foreach (var listPost in Topic.Posts)
         {
             <div class="alert alert-primary" id="topic-containt">
-                @if (listPost.Acc_ID == 1)
+                @{
+                    int ID = Convert.ToInt32(Session["ID"]);
+                }
+                @if (listPost.Acc_ID == ID)
                 {
+                    <!-- If the poster who post this topic is the current user, edit button group will be display -->
                     <div class="edit-btn dropdown">
                         <a class="dropdown-toggle edit-btn-href" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="~/Image/Logo_Icon/edit-48.png" />

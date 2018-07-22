@@ -16,7 +16,10 @@
         <a href="@Url.Action("Index", "Index")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
         <a href="@Url.Action("Index", "Index")" class="btn btn-primary breadcrumb-link ">Home</a>
         @Html.ActionLink("UserName", "ListGroup", new { }, new { @class = "btn btn-primary breadcrumb-link" })
-        @Html.ActionLink("List Topic", "Index", "Topics", new { id = 4 }, new { @class = "btn btn-primary breadcrumb-link" })
+        @{
+        int ID = Convert.ToInt32(Session["ID"]);
+        }
+        @Html.ActionLink("List Topic", "Index", "Topics", new { id = ID }, new { @class = "btn btn-primary breadcrumb-link" })
         <div class="btn btn-info c-info breadcrumb-link"> Edit Topic </div>
     </div>
 </div>

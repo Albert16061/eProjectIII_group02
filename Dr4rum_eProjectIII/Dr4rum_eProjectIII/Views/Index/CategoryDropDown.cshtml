@@ -9,7 +9,7 @@
 }
 @if (role.ToString().Equals("A"))
 {
-    <li class="nav-item">
+    <li class="nav-item"> <!-- Declare router with role -->
         @Html.ActionLink("Group ", "Index", "AdminGroupManager", null, new { @class = "nav-link" })
     </li>
     <li class="nav-item">

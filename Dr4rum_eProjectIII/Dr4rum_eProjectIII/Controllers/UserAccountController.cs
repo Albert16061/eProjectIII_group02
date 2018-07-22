@@ -132,7 +132,6 @@ namespace Dr4rum_eProjectIII.Controllers
 
                     ViewBag.MessageForUsername = "Success";
                     return View();
-                    // return RedirectToAction("Login", "UserAccount");
                 }
             }
             return View(account);
@@ -146,8 +145,6 @@ namespace Dr4rum_eProjectIII.Controllers
             var accID = ID;
             var listInfo = db.Accounts.Where(a => a.Acc_ID == accID).ToList();
             return View(listInfo);
-            //Account account = (Account)Session["UserInformation"];
-            //return View(account);
         }
 
         public async Task<ActionResult> EditInformation()
