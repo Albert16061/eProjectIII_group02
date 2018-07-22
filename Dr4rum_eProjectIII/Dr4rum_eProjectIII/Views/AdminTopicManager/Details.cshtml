@@ -25,7 +25,14 @@
         <div>
             <div class="btn-containt">
                 @Html.ActionLink("Back ", "Index", null, new { @class = "btn btn-info" })
-                @Html.ActionLink("Edit", "Edit", new { title = Model.Topic_Title }, new { @class = "btn btn-success"})
+                @{
+                    int ID = Convert.ToInt32(Session["ID"]);
+                }
+                @if (Model.Acc_ID == ID)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { title = Model.Topic_Title }, new { @class = "btn btn-success" })
+                }
+
             </div>
             <div class="dl-horizontal">
                 <div class="Banner-title-info" style="text-align:center">
@@ -49,4 +56,4 @@
 </div>
 @section Scripts{
     <script src="~/Scripts/MyScript/indexFunction.js"></script>
-    }
+}
