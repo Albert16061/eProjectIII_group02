@@ -25,6 +25,7 @@
           <Property Name="Speciality" Type="nvarchar" MaxLength="250" />
           <Property Name="Experience" Type="nvarchar" MaxLength="250" />
           <Property Name="Achievement" Type="nvarchar" MaxLength="250" />
+          <Property Name="Avatar" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -51,6 +52,17 @@
           <Property Name="Post_Info" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Like_Num" Type="int" Nullable="false" />
           <Property Name="Dislike_Num" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Topic">
           <Key>
@@ -62,6 +74,7 @@
           <Property Name="setV" Type="bit" Nullable="false" />
           <Property Name="Topic_Info" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Report" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_Category_Group">
           <End Role="Group" Type="Self.Group" Multiplicity="1" />
@@ -128,6 +141,7 @@
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Topic" EntityType="Self.Topic" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Category_Group" Association="Self.FK_Category_Group">
             <End Role="Group" EntitySet="Group" />
@@ -175,6 +189,7 @@
           <Property Name="Speciality" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Experience" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Achievement" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Posts" Relationship="Self.FK_Post_Accounts1" FromRole="Accounts" ToRole="Post" />
           <NavigationProperty Name="Topics" Relationship="Self.FK_Topic_Accounts1" FromRole="Accounts" ToRole="Topic" />
         </EntityType>
@@ -206,8 +221,19 @@
           <Property Name="Post_Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Like_Num" Type="Int32" Nullable="false" />
           <Property Name="Dislike_Num" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Account" Relationship="Self.FK_Post_Accounts1" FromRole="Post" ToRole="Accounts" />
           <NavigationProperty Name="Topic" Relationship="Self.FK_Post_Topic" FromRole="Post" ToRole="Topic" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Topic">
           <Key>
@@ -219,6 +245,7 @@
           <Property Name="setV" Type="Boolean" Nullable="false" />
           <Property Name="Topic_Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Report" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Account" Relationship="Self.FK_Topic_Accounts1" FromRole="Topic" ToRole="Accounts" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Topic_Category" FromRole="Topic" ToRole="Category" />
           <NavigationProperty Name="Posts" Relationship="Self.FK_Post_Topic" FromRole="Topic" ToRole="Post" />
@@ -283,11 +310,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Dr4rumEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Dr4rumEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Groups" EntityType="Self.Group" />
           <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Topics" EntityType="Self.Topic" />
           <AssociationSet Name="FK_Post_Accounts1" Association="Self.FK_Post_Accounts1">
             <End Role="Accounts" EntitySet="Accounts" />
@@ -315,7 +343,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Dr4rumModelStoreContainer" CdmEntityContainer="Dr4rumEntities">
+        <EntityContainerMapping StorageEntityContainer="Dr4rumModelStoreContainer" CdmEntityContainer="Dr4rumEntities3">
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="Dr4rumModel.Account">
               <MappingFragment StoreEntitySet="Accounts">
@@ -335,6 +363,7 @@
                 <ScalarProperty Name="Speciality" ColumnName="Speciality" />
                 <ScalarProperty Name="Experience" ColumnName="Experience" />
                 <ScalarProperty Name="Achievement" ColumnName="Achievement" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -364,6 +393,18 @@
                 <ScalarProperty Name="Post_Info" ColumnName="Post_Info" />
                 <ScalarProperty Name="Like_Num" ColumnName="Like_Num" />
                 <ScalarProperty Name="Dislike_Num" ColumnName="Dislike_Num" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Dr4rumModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -376,6 +417,7 @@
                 <ScalarProperty Name="setV" ColumnName="setV" />
                 <ScalarProperty Name="Topic_Info" ColumnName="Topic_Info" />
                 <ScalarProperty Name="Report" ColumnName="Report" />
+                <ScalarProperty Name="date" ColumnName="date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

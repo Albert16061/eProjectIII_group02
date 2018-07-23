@@ -12,29 +12,14 @@ namespace Project_III_Dr4rum.Controllers
 {
     public class GroupsController : Controller
     {
-        private Dr4rumEntities db = new Dr4rumEntities();
+        private Dr4rumEntities3 db = new Dr4rumEntities3();
 
         // GET: Groups
         public ActionResult Index()
         {
             return View(db.Groups.ToList());
         }
-
-        // GET: Groups/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Group group = db.Groups.Find(id);
-            if (group == null)
-            {
-                return HttpNotFound();
-            }
-            return View(group);
-        }
-
+        
         // GET: Groups/Create
         public ActionResult Create()
         {
@@ -42,51 +27,25 @@ namespace Project_III_Dr4rum.Controllers
         }
 
         // POST: Groups/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Group_Name,SetV")] Group group)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Groups.Add(group);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Groups.Add(group);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(group);
             }
-
-            return View(group);
-        }
-
-        // GET: Groups/Edit/5
-        public ActionResult Edit(string id)
-        {
-            if (id == null)
+            catch (Exception)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                ViewBag.err = "This Group name had been existed yet! Please choice an other name!";
+                return View();
             }
-            Group group = db.Groups.Find(id);
-            if (group == null)
-            {
-                return HttpNotFound();
-            }
-            return View(group);
-        }
-
-        // POST: Groups/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Group_Name,SetV")] Group group)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(group).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(group);
         }
 
         // GET: Groups/Delete/5

@@ -26,6 +26,7 @@ namespace Project_III_Dr4rum.Models
         public bool setV { get; set; }
         public string Topic_Info { get; set; }
         public int Report { get; set; }
+        public System.DateTime date { get; set; }
     
         public virtual Account Account { get; set; }
         public virtual Category Category { get; set; }

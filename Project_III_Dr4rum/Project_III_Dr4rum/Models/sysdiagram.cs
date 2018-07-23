@@ -12,17 +12,12 @@ namespace Project_III_Dr4rum.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Post
+    public partial class sysdiagram
     {
-        public int Post_ID { get; set; }
-        public string Topic_Tile { get; set; }
-        public int Acc_ID { get; set; }
-        public string Post_Info { get; set; }
-        public int Like_Num { get; set; }
-        public int Dislike_Num { get; set; }
-        public System.DateTime date { get; set; }
-    
-        public virtual Account Account { get; set; }
-        public virtual Topic Topic { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

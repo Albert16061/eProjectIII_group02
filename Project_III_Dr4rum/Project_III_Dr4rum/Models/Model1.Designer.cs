@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'H:\WB_github\Dr4rum_MVC_eProject\Project_III_Dr4rum\Project_III_Dr4rum\Models\Model1.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Data\workSpace\GitHub\eProjectIII_group02\Project_III_Dr4rum\Project_III_Dr4rum\Models\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

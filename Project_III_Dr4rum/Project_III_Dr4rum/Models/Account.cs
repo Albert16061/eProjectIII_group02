@@ -11,9 +11,7 @@ namespace Project_III_Dr4rum.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Web;
-
+    
     public partial class Account
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,18 +20,15 @@ namespace Project_III_Dr4rum.Models
             this.Posts = new HashSet<Post>();
             this.Topics = new HashSet<Topic>();
         }
-
+    
         public int Acc_ID { get; set; }
         public string UserName { get; set; }
-       
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
         public System.DateTime Birthday { get; set; }
-        [RegularExpression("^(0[89]\\d{8}|01\\d{9})$", ErrorMessage  = "Phone number is invalid")]
-        [Display(Name = "Phone")]
         public string Phone { get; set; }
         public bool Gender { get; set; }
         public string Role { get; set; }
@@ -43,6 +38,7 @@ namespace Project_III_Dr4rum.Models
         public string Experience { get; set; }
         public string Achievement { get; set; }
         public string Avatar { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Post> Posts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

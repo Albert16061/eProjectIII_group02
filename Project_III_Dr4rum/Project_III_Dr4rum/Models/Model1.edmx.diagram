@@ -4,12 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7edb7cdf04e24058a36e9803eb3bc3fa" Name="Diagram1">
-        <EntityTypeShape EntityType="Dr4rumModel.Account" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Dr4rumModel.Category" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Dr4rumModel.Group" Width="1.5" PointX="1.5" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Dr4rumModel.Post" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Dr4rumModel.Topic" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+      <Diagram DiagramId="83eff9a0e41f49faafe45386240f166f" Name="Diagram1">
+        <EntityTypeShape EntityType="Dr4rumModel.Account" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dr4rumModel.Category" Width="1.5" PointX="3.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dr4rumModel.Group" Width="1.5" PointX="1.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dr4rumModel.Post" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dr4rumModel.sysdiagram" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Dr4rumModel.Topic" Width="1.5" PointX="6" PointY="2.875" IsExpanded="true" />
         <AssociationConnector Association="Dr4rumModel.FK_Post_Accounts1" ManuallyRouted="false" />
         <AssociationConnector Association="Dr4rumModel.FK_Topic_Accounts1" ManuallyRouted="false" />
         <AssociationConnector Association="Dr4rumModel.FK_Category_Group" ManuallyRouted="false" />

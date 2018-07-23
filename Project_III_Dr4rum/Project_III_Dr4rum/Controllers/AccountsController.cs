@@ -15,7 +15,7 @@ namespace Project_III_Dr4rum.Controllers
 {
     public class AccountsController : Controller
     {
-        private Dr4rumEntities db = new Dr4rumEntities();
+        private Dr4rumEntities3 db = new Dr4rumEntities3();
         [HttpGet]
         // GET: Accounts
         public async Task<ActionResult> Index()
@@ -124,7 +124,7 @@ namespace Project_III_Dr4rum.Controllers
         public ActionResult recovery(int? id)
         {
             var result = db.Accounts.Where(a => a.Acc_ID == id).SingleOrDefault();
-            if (result == null)
+            if (result != null)
             {
                 result.SetV = true;
                 db.SaveChanges();

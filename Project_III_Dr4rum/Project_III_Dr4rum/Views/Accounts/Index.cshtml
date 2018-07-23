@@ -172,7 +172,7 @@
                 </td>
                 <td>
                     @{DateTime date = item.Birthday;
-                        var dateFormat = date.ToString("dd//MM//yyyy");
+                        var dateFormat = date.ToString("dd/MM/yyyy");
                     }
                     @dateFormat
                 </td>
@@ -227,7 +227,7 @@
 
                     @Html.ActionLink("Edit", "Edit", new { id = item.Acc_ID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Acc_ID }) |
-                    @Html.ActionLink("Recovery", "Recovery", new { id = item.Acc_ID })
+                    @Html.ActionLink("Recovery", "recovery", new { id = item.Acc_ID })
                 </td>
             </tr>
         }

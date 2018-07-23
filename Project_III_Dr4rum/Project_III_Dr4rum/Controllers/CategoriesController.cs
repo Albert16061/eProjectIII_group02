@@ -12,7 +12,7 @@ namespace Project_III_Dr4rum.Controllers
 {
     public class CategoriesController : Controller
     {
-        private Dr4rumEntities db = new Dr4rumEntities();
+        private Dr4rumEntities3 db = new Dr4rumEntities3();
 
         // GET: Categories
         public ActionResult Index()
@@ -20,22 +20,7 @@ namespace Project_III_Dr4rum.Controllers
             var categories = db.Categories.Include(c => c.Group);
             return View(categories.ToList());
         }
-
-        // GET: Categories/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Category category = db.Categories.Find(id);
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
-            return View(category);
-        }
-
+        
         // GET: Categories/Create
         public ActionResult Create()
         {
@@ -50,15 +35,22 @@ namespace Project_III_Dr4rum.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Category_Name,SetV,Group_Name")] Category category)
         {
-            if (ModelState.IsValid)
-            {
-                db.Categories.Add(category);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
             ViewBag.Group_Name = new SelectList(db.Groups, "Group_Name", "Group_Name", category.Group_Name);
-            return View(category);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Categories.Add(category);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(category);
+            }
+            catch (Exception)
+            {
+                ViewBag.err = "This Category name had been existed yet! Please choice an other name!";
+                return View();
+            }
         }
 
         // GET: Categories/Edit/5
@@ -121,7 +113,7 @@ namespace Project_III_Dr4rum.Controllers
                 db.SaveChanges();
             }
             return RedirectToAction("Index");
-            
+
         }
         public ActionResult Recovery_Category(string id)
         {

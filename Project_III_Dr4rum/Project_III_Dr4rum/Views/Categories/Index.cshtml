@@ -38,9 +38,8 @@
                 <td>
                   <lable> Enable</lable>
                 </td>
-                <td>
-                    
-                    @Html.ActionLink("Details", "Details", new { id = item.Category_Name }) |
+                <td>                    
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Category_Name }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Category_Name })
                 </td>
             </tr>
@@ -60,7 +59,7 @@
                 </td>
                 <td>
                    
-                    @Html.ActionLink("Details", "Details", new { id = item.Category_Name }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Category_Name }) |
                     @Html.ActionLink("Recovery ", "Recovery_Category", new { id = item.Category_Name })
                 </td>
             </tr>
