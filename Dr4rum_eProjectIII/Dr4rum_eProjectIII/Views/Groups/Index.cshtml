@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Dr4rum_eProjectIII.Models.Group>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Group Name
+        </th>
+
+        <th>
+            Deleted
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.SetV == true)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Group_Name)
+                </td>
+                <td>
+                    Enable
+                </td>
+                <td>
+
+                    @Html.ActionLink("Details", "Details", new { id = item.Group_Name }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Group_Name })
+                </td>
+            </tr>
+        }
+        else
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Group_Name)
+                </td>
+                <td>
+                    Disable
+                </td>
+
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Group_Name }) |
+                    @Html.ActionLink("Recovery", "Recovery_Groups", new { id = item.Group_Name })
+                </td>
+            </tr>}
+    }
+
+</table>
