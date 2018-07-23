@@ -1,0 +1,29 @@
+﻿@model Project_III_Dr4rum.Models.Group
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Group</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Group Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Group_Name)
+        </dd>
+
+      
+
+    </dl>
+</div>
+<p>
+   
+    @Html.ActionLink("Back to List", "Index")
+</p>
