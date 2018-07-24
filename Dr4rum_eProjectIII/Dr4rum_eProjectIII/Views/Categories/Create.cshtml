@@ -5,81 +5,94 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
-
-@if (null != ViewBag.err)
-{
-    <script>alert("@ViewBag.err")</script>
-}
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Category</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <label class="control-label col-md-2">Category Name</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Category_Name, new { htmlAttributes = new { @class = "form-control", id = "title" } })
-                @Html.ValidationMessageFor(model => model.Category_Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group" hidden>
-            @Html.LabelFor(Model => Model.SetV, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="radio">
-                    <label>@Html.RadioButtonFor(Model => Model.SetV, true, new { @checked = true })</label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">Group Name</label>
-            <div class="col-md-10">
-                @Html.DropDownList("Group_Name", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Group_Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-
-                <button type="button" class="btn btn-primary" id="btnmodal" data-toggle="modal" data-target="#exampleModal"> Create</button>
-            </div>
-        </div>
-
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="M-title">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        The name of category is unique. After you create, you can not edit. Are you sure you want to create?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
+<!-- Banner-->
+<div class="Banner-containt">
+    <img src="~/Image/Banner_Pic/Admin/adminIndex_banner.jpg" class="img-fluid" alt="Responsive image">
+    <div class="Banner-title-containt">
+        <p class="Banner-title-info"> Categories Page</p>
+        <p class="Banner-title-info" id="Banner-child"> Welcome to Categories Page, Let's manager your Page !</p>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+<!-- breadcrumb-->
+<div class="breadcrumb-containt">
+    <div class="btn-group btn-breadcrumb breadcrumb-primary">
+        <a href="@Url.Action("Index", "AdminIndex")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+        @Html.ActionLink("Home", "Index", "AdminIndex", null, new { @class = "btn btn-primary breadcrumb-link" })
+        <div class="btn btn-info c-info breadcrumb-link"> Create Category </div>
+    </div>
+</div>
+<!-- Information -->
+<div class="index-list-containt">
+    <div class="index-list">
 
+        @if (null != ViewBag.err)
+        {
+            <script>alert("@ViewBag.err")</script>
+        }
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Category</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label class="control-label col-md-2">Category Name</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Category_Name, new { htmlAttributes = new { @class = "form-control", id = "title" } })
+                        @Html.ValidationMessageFor(model => model.Category_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group" hidden>
+                    @Html.LabelFor(Model => Model.SetV, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="radio">
+                            <label>@Html.RadioButtonFor(Model => Model.SetV, true, new { @checked = true })</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Group Name</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("Group_Name", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Group_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-left: 1px">
+                    <div class=" col-lg-1 col-md-2 col-sm-3 col-4">
+                        <button type="button" class="btn btn-primary" id="btnmodal" data-toggle="modal" data-target="#exampleModal"> Create</button>
+                    </div>
+                    <div class=" col-lg-1 col-md-2 col-sm-3 col-4">
+                        @Html.ActionLink("Back to List", "Index", "Categories", null, new { @class = "btn btn-info" })
+                    </div>
+                </div>
+
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="M-title">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                The name of category is unique. After you create, you can not edit. Are you sure you want to create?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">

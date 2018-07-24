@@ -10,13 +10,13 @@
 @if (role.ToString().Equals("A"))
 {
     <li class="nav-item"> <!-- Declare router with role -->
-        @Html.ActionLink("Group ", "Index", "AdminGroupManager", null, new { @class = "nav-link" })
+        @Html.ActionLink("Group ", "Index", "Groups", null, new { @class = "nav-link" })
     </li>
     <li class="nav-item">
-        @Html.ActionLink("Category ", "Index", "AdminCatManager", null, new { @class = "nav-link" })
+        @Html.ActionLink("Category ", "Index", "Categories", null, new { @class = "nav-link" })
     </li>
     <li class="nav-item">
-        @Html.ActionLink("Account ", "Index", "AdminAccManager", null, new { @class = "nav-link" })
+        @Html.ActionLink("Account ", "Index", "Accounts", null, new { @class = "nav-link" })
     </li>
     <li class="nav-item">
         @Html.ActionLink("Topic ", "Index", "AdminTopicManager", null, new { @class = "nav-link" })

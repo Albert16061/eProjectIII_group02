@@ -5,38 +5,48 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<!-- Banner-->
+<div class="Banner-containt">
+    <img src="~/Image/Banner_Pic/Admin/adminIndex_banner.jpg" class="img-fluid" alt="Responsive image">
+    <div class="Banner-title-containt">
+        <p class="Banner-title-info"> Categories Page</p>
+        <p class="Banner-title-info" id="Banner-child"> Welcome to Categories Page, Let's manager your Page !</p>
+    </div>
+</div>
+<!-- breadcrumb-->
+<div class="breadcrumb-containt">
+    <div class="btn-group btn-breadcrumb breadcrumb-primary">
+        <a href="@Url.Action("Index", "AdminIndex")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+        @Html.ActionLink("Home", "Index", "AdminIndex", null, new { @class = "btn btn-primary breadcrumb-link" })
+        <div class="btn btn-info c-info breadcrumb-link"> Delete Category </div>
+    </div>
+</div>
+<!-- Information -->
+<div class="index-list-containt">
+    <div class="index-list">
+        <h3>Are you sure you want to delete this category?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dd>
+                    <b>Category Name : </b>@Html.DisplayFor(model => model.Category_Name)
+                </dd>
+                <dd>
+                    <b>Group Name : </b>@Html.DisplayFor(model => model.Group.Group_Name)
+                </dd>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Category</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Category Name
-        </dt>
+            </dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.Category_Name)
-        </dd>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-        <dt>
-            Group Name
-        </dt>
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                    @Html.ActionLink("Back to List", "Index", "Categories", null, new { @class = "btn btn-info" })
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Group.Group_Name)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            }
         </div>
-    }
+    </div>
 </div>
