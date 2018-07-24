@@ -5,147 +5,140 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Account</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>avatar</dt>
-        <dd><img src="~/Image/avt/@Model.Avatar" /></dd>
-        <dt>
-            User Name
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-        <dt>
-            Password
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-
-        <dt>
-            First Name
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            Last Name
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            Email
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            Address
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-
-        <dt>
-            Birthday
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Birthday)
-        </dd>
-
-        <dt>
-            Phone
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-
-        <dt>
-            Gender
-        </dt>
-
-        <dd>
-            @if (Model.Gender == true)
-            {
-                <span>FeMale </span>
-            }
-            else
-            {
-                <span>Male</span>
-            }
-        </dd>
-
-        <dt>
-            Role
-        </dt>
-
-        <dd>
-            @if (Model.Role == "A")
-            {
-                <span>Admin</span>
-            }
-            @if (Model.Role == "U")
-            {
-                <span>User</span>
-            }
-            @if (Model.Role == "D")
-            {
-                <span>Doctor</span>
-            }
-        </dd>
-
-        <dt>
-            Incognito
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Incognito)
-        </dd>
-
-        <dt>
-            Speciality
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Speciality)
-        </dd>
-
-        <dt>
-            Experience
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Experience)
-        </dd>
-
-        <dt>
-            Achievement
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Achievement)
-        </dd>
-
-    </dl>
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
+<!-- Banner-->
+<img src="~/Image/Banner_Pic/User/index_banner.jpg" class="img-fluid" alt="Responsive image">
+<!-- breadcrumb-->
+<div class="breadcrumb-containt">
+    <div class="btn-group btn-breadcrumb breadcrumb-primary">
+        <a href="@Url.Action("Index", "AdminIndex")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+        @Html.ActionLink("Home", "Index", "AdminIndex", null, new { @class = "btn btn-primary breadcrumb-link" })
+        @Html.ActionLink("Accounts", "Index", "Accounts", null, new { @class = "btn btn-primary breadcrumb-link" })
+        <div class="btn btn-info c-info breadcrumb-link"> @Model.UserName </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Acc_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<!-- Main Info -->
+<div class="index-list-containt" style="overflow-x: auto">
+    <div class="justify-content-md-center" style="padding-top: 30px; margin: auto; margin-bottom: 50px;">
+        <!-- Col 1 -->
+        <div class="row" style="margin: auto; text-align: center; margin-bottom: 20px">
+            <div class="Avatar col-12">
+                @if (Model.Avatar == null)
+                {
+                    <img style="width:200px" src="~/Image/Logo_Icon/avatar-50.png" />
+                }
+                else
+                {
+                    <img style="width:150px" src="~/Image/avt/@Model.Avatar" />
+                }
+            </div>
+            <div class="Information-UserName col-12" style="margin-bottom: 10px;">
+                @{
+                    var role = "";
+                    if (Model.Role == "A")
+                    {
+                        role = "Admin";
+                    }
+                    else if (Model.Role == "D")
+                    {
+                        role = "Doctor";
+                    }
+                    else if (Model.Role == "U")
+                    {
+                        role = "User";
+                    }
+                }
+                <h4 class="UserName-Info"> @Html.DisplayFor(model => model.UserName)   :   @role</h4>
+            </div>
+            <div class="col-12 ">
+                @Html.ActionLink("Edit", "Edit", "Accounts", new { ID = Model.Acc_ID }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Back ", "Index", "Accounts", null, new { @class = "btn btn-info" })
+            </div>
+        </div>
+        <!-- Col 2 -->
+        <div class="row">
+            <div class="col-md-6 col-6 columns_2">
+                <div class="FirstName-Title "> First Name: </div>
+                <div class="LastName-Title"> Last Name: </div>
+                <div class="Email-Title"> Email: </div>
+                <div class="Phone-Title"> Phone: </div>
+                <div class="Address-Title"> Address: </div>
+                <div class="Birthday-Title"> Birthday: </div>
+                <div class="Gender-Title"> Gender: </div>
+                <div class="Incognito-Title"> Incognito: </div>
+                @if (Model.Role == "D")
+                {
+                    <div class="Speciality-Title"> Speciality: </div>
+                    <div class="Experience-Title"> Experience: </div>
+                    <div class="Achievement-Title"> Achievement: </div>
+                }
+            </div>
+            <!-- Col 3 -->
+            <div class="col-6">
+                <div>@Html.DisplayFor(model => model.FirstName) </div>
+                <div>@Html.DisplayFor(model => model.LastName) </div>
+                <div>@Html.DisplayFor(model => model.Email) </div>
+                <div>
+                    @{
+                        var phone = Model.Phone;
+                        var First = phone.Substring(0, 2);
+                        var Last = phone.Substring(phone.Length - 3, 3);
+                        var EncryptPhone = First + "XXXXX" + Last;
+                    }
+                    @EncryptPhone
+                </div>
+                <div>@Html.DisplayFor(model => model.Address) </div>
+                <div>@Model.Birthday.ToString("dd/MM/yyyy") </div>
+                @if (Model.Gender)
+                {
+                    <div class="Gender-Info"> Male </div>
+                }
+                else
+                {
+                    <div class="Gender-Info"> Female </div>
+                }
+                @if (Model.Incognito)
+                {
+                    <div class="Incognito-Info">Yes</div>
+                }
+                else
+                {
+                    <div class="Incognito-Info"> No </div>
+                }
+                @if (Model.Role == "D")
+                {
+                    var Speciality = Model.Speciality;
+                    if (Speciality == null)
+                    {
+                        <div>None</div>
+                    }
+                    else
+                    {
+                        <div>@Speciality</div>
+                    }
+
+                    var Experience = Model.Experience;
+                    if (Experience == null)
+                    {
+                        <div>None</div>
+                    }
+                    else
+                    {
+                        <div>@Experience</div>
+                    }
+
+                    var Achievement = Model.Achievement;
+                    if (Achievement == null)
+                    {
+                        <div>None</div>
+                    }
+                    else
+                    {
+                        <div>@Achievement</div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

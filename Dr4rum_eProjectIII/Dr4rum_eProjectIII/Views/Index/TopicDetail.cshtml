@@ -19,11 +19,20 @@
     <div class="TopicDetail-Containt info-containt">
         <div class="header-containt">
             <div class="avt-header-containt">
-                <img src="~/Image/Logo_Icon/avatar-50.png" class="header-avt" alt="Responsive image">
-                <div class="TopicDetail-name-topicPoster info-Title">
+                @if (Topic.Account.Avatar == null)
+                {
+                    <img src="~/Image/Logo_Icon/avatar-50.png" class="header-avt" alt="Responsive image" style="max-width : 100%">
+                }
+                else
+                {
+                    <img src="~/Image/avt/@Topic.Account.Avatar" class="header-avt" alt="Responsive image" style="max-width : 100%">
+                }
+
+
+                <div class="TopicDetail-name-topicPoster info-Title" style="text-align: right">
                     @Html.Raw("<a data-modal='' href='/Index/viewOtherDetails/" + Topic.Acc_ID + "' id='" + Topic.Acc_ID + "' title='Detail'> <span '>" + Topic.Account.UserName + "</span> </a>")
                 </div>
-                <div class="TopicDetail-name-topicDay info-Name">
+                <div class="TopicDetail-name-topicDay info-Name" style="text-align: right">
                     @{ DateTime dateTopic = Topic.date;
                         var dateTopicF = dateTopic.ToString("dd/MM/yyyy");}
                     @dateTopicF
@@ -36,9 +45,12 @@
         <div class="main-containt" id="TopicDetails-main-containt">
             @Html.Raw(Topic.Topic_Info)
         </div>
-        <div class="separate-containt position-relative">
-            @Html.Raw("<a data-modal='' href='/Posts/_PartialCreate/'> <span class='btn btn-warning add-post-btn'>Add Post</span> </a>")
-        </div>
+        @if (Session["UserAccount"] != null)
+        {
+            <div class="separate-containt position-relative">
+                @Html.Raw("<a data-modal='' href='/Posts/_PartialCreate/'> <span class='btn btn-warning add-post-btn'>Add Post</span> </a>")
+            </div>
+        }
         @foreach (var listPost in Topic.Posts)
         {
             <div class="alert alert-primary" id="topic-containt">

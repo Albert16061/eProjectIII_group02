@@ -101,14 +101,23 @@ namespace Dr4rum_eProjectIII.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Acc_ID,UserName,Password,FirstName,LastName,Email,Address,Birthday,Phone,Gender,Role,Incognito,SetV,Speciality,Experience,Achievement")] Account account)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(account).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(account).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(account);
             }
-            return View(account);
+            catch (Exception)
+            {
+                ViewBag.err = "Edit Error!";
+                return View();
+            }
         }
+
 
         // GET: Accounts/delete/5
         public ActionResult Delete(int? id)
