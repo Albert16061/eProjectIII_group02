@@ -50,26 +50,35 @@ namespace Dr4rum_eProjectIII.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Acc_ID,UserName,Password,FirstName,LastName,Email,Address,Birthday,Phone,Gender,Role,Incognito,SetV,Speciality,Experience,Achievement,Avatar")] Account account, HttpPostedFileBase postedFile)
         {
-            //kiem tra neu dl hop le
-            if (ModelState.IsValid)
+            try
             {
-                //tao bien luu ten file hinh
-                var filename = Path.GetFileName(postedFile.FileName);
-                // luu duong dan file hinh
-                var path = Path.Combine(Server.MapPath("~/Image/Avatar"), filename);
-                if (System.IO.File.Exists(path))
+                //kiem tra neu dl hop le
+                if (ModelState.IsValid)
                 {
-                    ViewBag.thongbao = "Avatar is Existed!";
+                    //tao bien luu ten file hinh
+                    var filename = Path.GetFileName(postedFile.FileName);
+                    // luu duong dan file hinh
+                    var path = Path.Combine(Server.MapPath("~/Image/avt"), filename);
+                    if (System.IO.File.Exists(path))
+                    {
+                        ViewBag.thongbao = "Avatar is Existed!";
+                    }
+                    else
+                    {
+                        postedFile.SaveAs(path);
+                    }
+                    account.Avatar = postedFile.FileName;
+                    db.Accounts.Add(account);
+                    db.SaveChanges();
                 }
-                else
-                {
-                    postedFile.SaveAs(path);
-                }
-                account.Avatar = postedFile.FileName;
-                db.Accounts.Add(account);
-                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            catch (Exception)
+            {
+                ViewBag.err = "You must choice an avatar!";
+                return View();
+            }
+
         }
 
         // GET: Accounts/Edit/5

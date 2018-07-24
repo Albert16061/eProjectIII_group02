@@ -4,233 +4,164 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
-<h3>@ViewBag.thongbao</h3>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Avatar
-        </th>
-        <th>
-            User Name
-        </th>
-        <th>
-            Password
-        </th>
-        <th>
-            First Name
-        </th>
-        <th>
-            Last Name
-        </th>
-        <th>
-            Email
-        </th>
-        <th>
-            Address
-        </th>
-        <th>
-            Birthday
-        </th>
-        <th>
-            Phone
-        </th>
-        <th>
-            Gender
-        </th>
-        <th>
-            Role
-        </th>
-        <th>
-            Incognito
-        </th>
-        <th>
-            Speciality
-        </th>
-        <th>
-            Experience
-        </th>
-        <th>
-            Achievement
-        </th>
-        <th>
-            Deleted
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        if (item.SetV == true)
-        {
-            <tr>
-                <td>
-                    <img src="~/Image/Avatar/@item.Avatar" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    <label>******</label>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @{DateTime date = item.Birthday;
-                        var dateFormat = date.ToString("dd//MM//yyyy");
-                    }
-                    @dateFormat
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @if (item.Gender == true)
-                    {
-                        <span>FeMale </span>
-                    }
-                    else
-                    {
-                        <span>Male</span>
-                    }
-                </td>
-                <td>
-                    @if (item.Role == "A")
-                    {
-                        <span>Admin</span>
-                    }
-                    @if (item.Role == "U")
-                    {
-                        <span>User</span>
-                    }
-                    @if (item.Role == "D")
-                    {
-                        <span>Doctor</span>
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Incognito)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Speciality)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Experience)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Achievement)
-                </td>
-                <td>
-                    @if (item.SetV == true)
-                    {
-                        <lable> Enable</lable>
-                    }
-                    else
-                    { <lable>Disable</lable>}
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Acc_ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Acc_ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Acc_ID })
-                </td>
-            </tr>
-        }
-        else
-        {
-            <tr>
-                <td></td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    <label>******</label>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @{DateTime date = item.Birthday;
-                        var dateFormat = date.ToString("dd/MM/yyyy");
-                    }
-                    @dateFormat
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @if (item.Gender == true)
-                    {
-                        <span>FeMale </span>
-                    }
-                    else
-                    {
-                        <span>Male</span>
-                    }
-                </td>
-                <td>
-                    @if (item.Role == "A")
-                    {
-                        <span>Admin</span>
-                    }
-                    @if (item.Role == "U")
-                    {
-                        <span>User</span>
-                    }
-                    @if (item.Role == "D")
-                    {
-                        <span>Doctor</span>
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Incognito)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Speciality)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Experience)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Achievement)
-                </td>
-                <td>
-                    @if (item.SetV == true)
-                    {
-                        <lable> Enable</lable>
-                    }
-                    else
-                    { <lable>Disable</lable>}
-                </td>
-                <td>
-
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Acc_ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Acc_ID }) |
-                    @Html.ActionLink("Recovery", "recovery", new { id = item.Acc_ID })
-                </td>
-            </tr>
-        }
+<!--scroll-top-Button-->
+<button onclick="topFunction()" id="scroll-top-Btn" title="Go to top">Top</button>
+<!-- Banner-->
+<div class="Banner-containt">
+    <img src="~/Image/Banner_Pic/Admin/adminIndex_banner.jpg" class="img-fluid" alt="Responsive image">
+    <div class="Banner-title-containt">
+        <p class="Banner-title-info"> Account Page</p>
+        <p class="Banner-title-info" id="Banner-child"> Welcome to Account Page, Let's manager your Page !</p>
+    </div>
+</div>
+<!-- breadcrumb-->
+<div class="breadcrumb-containt">
+    <div class="btn-group btn-breadcrumb breadcrumb-primary">
+        <a href="@Url.Action("Index", "AdminIndex")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
+        @Html.ActionLink("Home", "Index", "AdminIndex", null, new { @class = "btn btn-primary breadcrumb-link" })
+        <div class="btn btn-info c-info breadcrumb-link"> Accounts </div>
+    </div>
+</div>
+<!-- Information -->
+<style>
+    .wraptext {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
+</style>
+<h3>@ViewBag.thongbao</h3>
+<div class="index-list-containt">
+    <div class="index-list" style="overflow: auto">
+        <p>
+            @Html.ActionLink("Create New", "Create", "Accounts", null, new { @class = "btn btn-success" })
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    User Name
+                </th>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    Role
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Button control
+                </th>
+            </tr>
 
-</table>
+            @foreach (var item in Model)
+            {
+                if (item.SetV == false)
+                {
+                    <tr class="alert alert-danger">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td class="wraptext" style="max-width: 200px">
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td class="wraptext">
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @if (item.Role == "A")
+                            {
+                                <span>Admin</span>
+                            }
+                            @if (item.Role == "U")
+                            {
+                                <span>User</span>
+                            }
+                            @if (item.Role == "D")
+                            {
+                                <span>Doctor</span>
+                            }
+                        </td>
+                        <td>
+                            @if (item.SetV == true)
+                            {
+                                <lable> Enable</lable>
+                            }
+                            else
+                            { <lable>Disable</lable>}
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("Details", "Details", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-info" })
+                            @if (item.SetV == true)
+                            {
+                                @Html.ActionLink("Delete", "Delete", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-danger" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Recovery", "Recovery", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-success" })
+                            }
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                <tr class="alert alert-info">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td class="wraptext" style="max-width: 200px">
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td class="wraptext">
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+
+                    <td>
+                        @if (item.Role == "A")
+                        {
+                            <span>Admin</span>
+                        }
+                        @if (item.Role == "U")
+                        {
+                            <span>User</span>
+                        }
+                        @if (item.Role == "D")
+                        {
+                            <span>Doctor</span>
+                        }
+                    </td>
+
+                    <td>
+                        @if (item.SetV == true)
+                        {
+                            <lable> Enable</lable>
+                        }
+                        else
+                        { <lable>Disable</lable>}
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Details", "Details", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-info" })
+                        @if (item.SetV == true)
+                        {
+                            @Html.ActionLink("Delete", "Delete", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-danger" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Recovery", "Recovery", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-success" })
+                        }
+                    </td>
+                </tr>
+                }
+            }
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Scripts/MyScript/indexFunction.js"></script>
+}
