@@ -16,33 +16,37 @@
         </div>
     </div>
     <!--- End Breadcrumb -->
+        DateTime dateTopic = Topic.date;
+        var dateTopicF = dateTopic.ToString("dd/MM/yyyy");
     <div class="TopicDetail-Containt info-containt">
         <div class="header-containt">
             <div class="avt-header-containt">
                 @if (Topic.Account.Avatar == null)
                 {
                     <img src="~/Image/Logo_Icon/avatar-50.png" class="header-avt" alt="Responsive image" style="max-width : 100%">
+                    <div class="TopicDetail-name-topicPoster info-Title">
+                        @Html.Raw("<a data-modal='' href='/Index/viewOtherDetails/" + Topic.Acc_ID + "' id='" + Topic.Acc_ID + "' title='Detail'> <span '>" + Topic.Account.UserName + "</span> </a>")
+                    </div>
+                    <div class="TopicDetail-name-topicDay info-Name">
+                        @dateTopicF
+                    </div>
                 }
                 else
                 {
-                    <img src="~/Image/avt/@Topic.Account.Avatar" class="header-avt" alt="Responsive image" style="max-width : 100%">
+                    <img src="~/Image/avt/@Topic.Account.Avatar" class="header-avt" alt="Responsive image">
+                    <div class="TopicDetail-name-topicPoster info-Title" style="text-align: right">
+                        @Html.Raw("<a data-modal='' href='/Index/viewOtherDetails/" + Topic.Acc_ID + "' id='" + Topic.Acc_ID + "' title='Detail'> <span '>" + Topic.Account.UserName + "</span> </a>")
+                    </div>
+                    <div class="TopicDetail-name-topicDay info-Name" style="text-align: right">
+                        @dateTopicF
+                    </div>
                 }
-
-
-                <div class="TopicDetail-name-topicPoster info-Title" style="text-align: right">
-                    @Html.Raw("<a data-modal='' href='/Index/viewOtherDetails/" + Topic.Acc_ID + "' id='" + Topic.Acc_ID + "' title='Detail'> <span '>" + Topic.Account.UserName + "</span> </a>")
-                </div>
-                <div class="TopicDetail-name-topicDay info-Name" style="text-align: right">
-                    @{ DateTime dateTopic = Topic.date;
-                        var dateTopicF = dateTopic.ToString("dd/MM/yyyy");}
-                    @dateTopicF
-                </div>
             </div>
             <div class="Topic-header-containt">
                 <h2> @Topic.Topic_Title </h2>
             </div>
         </div>
-        <div class="main-containt" id="TopicDetails-main-containt">
+        <div class="main-containt" id="TopicDetails-main-containt" style="word-wrap: break-word;">
             @Html.Raw(Topic.Topic_Info)
         </div>
         @if (Session["UserAccount"] != null)
