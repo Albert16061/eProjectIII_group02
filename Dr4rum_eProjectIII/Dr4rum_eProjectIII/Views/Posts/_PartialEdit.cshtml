@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <div class="control-label col-md-12 TopicDelete-title">Topic information</div>
+                <div class="control-label col-md-12 TopicDelete-title">Post information</div>
                 <div class="col-md-12">
                     @Html.TextAreaFor(model => model.Post_Info, new { @class = "form-control EditPost-textArea" })
                     @Html.ValidationMessageFor(model => model.Post_Info, "", new { @class = "text-danger" })
@@ -52,9 +52,9 @@
             <div class="form-group hide">
                 <div class="col-md-10">
                     @{
-                        var currentDay = DateTime.Now.ToString("dd/MM/yyyy");
+                        var currDay = DateTime.Now;
                     }
-                    @Html.TextBoxFor(model => model.date, new { @Value = currentDay, htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextBoxFor(model => model.date, new { @Value = currDay, htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
         </div>

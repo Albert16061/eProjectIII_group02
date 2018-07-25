@@ -86,9 +86,8 @@
                     <div class="col-md-10">
                         @{
                             DateTime currentdate = DateTime.Now;
-                            var currDay = currentdate.ToString("dd/MM/yyyy");
                         }
-                        @Html.TextBoxFor(model => model.date, new { @Value = currDay, htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        @Html.TextBoxFor(model => model.date, new { @Value = currentdate, htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
                         @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
                     </div>
                 </div>
