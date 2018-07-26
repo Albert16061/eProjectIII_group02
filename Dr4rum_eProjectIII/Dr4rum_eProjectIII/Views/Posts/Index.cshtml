@@ -51,12 +51,9 @@
         <td>
             @Html.Raw("<a data-modal='' href='/Posts/_PartialEdit/" +item.Post_ID + "' id='" + item.Post_ID + "' title='Edit'> <span class='btn btn-info'>Edit</span> </a>") |
             @Html.Raw("<a data-modal='' href='/Posts/_PartialDelete/" + item.Post_ID + "' id='" + item.Post_ID + "' title='Delete'> <span class='btn btn-info'>Delete</span> </a>")
-
-            
         </td>
     </tr>
 }
-
 </table>
 <!-- modal placeholder-->
 <div id='myModal' class='modal fade in'>

@@ -93,8 +93,8 @@
                 </div>
                 <div class="col-md-10">
                     <!-- Button to Open the Modal -->
-                    <button type="button" class="btn btn-info" id="btnmodal" data-toggle="modal" data-target="#myModal">Create</button>
-                    @Html.Raw("<a data-modal='' href='/Topics/Index/ ' title='Edit'> <span class='btn btn-danger'>Back to List</span> </a>")
+                    <button type="button" class="btn btn-success" id="btnmodal" data-toggle="modal" data-target="#myModal">Create</button>
+                    @Html.ActionLink("List Topic", "Index", "Topics", new { ID = ID }, new { @class = "btn btn-info" })
                 </div>
                 <!-- The Modal -->
                 <div class="modal" id="myModal">

@@ -97,66 +97,52 @@
                         <td>
                             @Html.ActionLink("Edit", "Edit", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-warning" })
                             @Html.ActionLink("Details", "Details", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-info" })
-                            @if (item.SetV == true)
-                            {
-                                @Html.ActionLink("Delete", "Delete", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-danger" })
-                            }
-                            else
-                            {
-                                @Html.ActionLink("Recovery", "Recovery", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-success" })
-                            }
+                            @Html.ActionLink("Recovery", "Recovery", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-success" })
                         </td>
                     </tr>
                 }
                 else
                 {
-                <tr class="alert alert-info">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserName)
-                    </td>
-                    <td class="wraptext" style="max-width: 200px">
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td class="wraptext">
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
+                    <tr class="alert alert-info">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td class="wraptext" style="max-width: 200px">
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td class="wraptext">
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
 
-                    <td>
-                        @if (item.Role == "A")
-                        {
-                            <span>Admin</span>
-                        }
-                        @if (item.Role == "U")
-                        {
-                            <span>User</span>
-                        }
-                        @if (item.Role == "D")
-                        {
-                            <span>Doctor</span>
-                        }
-                    </td>
+                        <td>
+                            @if (item.Role == "A")
+                            {
+                                <span>Admin</span>
+                            }
+                            @if (item.Role == "U")
+                            {
+                                <span>User</span>
+                            }
+                            @if (item.Role == "D")
+                            {
+                                <span>Doctor</span>
+                            }
+                        </td>
 
-                    <td>
-                        @if (item.SetV == true)
-                        {
-                            <lable> Enable</lable>
-                        }
-                        else
-                        { <lable>Disable</lable>}
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-warning" })
-                        @Html.ActionLink("Details", "Details", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-info" })
-                        @if (item.SetV == true)
-                        {
+                        <td>
+                            @if (item.SetV == true)
+                            {
+                                <lable> Enable</lable>
+                            }
+                            else
+                            { <lable>Disable</lable>}
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("Details", "Details", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-info" })
                             @Html.ActionLink("Delete", "Delete", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-danger" })
-                        }
-                        else
-                        {
-                            @Html.ActionLink("Recovery", "Recovery", "Accounts", new { id = item.Acc_ID }, new { @class = "btn btn-success" })
-                        }
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
                 }
             }
         </table>

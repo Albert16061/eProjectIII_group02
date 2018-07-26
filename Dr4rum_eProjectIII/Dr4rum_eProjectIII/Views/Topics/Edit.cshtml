@@ -89,7 +89,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        @Html.Raw("<a @*data-modal=''*@ href='/Topics/Index/ ' title='Edit'> <span class='btn btn-info'>Back to List</span> </a>")
+                        @Html.ActionLink("List Topic", "Index", "Topics", new { ID = ID }, new { @class = "btn btn-info" })
                         <button type="submit" class="btn btn-success">Save</button>
                     </div>
                 </div>

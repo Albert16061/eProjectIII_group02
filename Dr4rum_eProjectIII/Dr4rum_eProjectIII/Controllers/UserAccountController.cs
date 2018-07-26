@@ -104,6 +104,7 @@ namespace Dr4rum_eProjectIII.Controllers
         {
             Session["UserAccount"] = null;
             Session["Role"] = null;
+            Session["ID"] = null;
             return RedirectToAction("Index", "Index");
         }
 

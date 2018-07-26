@@ -48,17 +48,17 @@
                             @Html.ActionLink("Details", "Details", new { id = post.Post_ID }, new { @class = "btn btn-info btn-control" })
                             @Html.Raw("<a data-modal='' href='/AdminPostManager/_PartialDelete/" + post.Post_ID + "' id='" + post.Post_ID + "' title='Delete'> <span class='btn btn-danger btn-control '>Delete</span> </a>")
                         </td>
-                    </tr> 
+                    </tr>
                 }
             </tbody>
         </table>
-    </div>
-</div>
-<!-- modal placeholder -->
-<div id='myModal' class='modal fade in'>
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div id='myModalContent'></div>
+        <!-- modal placeholder -->
+        <div id='myModal' class='modal fade in'>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div id='myModalContent'></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -73,6 +73,16 @@
         $(document).ready(function () {
             $('#myTable').DataTable();
         });
+        $(function () {
+            $('.editCourseModal').on("click", function (e) {
+                e.preventDefault();
+                //perform the url load  then
+                $('#myModal').modal({
+                    keyboard: true
+                }, 'show');
+                return false;
+            })
+        })
     </script>
     @Scripts.Render("~/Scripts/myScript.js")
 }
