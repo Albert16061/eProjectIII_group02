@@ -15,7 +15,7 @@ namespace Dr4rum_eProjectIII.Controllers
 {
     public class AccountsController : Controller
     {
-        private Dr4rumEntities3 db = new Dr4rumEntities3();
+        private DbDocEntities db = new DbDocEntities();
         [HttpGet]
         // GET: Accounts
         public async Task<ActionResult> Index()

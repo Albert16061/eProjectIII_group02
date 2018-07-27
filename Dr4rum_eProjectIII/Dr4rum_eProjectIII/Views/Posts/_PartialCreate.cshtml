@@ -55,12 +55,20 @@
                 </div>
             </div>
 
-            <div class="form-group hide">
+            @*<div class="form-group hide">
                 <div class="col-md-10">
                     @{
                         var currDay = DateTime.Now;
                     }
                     @Html.TextBoxFor(model => model.date, new { @Value = currDay, htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>*@
+            <div class="form-group hide">
+                <div class="col-md-10">
+                    @{
+                        var currDay = DateTime.Now;
+                    }
+                    <input type="date" name="date" value="@currDay.ToString("yyyy-MM-dd")" style="display: none" />
                 </div>
             </div>
         </div>

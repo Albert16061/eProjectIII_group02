@@ -29,7 +29,7 @@ namespace Dr4rum_eProjectIII.Controllers
             }
             return sb.ToString();
         }
-        Dr4rumEntities3 db = new Dr4rumEntities3();
+        DbDocEntities db = new DbDocEntities();
         private string inputPasswordMD5;
 
         // GET: UserAccount

@@ -11,7 +11,7 @@ namespace Dr4rum_eProjectIII.Controllers
 {
     public class AdminPostManagerController : Controller
     {
-        Dr4rumEntities3 db = new Dr4rumEntities3();
+        DbDocEntities db = new DbDocEntities();
         // GET: AdminPostManager
         public async Task<ActionResult> Index()
         {

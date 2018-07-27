@@ -13,10 +13,10 @@ namespace Dr4rum_eProjectIII.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Dr4rumEntities3 : DbContext
+    public partial class DbDocEntities : DbContext
     {
-        public Dr4rumEntities3()
-            : base("name=Dr4rumEntities3")
+        public DbDocEntities()
+            : base("name=DbDocEntities")
         {
         }
     
@@ -29,7 +29,7 @@ namespace Dr4rum_eProjectIII.Models
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Topic> Topics { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

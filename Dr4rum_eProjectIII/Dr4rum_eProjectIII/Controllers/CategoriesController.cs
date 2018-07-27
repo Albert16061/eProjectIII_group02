@@ -12,7 +12,7 @@ namespace Dr4rum_eProjectIII.Controllers
 {
     public class CategoriesController : Controller
     {
-        private Dr4rumEntities3 db = new Dr4rumEntities3();
+        private DbDocEntities db = new DbDocEntities();
 
         // GET: Categories
         public ActionResult Index()

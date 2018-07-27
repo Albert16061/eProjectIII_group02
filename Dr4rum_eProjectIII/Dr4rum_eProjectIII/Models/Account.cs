@@ -23,9 +23,9 @@ namespace Dr4rum_eProjectIII.Models
         }
         public int Acc_ID { get; set; }
 
-        [Required(ErrorMessage ="User is not null!")]
+        [Required(ErrorMessage = "User is not null!")]
         [Display(Name = "UserName")]
-        [MaxLength (16, ErrorMessage = "UserName must be less than 16 characters")]
+        [MaxLength(16, ErrorMessage = "UserName must be less than 16 characters")]
         [MinLength(6, ErrorMessage = "UserName must be at least 6 characters")]
         public string UserName { get; set; }
 
@@ -39,7 +39,7 @@ namespace Dr4rum_eProjectIII.Models
         [Required(ErrorMessage = "FirstName is not null!")]
         [Display(Name = "FirstName")]
         [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "Enter only alphabets")]
-        [MaxLength(29 , ErrorMessage ="FirstName must be less than 29 character")]
+        [MaxLength(29, ErrorMessage = "FirstName must be less than 29 character")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "LastName is not null!")]
@@ -64,7 +64,7 @@ namespace Dr4rum_eProjectIII.Models
         public System.DateTime Birthday { get; set; }
 
         [Required(ErrorMessage = "Phone is not null!")]
-        [RegularExpression("^(01[2689]|09)[0-9]{8}$",ErrorMessage = "Invalid Phone")]
+        [RegularExpression("^(01[2689]|09)[0-9]{8}$", ErrorMessage = "Invalid Phone")]
         public string Phone { get; set; }
         public bool Gender { get; set; }
         public string Role { get; set; }
@@ -74,7 +74,7 @@ namespace Dr4rum_eProjectIII.Models
         public string Experience { get; set; }
         public string Achievement { get; set; }
         public string Avatar { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Post> Posts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
