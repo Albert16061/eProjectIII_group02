@@ -67,6 +67,7 @@
 <link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />
 @*Load database to datatable*@
 @section Scripts{
+    @Scripts.Render("~/Scripts/myScript.js")
     <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
     <script src="~/Scripts/MyScript/indexFunction.js"></script>
     <script>
@@ -84,5 +85,4 @@
             })
         })
     </script>
-    @Scripts.Render("~/Scripts/myScript.js")
 }

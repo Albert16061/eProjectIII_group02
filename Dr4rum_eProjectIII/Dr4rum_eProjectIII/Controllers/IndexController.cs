@@ -55,5 +55,11 @@ namespace Dr4rum_eProjectIII.Controllers
             return PartialView("viewOtherDetails",detail);
         }
 
+        //Sum Account
+        public async Task<ActionResult> SumRegister()
+        {
+            var listR = db.Accounts.ToList();
+            return PartialView(listR);
+        }
     }
 }

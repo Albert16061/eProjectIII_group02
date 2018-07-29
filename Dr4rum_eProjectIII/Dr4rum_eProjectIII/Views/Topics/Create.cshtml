@@ -16,7 +16,7 @@
         <a href="@Url.Action("Index", "Index")" class="btn btn-primary breadcrumb-link ">Home</a>
         @Html.ActionLink("UserName", "ListGroup", new { }, new { @class = "btn btn-primary breadcrumb-link" })
         @{
-        int ID = Convert.ToInt32(Session["ID"]);
+            int ID = Convert.ToInt32(Session["ID"]);
         }
         @Html.ActionLink("List Topic", "Index", "Topics", new { id = ID }, new { @class = "btn btn-primary breadcrumb-link" })
         <div class="btn btn-info c-info breadcrumb-link"> Add Topic </div>
@@ -87,7 +87,7 @@
                         @{
                             DateTime currentdate = DateTime.Now;
                         }
-                        @Html.TextBoxFor(model => model.date, new { @Value = currentdate, htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        <input type="date" name="date" value="@currentdate.ToString("yyyy-MM-dd")" style="display: none" />
                         @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
                     </div>
                 </div>

@@ -1439,6 +1439,7 @@
     <Content Include="Views\Groups\Create.cshtml" />
     <Content Include="Views\Groups\Index.cshtml" />
     <Content Include="Views\Groups\Delete.cshtml" />
+    <Content Include="Views\Index\SumRegister.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
