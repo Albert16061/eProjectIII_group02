@@ -15,7 +15,7 @@ namespace Dr4rum_eProjectIII.Controllers
 {
     public class TopicsController : Controller
     {
-        private Dr4rumEntities3 db = new Dr4rumEntities3();
+        private DbDocEntities db = new DbDocEntities();
 
         // GET: Topics
         public async Task<ActionResult> Index(int? ID)

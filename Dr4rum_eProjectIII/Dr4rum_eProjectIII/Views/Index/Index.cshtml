@@ -21,6 +21,7 @@
 <!-- main info-->
 <div class="index-list-containt">
     <div class="index-list">
+        @Html.Action("SumRegister", "Index")
         @foreach (var groupItem in Model)
         {
             // The variable GroupItem now represents a Group in the table

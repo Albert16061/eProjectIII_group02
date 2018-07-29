@@ -11,7 +11,7 @@ namespace Dr4rum_eProjectIII.Controllers
 {
     public class IndexController : Controller
     {
-        Dr4rumEntities3 db = new Dr4rumEntities3();
+        DbDocEntities db = new DbDocEntities();
         // GET: Index
         public async Task<ActionResult> Index()
         {
@@ -55,5 +55,11 @@ namespace Dr4rum_eProjectIII.Controllers
             return PartialView("viewOtherDetails",detail);
         }
 
+        //Sum Account
+        public async Task<ActionResult> SumRegister()
+        {
+            var listR = db.Accounts.ToList();
+            return PartialView(listR);
+        }
     }
 }

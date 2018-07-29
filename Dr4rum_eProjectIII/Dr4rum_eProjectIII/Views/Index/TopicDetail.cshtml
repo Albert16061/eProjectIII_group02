@@ -6,7 +6,7 @@
 @foreach (var Topic in Model)
 {
     <!-- breadcrumb-->
-    <div class="breadcrumb-containt">
+    <div class="breadcrumb-containt" id="TopicDetail-breadcrumb">
         <div class="btn-group btn-breadcrumb breadcrumb-primary">
             <a href="@Url.Action("Index", "Index")" class="btn btn-primary"><img src="~/Image/Logo_Icon/home-50.png" class="navbar-logo" alt="Site Logo" /></a>
             <a href="@Url.Action("Index", "Index")" class="btn btn-primary breadcrumb-link ">Home</a>
@@ -24,7 +24,7 @@
                 @if (Topic.Account.Avatar == null)
                 {
                     <img src="~/Image/Logo_Icon/avatar-50.png" class="header-avt" alt="Responsive image" style="max-width : 100%">
-                    <div class="TopicDetail-name-topicPoster info-Title">
+                    <div class="TopicDetail-name-topicPoster info-Title" style="padding-right: 5px;">
                         @Html.Raw("<a data-modal='' href='/Index/viewOtherDetails/" + Topic.Acc_ID + "' id='" + Topic.Acc_ID + "' title='Detail'> <span '>" + Topic.Account.UserName + "</span> </a>")
                     </div>
                     <div class="TopicDetail-name-topicDay info-Name">
@@ -33,7 +33,7 @@
                 }
                 else
                 {
-                    <img src="~/Image/avt/@Topic.Account.Avatar" class="header-avt" alt="Responsive image">
+                    <img src="@Topic.Account.Avatar" class="header-avt" alt="Responsive image">
                     <div class="TopicDetail-name-topicPoster info-Title" style="text-align: right">
                         @Html.Raw("<a data-modal='' href='/Index/viewOtherDetails/" + Topic.Acc_ID + "' id='" + Topic.Acc_ID + "' title='Detail'> <span '>" + Topic.Account.UserName + "</span> </a>")
                     </div>
@@ -77,7 +77,7 @@
                 <div class="header-containt" id="topic-header-containt">
                     <div class="avt-header-containt" id="topic-avt-header-containt">
                         <img src="~/Image/Logo_Icon/avatar-50.png" class="header-avt" alt="Responsive image">
-                        <div class="TopicDetail-name-topicPoster info-Title">
+                        <div class="TopicDetail-name-topicPoster info-Title" style="overflow-wrap: break-word">
                             @Html.Raw("<a data-modal='' href='/Index/viewOtherDetails/" + listPost.Acc_ID + "' id='" + listPost.Acc_ID + "' title='Detail'> <span '>" + listPost.Account.UserName + "</span> </a>")
                         </div>
                         <div class="TopicDetail-name-topicDay info-Name" id="post-day">

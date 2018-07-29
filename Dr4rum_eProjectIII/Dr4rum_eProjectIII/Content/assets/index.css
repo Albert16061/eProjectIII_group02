@@ -635,10 +635,33 @@ footer {
         margin-left: 10px;
         margin-top: 20px;
     }
+    .avt-header-containt{
+        font-size: 12px;
+    }
+    .main-containt{
+        font-size: 14px;
+    }
+    .post-info{
+        font-size: 14px;
+    }
 }
 @media only screen and (max-width: 750px) {
     .slogan-containt {
         padding: 0px;
+    }
+    #TopicDetail-breadcrumb{
+        display: none
+    }
+    .Topic-header-containt{
+        font-size: 1.7rem;
+    }
+    #topic-avt-header-containt {
+        flex-basis: 20%;
+        max-width: 20%;
+    }
+    .avt-header-containt {
+        flex-basis: 20%;
+        max-width: 20%;
     }
 }
 
@@ -646,6 +669,35 @@ footer {
     .category-icon-containt > img {
         display: none
     }
+    .title-topicTitle {
+        flex-basis: 55%;
+        max-width: 55%;
+    }
+    .title-topicDay{
+        display: none;
+    }
+    .title-topicPostnum {
+        flex-basis: 20%;
+        max-width: 20%;
+    }
+    .title-topicPoster {
+        text-align: center;
+    }
+    .info-topicDay {
+        display: none;
+    }
+    .info-topicPostnum {
+        flex-basis: 15%;
+        max-width: 15%;
+    }
+    .post-info-containt{
+        font-size: 12px;
+        padding-left: 10px;
+    }
+    .info-Title{
+        text-align: left;
+    }
+
 }
 @media only screen and (max-width: 500px) {
     .slogan-containt {
@@ -704,6 +756,25 @@ footer {
     .alert.alert-danger {
         margin-top: 30px !important;
     }
+    .title-topicPostnum {
+        flex-basis: 30%;
+        max-width: 30%;
+    }
+    .info-topicPostnum{
+        border: 0px;
+    }
+    .Topic-header-containt >h2{
+        font-size: 20px;
+        padding-top: 15px;
+    }
+    .avt-header-containt {
+        flex-basis: 25%;
+        max-width: 25%;
+    }
+    .Topic-header-containt {
+        flex-basis: 70%;
+        max-width: 70%;
+    }
 }
 
 @media screen and (max-width: 375px) {
@@ -715,6 +786,12 @@ footer {
     .footer-img {
         margin-left: 12%;
     }
+    .TopicDetail-name-topicDay{
+        font-size: 10px;
+    }
+    .post-info {
+        font-size: 12px;
+    }
 }
 
 @media only screen and (max-width: 320px) {
@@ -725,5 +802,13 @@ footer {
 
     footer {
         height: 55px;
+    }
+    .post-info {
+        flex-basis: 70%;
+        max-width: 70%;
+    }
+    #topic-avt-header-containt {
+        flex-basis: 30%;
+        max-width: 30%;
     }
 }

@@ -4,7 +4,15 @@
     @{
         if (Model.Incognito == false)
         {
-            <img src="~/Image/avt/avatar-icon-filled.png" class="rounded-circle img-avatar" alt="Cinque Terre" width="100" height="100">
+            if (Model.Avatar == null)
+            {
+                <img src="~/Image/avt/avatar-icon-filled.png" class="rounded-circle img-avatar" alt="Cinque Terre" width="100" height="100">
+            }
+            else
+            {
+                <img src="~/Image/avt/@Model.Avatar" class="rounded-circle img-avatar" alt="Cinque Terre" width="100" height="100">
+            }
+
         }
         else
         {
