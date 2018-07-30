@@ -1,7 +1,7 @@
 ﻿@font-face {
     font-family: Balqis;
-    src: url("../font/Balqis.otf");
-    src: local("Balqis"), url("../font/Balqis.otf")format("truetype");
+    src: url("/Content/font/Balqis.otf");
+    src: local("Balqis"), url("/Content/font/Balqis.otf")format("truetype");
 }
 
 body {

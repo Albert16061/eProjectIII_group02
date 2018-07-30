@@ -21,10 +21,10 @@ namespace Dr4rum_eProjectIII
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/popper.js",
-                      "~/Scripts/MyJQuery.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/bootstrap.min.js",
+                      "~/Scripts/popper.min.js",
+                      "~/Scripts/respond.min.js",
+                      "~/Scripts/MyJQuery.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
@@ -33,6 +33,7 @@ namespace Dr4rum_eProjectIII
                       "~/Content/assets/AdminIndex.css",
                       "~/Content/assets/AdminManager.css",
                       "~/Content/site.css"));
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

@@ -1348,6 +1348,7 @@
     <Content Include="Models\ModelIndex.edmx.diagram">
       <DependentUpon>ModelIndex.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\Dr4rum - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
