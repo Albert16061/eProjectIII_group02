@@ -23,7 +23,7 @@ namespace Dr4rum_eProjectIII.Models
         [Display(Name = "Title")]
         [Required(ErrorMessage = "Topic Title is Required")]
         [StringLength(600, MinimumLength = 10, ErrorMessage = "Topic Title is must more than 10 and less than 600 character")]
-        //[RegularExpression(@"^[^<>.,;'!~%\_@#*]+$", ErrorMessage = "Topic Title is must not include special character")]
+        [RegularExpression(@"^[-_, @.A-Za-z0-9]*$", ErrorMessage = "Topic Title is must not include special character")]
         public string Topic_Title { get; set; }
 
         [Display(Name = "ID of Accout")]

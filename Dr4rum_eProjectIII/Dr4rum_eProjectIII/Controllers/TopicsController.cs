@@ -20,7 +20,7 @@ namespace Dr4rum_eProjectIII.Controllers
         // GET: Topics
         public async Task<ActionResult> Index(int? ID)
         {
-            var topics = db.Topics.Where(t => t.Acc_ID == ID && t.setV == true).ToList();
+            var topics = db.Topics.Where(t => t.Acc_ID == ID && t.setV == true).OrderByDescending(t => t.date).ToList();
             return View(topics);
         }
 
